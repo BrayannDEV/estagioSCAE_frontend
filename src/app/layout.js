@@ -1,17 +1,13 @@
 import localFont from "next/font/local";
 import "./globals.css";
-//import "../public/"
-//import "../public/css/vendor.css"
-//import "../public/style.css"
-
-<link rel="stylesheet" type="text/css" href="css/vendor.css"/>;
-<link rel="stylesheet" type="text/css" href="style.css"/>;
+import "../../public/css/vendor.css"
+import "../../public/style.css"
 
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css" />;
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" 
-      integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous"></link>;
+      integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossOrigin="anonymous"></link>;
 <link rel="preconnect" href="https://fonts.googleapis.com"/>;
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin></link>;
+<link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin></link>;
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Upright:wght@300;400;500;600;700&family=Jost:ital,wght@0,100..900;1,100..900&family=Lora:ital,wght@0,400..700;1,400..700&display=swap"></link>;
 
 
@@ -33,177 +29,180 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-    <div>
-      <header id="header">
-        <nav class="header-top bg-secondary py-1">
-          <div class="container-lg">
-            <div class="d-flex flex-wrap justify-content-between align-items-center">
-              <ul class="info d-flex flex-wrap list-unstyled m-0">
-                <li class="location fs-6 text-capitalize text-black d-flex align-items-center me-4">
-                  <svg class="me-2" width="18" height="18">
-                    <use href="#location"></use>
-                  </svg> State Road 001 Trinity, Florida
-                </li>
-                <li class="phone fs-6 text-capitalize text-black d-flex align-items-center me-4">
-                  <svg class="me-2" width="18" height="18">
-                    <use href="#phone"></use>
-                  </svg> call: 666 333 9999
-                </li>
-
-              </ul>
-              <div class="social">
-                <ul class="info d-flex flex-wrap list-unstyled m-0">
-
-                  <li class="social-icon text-black d-flex align-items-center me-3">
-                    Follow us:
+    <html lang="pt-br">
+      <body>
+        <header id="header">
+          <nav className="header-top bg-secondary py-1">
+            <div className="container-lg">
+              <div className="d-flex flex-wrap justify-content-between align-items-center" >
+                <ul className="info d-flex flex-wrap list-unstyled m-0">
+                  <li className="location fs-6 text-capitalize text-black d-flex align-items-center me-4">
+                    <svg className="me-2" width="18" height="18">
+                      <use href="#location"></use>
+                    </svg> State Road 003 Trinity, Florida
                   </li>
-                  <li class="social-icon text-dark d-flex align-items-center me-3">
-                    <a href="#"> <svg width="18" height="18">
-                        <use href="#facebook"></use>
-                      </svg> </a>
-                  </li>
-                  <li class="social-icon text-dark d-flex align-items-center me-3">
-                    <a href="#"> <svg width="18" height="18">
-                        <use href="#instagram"></use>
-                      </svg> </a>
-                  </li>
-                  <li class="social-icon text-dark d-flex align-items-center ">
-                    <a href="#"> <svg width="18" height="18">
-                        <use href="#twitter"></use>
-                      </svg> </a>
+                  <li className="phone fs-6 text-capitalize text-black d-flex align-items-center me-4">
+                    <svg className="me-2" width="18" height="18">
+                      <use href="#phone"></use>
+                    </svg> call: 666 333 9999
                   </li>
 
                 </ul>
-              </div>
-            </div>
-          </div>
-        </nav>
+                <div className="social">
+                  <ul className="info d-flex flex-wrap list-unstyled m-0">
 
-        <nav id="primary-header" class="navbar navbar-expand-lg py-3">
-          <div class="container-lg">
-            <a class="navbar-brand" href="index.html">
-              <image src="@/public/images/main-logo.png" class="logo img-fluid"/>
-            </a>
-            <button class="navbar-toggler border-0 d-flex d-lg-none order-3 p-2 shadow-none" type="button"
-              data-bs-toggle="offcanvas" data-bs-target="#bdNavbar" aria-controls="bdNavbar" aria-expanded="false">
-              <svg class="navbar-icon" width="60" height="60">
-                <use href="#navbar-icon"></use>
-              </svg>
-            </button>
-            <div class="header-bottom offcanvas offcanvas-end" id="bdNavbar" aria-labelledby="bdNavbarOffcanvasLabel">
-              <div class="offcanvas-header px-4 mt-3 ">
-                <button type="button" class="btn-close btn-close-black" data-bs-dismiss="offcanvas" aria-label="Close"
-                  data-bs-target="#bdNavbar"></button>
-              </div>
-              <div class="offcanvas-body align-items-center justify-content-end">
-                <ul class="navbar-nav mb-2 mb-lg-0">
-                  <li class="nav-item px-3 py-2 py-lg-0">
-                    <a class="nav-link fw-semibold active p-0" aria-current="page" href="index.html">Home</a>
-                  </li>
-                  <li class="nav-item px-3 py-2 py-lg-0 dropdown">
-                    <a class="nav-link fw-semibold p-0 dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button"
-                      aria-expanded="false">Pages</a>
-                    <ul class="dropdown-menu dropdown-menu-end animate slide mt-3 border-0 shadow">
-                      <li><a href="about.html" class="dropdown-item">About Us <span
-                            class="badge bg-secondary text-black">Pro</span></a></li>
-                      <li><a href="appointment.html" class="dropdown-item">Appointment
-                          <span class="badge bg-secondary text-black">Pro</span></a></li>
-                      <li><a href="team.html" class="dropdown-item">Team <span
-                            class="badge bg-secondary text-black">Pro</span></a></li>
-                      <li><a href="pricing.html" class="dropdown-item">Price Plan <span
-                            class="badge bg-secondary text-black">Pro</span></a></li>
-                      <li><a href="gallery.html" class="dropdown-item">Gallery <span
-                            class="badge bg-secondary text-black">Pro</span></a></li>
-                      <li><a href="faq.html" class="dropdown-item">FAQs <span
-                            class="badge bg-secondary text-black">Pro</span></a></li>
-                      <li><a href="contact.html" class="dropdown-item">Contact <span
-                            class="badge bg-secondary text-black">Pro</span></a></li>
-                      <li><a href="review.html" class="dropdown-item">Reviews <span
-                            class="badge bg-secondary text-black">Pro</span></a></li>
-                      <li><a href="thankyou.html" class="dropdown-item">Thankyou <span
-                            class="badge bg-secondary text-black">Pro</span></a></li>
-                      <li><a href="error.html" class="dropdown-item">Error 404 <span
-                            class="badge bg-secondary text-black">Pro</span></a></li>
-                      <li><a href="styles.html" class="dropdown-item">Styles <span
-                            class="badge bg-secondary text-black">Pro</span></a></li>
-                    </ul>
-                  </li>
-                  <li class="nav-item px-3 py-2 py-lg-0 dropdown">
-                    <a class="nav-link fw-semibold p-0 dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button"
-                      aria-expanded="false">Shop</a>
-                    <ul class="dropdown-menu dropdown-menu-end animate slide mt-3 border-0 shadow">
-                      <li><a href="shop.html" class="dropdown-item">Shop <span
-                            class="badge bg-secondary text-black">Pro</span></a></li>
-                      <li><a href="single-product.html" class="dropdown-item">Single-Product <span
-                            class="badge bg-secondary text-black">Pro</span></a></li>
-                      <li><a href="cart.html" class="dropdown-item">Cart <span
-                            class="badge bg-secondary text-black">Pro</span></a></li>
-                      <li><a href="wishlist.html" class="dropdown-item">Wishlist <span
-                            class="badge bg-secondary text-black">Pro</span></a></li>
-                      <li><a href="checkout.html" class="dropdown-item">Checkout <span
-                            class="badge bg-secondary text-black">Pro</span></a></li>
-                    </ul>
-                  </li>
-                  <li class="nav-item px-3 py-2 py-lg-0 dropdown">
-                    <a class="nav-link fw-semibold p-0 dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button"
-                      aria-expanded="false">Services</a>
-                    <ul class="dropdown-menu dropdown-menu-end animate slide mt-3 border-0 shadow">
-                      <li><a href="services.html" class="dropdown-item">Services <span
-                            class="badge bg-secondary text-black">Pro</span></a></li>
-                      <li><a href="services-single.html" class="dropdown-item">Service-Details <span
-                            class="badge bg-secondary text-black">Pro</span></a></li>
-                    </ul>
-                  </li>
-                  <li class="nav-item px-3 py-2 py-lg-0 dropdown">
-                    <a class="nav-link fw-semibold p-0 dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button"
-                      aria-expanded="false">Blog</a>
-                    <ul class="dropdown-menu dropdown-menu-end animate slide mt-3 border-0 shadow">
-                      <li><a href="blog.html" class="dropdown-item">Blog <span
-                            class="badge bg-secondary text-black">Pro</span></a></li>
-                      <li><a href="single-post.html" class="dropdown-item">Single-Post <span
-                            class="badge bg-secondary text-black">Pro</span></a></li>
-                    </ul>
-                  </li>
-                  <li class="nav-item px-3 py-2 py-lg-0">
-                    <a class="nav-link fw-semibold p-0" href="contact.html">Contact</a>
-                  </li>
-                  <li class="nav-item px-3 py-2 py-lg-0">
-                    <a class="nav-link p-0 fw-bold text-uppercase"
-                      href="https://templatesjungle.gumroad.com/l/beauty-and-nail-salon-website-template"
-                      target="_blank">Get Pro</a>
-                  </li>
-                  <li class="nav-item search-dropdown py-2 py-lg-0 ms-3 ms-lg-5 dropdown">
-                    <a class="nav-link p-0 search dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button"
-                      aria-expanded="false">
-                      <svg class="search text-primary " width="24" height="24">
-                        <use href="#search"></use>
-                      </svg>
-                    </a>
-                    <ul class="dropdown-menu dropdown-menu-end animate slide mt-3 border-0 p-3 shadow">
-                      <li class="position-relative d-flex align-items-center p-0">
-                        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search"/>
-                        <button class="btn btn-primary position-absolute end-0" type="submit">
-                          <svg class="search" width="24" height="24">
-                            <use href="#search"></use>
-                          </svg>
-                        </button>
-                      </li>
-                    </ul>
-                  </li>
-                </ul>
+                    <li className="social-icon text-black d-flex align-items-center me-3">
+                      Follow us:
+                    </li>
+                    <li className="social-icon text-dark d-flex align-items-center me-3">
+                      <a href="#"> <svg width="18" height="18">
+                          <use href="#facebook"></use>
+                        </svg> </a>
+                    </li>
+                    <li className="social-icon text-dark d-flex align-items-center me-3">
+                      <a href="#"> <svg width="18" height="18">
+                          <use href="#instagram"></use>
+                        </svg> </a>
+                    </li>
+                    <li className="social-icon text-dark d-flex align-items-center ">
+                      <a href="#"> <svg width="18" height="18">
+                          <use href="#twitter"></use>
+                        </svg> </a>
+                    </li>
+
+                  </ul>
+                </div>
               </div>
             </div>
-          </div>
-        </nav>
-      </header>
-      {/* <script src="../public/js/jquery-1.11.0.min.js"></script>
-      <script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.js"></script>
-      <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe"
-        crossorigin="anonymous"></script>
-      <script type="text/javascript" src="../public/js/plugins.js"></script>
-      <script type="text/javascript" src="../public/js/script.js"></script>
-      <script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script> */}
-    </div>
+          </nav>
+
+          <nav id="primary-header" className="navbar navbar-expand-lg py-3">
+            <div className="container-lg">
+              <a className="navbar-brand" href="#">
+                <img src="/images/main-logo.png" className="logo img-fluid"/>
+              </a>
+              <button className="navbar-toggler border-0 d-flex d-lg-none order-3 p-2 shadow-none" type="button"
+                data-bs-toggle="offcanvas" data-bs-target="#bdNavbar" aria-controls="bdNavbar" aria-expanded="false">
+                <svg className="navbar-icon" width="60" height="60">
+                  <use href="#navbar-icon"></use>
+                </svg>
+              </button>
+              <div className="header-bottom offcanvas offcanvas-end" id="bdNavbar" aria-labelledby="bdNavbarOffcanvasLabel">
+                <div className="offcanvas-header px-4 mt-3 ">
+                  <button type="button" className="btn-close btn-close-black" data-bs-dismiss="offcanvas" aria-label="Close"
+                    data-bs-target="#bdNavbar"></button>
+                </div>
+                <div className="offcanvas-body align-items-center justify-content-end">
+                  <ul className="navbar-nav mb-2 mb-lg-0">
+                    <li className="nav-item px-3 py-2 py-lg-0">
+                      <a className="nav-link fw-semibold active p-0" aria-current="page" href="index.html">Home</a>
+                    </li>
+                    <li className="nav-item px-3 py-2 py-lg-0 dropdown">
+                      <a className="nav-link fw-semibold p-0 dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button"
+                        aria-expanded="false">Pages</a>
+                      <ul className="dropdown-menu dropdown-menu-end animate slide mt-3 border-0 shadow">
+                        <li><a href="about.html" className="dropdown-item">About Us <span
+                              className="badge bg-secondary text-black">Pro</span></a></li>
+                        <li><a href="appointment.html" className="dropdown-item">Appointment
+                            <span className="badge bg-secondary text-black">Pro</span></a></li>
+                        <li><a href="team.html" className="dropdown-item">Team <span
+                              className="badge bg-secondary text-black">Pro</span></a></li>
+                        <li><a href="pricing.html" className="dropdown-item">Price Plan <span
+                              className="badge bg-secondary text-black">Pro</span></a></li>
+                        <li><a href="gallery.html" className="dropdown-item">Gallery <span
+                              className="badge bg-secondary text-black">Pro</span></a></li>
+                        <li><a href="faq.html" className="dropdown-item">FAQs <span
+                              className="badge bg-secondary text-black">Pro</span></a></li>
+                        <li><a href="contact.html" className="dropdown-item">Contact <span
+                              className="badge bg-secondary text-black">Pro</span></a></li>
+                        <li><a href="review.html" className="dropdown-item">Reviews <span
+                              className="badge bg-secondary text-black">Pro</span></a></li>
+                        <li><a href="thankyou.html" className="dropdown-item">Thankyou <span
+                              className="badge bg-secondary text-black">Pro</span></a></li>
+                        <li><a href="error.html" className="dropdown-item">Error 404 <span
+                              className="badge bg-secondary text-black">Pro</span></a></li>
+                        <li><a href="styles.html" className="dropdown-item">Styles <span
+                              className="badge bg-secondary text-black">Pro</span></a></li>
+                      </ul>
+                    </li>
+                    <li className="nav-item px-3 py-2 py-lg-0 dropdown">
+                      <a className="nav-link fw-semibold p-0 dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button"
+                        aria-expanded="false">Shop</a>
+                      <ul className="dropdown-menu dropdown-menu-end animate slide mt-3 border-0 shadow">
+                        <li><a href="shop.html" className="dropdown-item">Shop <span
+                              className="badge bg-secondary text-black">Pro</span></a></li>
+                        <li><a href="single-product.html" className="dropdown-item">Single-Product <span
+                              className="badge bg-secondary text-black">Pro</span></a></li>
+                        <li><a href="cart.html" className="dropdown-item">Cart <span
+                              className="badge bg-secondary text-black">Pro</span></a></li>
+                        <li><a href="wishlist.html" className="dropdown-item">Wishlist <span
+                              className="badge bg-secondary text-black">Pro</span></a></li>
+                        <li><a href="checkout.html" className="dropdown-item">Checkout <span
+                              className="badge bg-secondary text-black">Pro</span></a></li>
+                      </ul>
+                    </li>
+                    <li className="nav-item px-3 py-2 py-lg-0 dropdown">
+                      <a className="nav-link fw-semibold p-0 dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button"
+                        aria-expanded="false">Services</a>
+                      <ul className="dropdown-menu dropdown-menu-end animate slide mt-3 border-0 shadow">
+                        <li><a href="services.html" className="dropdown-item">Services <span
+                              className="badge bg-secondary text-black">Pro</span></a></li>
+                        <li><a href="services-single.html" className="dropdown-item">Service-Details <span
+                              className="badge bg-secondary text-black">Pro</span></a></li>
+                      </ul>
+                    </li>
+                    <li className="nav-item px-3 py-2 py-lg-0 dropdown">
+                      <a className="nav-link fw-semibold p-0 dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button"
+                        aria-expanded="false">Blog</a>
+                      <ul className="dropdown-menu dropdown-menu-end animate slide mt-3 border-0 shadow">
+                        <li><a href="blog.html" className="dropdown-item">Blog <span
+                              className="badge bg-secondary text-black">Pro</span></a></li>
+                        <li><a href="single-post.html" className="dropdown-item">Single-Post <span
+                              className="badge bg-secondary text-black">Pro</span></a></li>
+                      </ul>
+                    </li>
+                    <li className="nav-item px-3 py-2 py-lg-0">
+                      <a className="nav-link fw-semibold p-0" href="contact.html">Contact</a>
+                    </li>
+                    <li className="nav-item px-3 py-2 py-lg-0">
+                      <a className="nav-link p-0 fw-bold text-uppercase"
+                        href="https://templatesjungle.gumroad.com/l/beauty-and-nail-salon-website-template"
+                        target="_blank">Get Pro</a>
+                    </li>
+                    <li className="nav-item search-dropdown py-2 py-lg-0 ms-3 ms-lg-5 dropdown">
+                      <a className="nav-link p-0 search dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button"
+                        aria-expanded="false">
+                        <svg className="search text-primary " width="24" height="24">
+                          <use href="#search"></use>
+                        </svg>
+                      </a>
+                      <ul className="dropdown-menu dropdown-menu-end animate slide mt-3 border-0 p-3 shadow">
+                        <li className="position-relative d-flex align-items-center p-0">
+                          <input className="form-control me-2" type="search" placeholder="Search" aria-label="Search"/>
+                          <button className="btn btn-primary position-absolute end-0" type="submit">
+                            <svg className="search" width="24" height="24">
+                              <use href="#search"></use>
+                            </svg>
+                          </button>
+                        </li>
+                      </ul>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </nav>
+        </header>
+        <script src="/js/jquery-1.11.0.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"
+          integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe"
+          crossOrigin="anonymous"></script>
+        <script type="text/javascript" src="/js/plugins.js"></script>
+        <script type="text/javascript" src="/js/script.js"></script>
+        <script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
+      </body>
+      
+    </html>
   );
 }
