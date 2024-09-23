@@ -32,53 +32,11 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="pt-br">
-      {css}
+      <head>
+        {css}
+      </head>
       <body>
         <header id="header">
-          <nav className="header-top bg-secondary py-1">
-            <div className="container-lg">
-              <div className="d-flex flex-wrap justify-content-between align-items-center" >
-                <ul className="info d-flex flex-wrap list-unstyled m-0">
-                  <li className="location fs-6 text-capitalize text-black d-flex align-items-center me-4">
-                    <svg className="me-2" width="18" height="18">
-                      <use href="#location"></use>
-                    </svg> State Road 003 Trinity, Florida
-                  </li>
-                  <li className="phone fs-6 text-capitalize text-black d-flex align-items-center me-4">
-                    <svg className="me-2" width="18" height="18">
-                      <use href="#phone"></use>
-                    </svg> call: 666 333 9999
-                  </li>
-
-                </ul>
-                <div className="social">
-                  <ul className="info d-flex flex-wrap list-unstyled m-0">
-
-                    <li className="social-icon text-black d-flex align-items-center me-3">
-                      Follow us:
-                    </li>
-                    <li className="social-icon text-dark d-flex align-items-center me-3">
-                      <a href="#"> <svg width="18" height="18">
-                          <use href="#facebook"></use>
-                        </svg> </a>
-                    </li>
-                    <li className="social-icon text-dark d-flex align-items-center me-3">
-                      <a href="#"> <svg width="18" height="18">
-                          <use href="#instagram"></use>
-                        </svg> </a>
-                    </li>
-                    <li className="social-icon text-dark d-flex align-items-center ">
-                      <a href="#"> <svg width="18" height="18">
-                          <use href="#twitter"></use>
-                        </svg> </a>
-                    </li>
-
-                  </ul>
-                </div>
-              </div>
-            </div>
-          </nav>
-
           <nav id="primary-header" className="navbar navbar-expand-lg py-3">
             <div className="container-lg">
               <a className="navbar-brand" href="#">
@@ -102,51 +60,7 @@ export default function RootLayout({ children }) {
                     </li>
                     <li className="nav-item px-3 py-2 py-lg-0 dropdown">
                       <a className="nav-link fw-semibold p-0 dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button"
-                        aria-expanded="false">Pages</a>
-                      <ul className="dropdown-menu dropdown-menu-end animate slide mt-3 border-0 shadow">
-                        <li><a href="about.html" className="dropdown-item">About Us <span
-                              className="badge bg-secondary text-black">Pro</span></a></li>
-                        <li><a href="appointment.html" className="dropdown-item">Appointment
-                            <span className="badge bg-secondary text-black">Pro</span></a></li>
-                        <li><a href="team.html" className="dropdown-item">Team <span
-                              className="badge bg-secondary text-black">Pro</span></a></li>
-                        <li><a href="pricing.html" className="dropdown-item">Price Plan <span
-                              className="badge bg-secondary text-black">Pro</span></a></li>
-                        <li><a href="gallery.html" className="dropdown-item">Gallery <span
-                              className="badge bg-secondary text-black">Pro</span></a></li>
-                        <li><a href="faq.html" className="dropdown-item">FAQs <span
-                              className="badge bg-secondary text-black">Pro</span></a></li>
-                        <li><a href="contact.html" className="dropdown-item">Contact <span
-                              className="badge bg-secondary text-black">Pro</span></a></li>
-                        <li><a href="review.html" className="dropdown-item">Reviews <span
-                              className="badge bg-secondary text-black">Pro</span></a></li>
-                        <li><a href="thankyou.html" className="dropdown-item">Thankyou <span
-                              className="badge bg-secondary text-black">Pro</span></a></li>
-                        <li><a href="error.html" className="dropdown-item">Error 404 <span
-                              className="badge bg-secondary text-black">Pro</span></a></li>
-                        <li><a href="styles.html" className="dropdown-item">Styles <span
-                              className="badge bg-secondary text-black">Pro</span></a></li>
-                      </ul>
-                    </li>
-                    <li className="nav-item px-3 py-2 py-lg-0 dropdown">
-                      <a className="nav-link fw-semibold p-0 dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button"
-                        aria-expanded="false">Shop</a>
-                      <ul className="dropdown-menu dropdown-menu-end animate slide mt-3 border-0 shadow">
-                        <li><a href="shop.html" className="dropdown-item">Shop <span
-                              className="badge bg-secondary text-black">Pro</span></a></li>
-                        <li><a href="single-product.html" className="dropdown-item">Single-Product <span
-                              className="badge bg-secondary text-black">Pro</span></a></li>
-                        <li><a href="cart.html" className="dropdown-item">Cart <span
-                              className="badge bg-secondary text-black">Pro</span></a></li>
-                        <li><a href="wishlist.html" className="dropdown-item">Wishlist <span
-                              className="badge bg-secondary text-black">Pro</span></a></li>
-                        <li><a href="checkout.html" className="dropdown-item">Checkout <span
-                              className="badge bg-secondary text-black">Pro</span></a></li>
-                      </ul>
-                    </li>
-                    <li className="nav-item px-3 py-2 py-lg-0 dropdown">
-                      <a className="nav-link fw-semibold p-0 dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button"
-                        aria-expanded="false">Services</a>
+                        aria-expanded="false">Serviços</a>
                       <ul className="dropdown-menu dropdown-menu-end animate slide mt-3 border-0 shadow">
                         <li><a href="services.html" className="dropdown-item">Services <span
                               className="badge bg-secondary text-black">Pro</span></a></li>
@@ -154,23 +68,18 @@ export default function RootLayout({ children }) {
                               className="badge bg-secondary text-black">Pro</span></a></li>
                       </ul>
                     </li>
-                    <li className="nav-item px-3 py-2 py-lg-0 dropdown">
-                      <a className="nav-link fw-semibold p-0 dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button"
-                        aria-expanded="false">Blog</a>
-                      <ul className="dropdown-menu dropdown-menu-end animate slide mt-3 border-0 shadow">
-                        <li><a href="blog.html" className="dropdown-item">Blog <span
-                              className="badge bg-secondary text-black">Pro</span></a></li>
-                        <li><a href="single-post.html" className="dropdown-item">Single-Post <span
-                              className="badge bg-secondary text-black">Pro</span></a></li>
-                      </ul>
-                    </li>
                     <li className="nav-item px-3 py-2 py-lg-0">
-                      <a className="nav-link fw-semibold p-0" href="contact.html">Contact</a>
+                      <a className="nav-link fw-semibold p-0" href="contact.html">Contato</a>
                     </li>
                     <li className="nav-item px-3 py-2 py-lg-0">
                       <a className="nav-link p-0 fw-bold text-uppercase"
                         href="https://templatesjungle.gumroad.com/l/beauty-and-nail-salon-website-template"
-                        target="_blank">Get Pro</a>
+                        target="_blank">LOGIN</a>
+                    </li>
+                    <li className="nav-item px-3 py-2 py-lg-0">
+                      <a className="nav-link p-0 fw-bold text-uppercase"
+                        href="https://templatesjungle.gumroad.com/l/beauty-and-nail-salon-website-template"
+                        target="_blank">CADASTRE-SE</a>
                     </li>
                     <li className="nav-item search-dropdown py-2 py-lg-0 ms-3 ms-lg-5 dropdown">
                       <a className="nav-link p-0 search dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button"
