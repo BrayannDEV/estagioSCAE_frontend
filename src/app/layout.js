@@ -3,13 +3,15 @@ import "./globals.css";
 import "../../public/css/vendor.css"
 import "../../public/style.css"
 
+const css = 
+<>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css" />;
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" 
       integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossOrigin="anonymous"></link>;
 <link rel="preconnect" href="https://fonts.googleapis.com"/>;
 <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin></link>;
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Upright:wght@300;400;500;600;700&family=Jost:ital,wght@0,100..900;1,100..900&family=Lora:ital,wght@0,400..700;1,400..700&display=swap"></link>;
-
+</>
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -30,6 +32,7 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="pt-br">
+      {css}
       <body>
         <header id="header">
           <nav className="header-top bg-secondary py-1">
@@ -193,6 +196,8 @@ export default function RootLayout({ children }) {
             </div>
           </nav>
         </header>
+
+
         <script src="/js/jquery-1.11.0.min.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"
