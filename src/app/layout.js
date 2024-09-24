@@ -13,6 +13,15 @@ const css =
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Upright:wght@300;400;500;600;700&family=Jost:ital,wght@0,100..900;1,100..900&family=Lora:ital,wght@0,400..700;1,400..700&display=swap"></link>;
 </>
 
+// const estilo1 = {
+//   backgroundimage: "url(images/banner-img2.png)";
+//   backgroundsize: "cover",
+//   backgroundrepeat: "no-repeat",
+//   height: "90vh",
+//   backgroundposition: "center",
+//   height: "90vh",
+// }
+
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
   variable: "--font-geist-sans",
@@ -36,7 +45,7 @@ export default function RootLayout({ children }) {
         {css}
       </head>
       <body>
-        <header id="header">
+        <header id="header"  style={{ backgroundColor: "red" }}> 
           <nav id="primary-header" className="navbar navbar-expand-lg py-3">
             <div className="container-lg">
               <a className="navbar-brand" href="#">
@@ -105,6 +114,47 @@ export default function RootLayout({ children }) {
             </div>
           </nav>
         </header>
+
+        <section id="slider">
+          <div className="swiper slider ">
+            <div className="swiper-wrapper">
+              <div className="swiper-slide d-flex jarallax position-relative" >
+                <div className="banner-content text-center m-auto" data-aos="zoom-out">
+                  <h2 className="banner-title display-2 fw-normal text-white mb-4">Embark on a journey of self-care and elegance
+                  </h2>
+                  <a href="appointment.html" className="btn btn-primary mt-3">Get an Appointment</a>
+                </div>
+              </div>
+              <div className="swiper-slide d-flex jarallax position-relative">
+                {/* // style="background-image: url(images/banner-img1.png); background-size: cover; background-repeat: no-repeat; height: 90vh; background-position: center; height: 90vh;"> */}
+                <div className="banner-content text-center m-auto" data-aos="zoom-out">
+                  <h2 className="banner-title display-2 fw-normal text-white mb-4">Embark on a journey of self-care and elegance
+                  </h2>
+                  <a href="appointment.html" className="btn btn-primary mt-3">Get an Appointment</a>
+                </div>
+              </div>
+              <div className="swiper-slide d-flex jarallax position-relative"
+              style={{ backgroundColor: "red" }}>
+               {/* style="background-image: url(images/banner-img3.png); background-size: cover; background-repeat: no-repeat; height: 90vh; background-position: center; height: 90vh;" */}
+                <div className="banner-content text-center m-auto" data-aos="zoom-out">
+                  <h2 className="banner-title display-2 fw-normal text-white mb-4">Embark on a journey of self-care and elegance
+                  </h2>
+                  <a href="appointment.html" className="btn btn-primary mt-3">Get an Appointment</a>
+                </div>
+              </div>
+            </div>
+            <div className="position-absolute top-0 bottom-0 end-0 m-auto me-0 me-md-5 main-slider-button-next">
+              <svg className="arrow-right light-color" width="60" height="60">
+                <use href="#arrow-right"></use>
+              </svg>
+            </div>
+            <div className="position-absolute top-0 bottom-0 start-0 m-auto ms-0 ms-md-5 main-slider-button-prev">
+              <svg className="arrow-left light-color" width="60" height="60">
+                <use href="#arrow-left"></use>
+              </svg>
+            </div>
+          </div>
+        </section>
 
 
         <script src="/js/jquery-1.11.0.min.js"></script>
