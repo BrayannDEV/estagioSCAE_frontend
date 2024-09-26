@@ -45,7 +45,7 @@ export default function RootLayout({ children }) {
         {css}
       </head>
       <body>
-        <header id="header"  style={{ backgroundColor: "red" }}> 
+        <header id="header"> 
           <nav id="primary-header" className="navbar navbar-expand-lg py-3">
             <div className="container-lg">
               <a className="navbar-brand" href="#">
@@ -115,17 +115,17 @@ export default function RootLayout({ children }) {
           </nav>
         </header>
 
-        <section id="slider">
-          <div className="swiper slider ">
-            <div className="swiper-wrapper">
-              <div className="swiper-slide d-flex jarallax position-relative" >
+        <section id="slider" >
+          <div className="swiper slider "  >
+            <div className="swiper-wrapper" style={{ backgroundImage: "url(/images/banner-img1.png)" }}>
+              <div className="swiper-slide d-flex jarallax position-relative">
                 <div className="banner-content text-center m-auto" data-aos="zoom-out">
                   <h2 className="banner-title display-2 fw-normal text-white mb-4">Embark on a journey of self-care and elegance
                   </h2>
                   <a href="appointment.html" className="btn btn-primary mt-3">Get an Appointment</a>
                 </div>
               </div>
-              <div className="swiper-slide d-flex jarallax position-relative">
+              <div className="swiper-slide d-flex jarallax position-relative" >
                 {/* // style="background-image: url(images/banner-img1.png); background-size: cover; background-repeat: no-repeat; height: 90vh; background-position: center; height: 90vh;"> */}
                 <div className="banner-content text-center m-auto" data-aos="zoom-out">
                   <h2 className="banner-title display-2 fw-normal text-white mb-4">Embark on a journey of self-care and elegance
@@ -133,8 +133,7 @@ export default function RootLayout({ children }) {
                   <a href="appointment.html" className="btn btn-primary mt-3">Get an Appointment</a>
                 </div>
               </div>
-              <div className="swiper-slide d-flex jarallax position-relative"
-              style={{ backgroundColor: "red" }}>
+              <div className="swiper-slide d-flex jarallax position-relative">
                {/* style="background-image: url(images/banner-img3.png); background-size: cover; background-repeat: no-repeat; height: 90vh; background-position: center; height: 90vh;" */}
                 <div className="banner-content text-center m-auto" data-aos="zoom-out">
                   <h2 className="banner-title display-2 fw-normal text-white mb-4">Embark on a journey of self-care and elegance
