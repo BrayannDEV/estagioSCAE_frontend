@@ -50,7 +50,7 @@ export default function RootLayout({ children }) {
         <header id="header"> 
           <nav id="primary-header" className="navbar navbar-expand-lg py-3">
             <div className="container-lg">
-              <a className="navbar-brand" href="#">
+              <a className="navbar-brand" href="/">
                 <img src="/images/main-logo.png" className="logo img-fluid"/>
               </a>
               <button className="navbar-toggler border-0 d-flex d-lg-none order-3 p-2 shadow-none" type="button"
@@ -67,30 +67,19 @@ export default function RootLayout({ children }) {
                 <div className="offcanvas-body align-items-center justify-content-end">
                   <ul className="navbar-nav mb-2 mb-lg-0">
                     <li className="nav-item px-3 py-2 py-lg-0">
-                      <a className="nav-link fw-semibold active p-0" aria-current="page" href="index.html">Home</a>
-                    </li>
-                    <li className="nav-item px-3 py-2 py-lg-0 dropdown">
-                      <a className="nav-link fw-semibold p-0 dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button"
-                        aria-expanded="false">Serviços</a>
-                      <ul className="dropdown-menu dropdown-menu-end animate slide mt-3 border-0 shadow">
-                        <li><a href="services.html" className="dropdown-item">Services <span
-                              className="badge bg-secondary text-black">Pro</span></a></li>
-                        <li><a href="services-single.html" className="dropdown-item">Service-Details <span
-                              className="badge bg-secondary text-black">Pro</span></a></li>
-                      </ul>
+                      <a className="nav-link fw-semibold active p-0" aria-current="page" href="/">Home</a>
                     </li>
                     <li className="nav-item px-3 py-2 py-lg-0">
-                      <a className="nav-link fw-semibold p-0" href="contact.html">Contato</a>
+                      <a className="nav-link fw-semibold p-0" href="/servico">Serviços & valores</a>
                     </li>
                     <li className="nav-item px-3 py-2 py-lg-0">
-                      <a className="nav-link p-0 fw-bold text-uppercase"
-                        href="https://templatesjungle.gumroad.com/l/beauty-and-nail-salon-website-template"
-                        target="_blank">LOGIN</a>
+                      <a className="nav-link fw-semibold p-0" href="/">Agendar</a>
                     </li>
                     <li className="nav-item px-3 py-2 py-lg-0">
-                      <a className="nav-link p-0 fw-bold text-uppercase"
-                        href="https://templatesjungle.gumroad.com/l/beauty-and-nail-salon-website-template"
-                        target="_blank">CADASTRE-SE</a>
+                      <a className="nav-link p-0 fw-bold text-uppercase" href="/login">LOGIN</a>
+                    </li>
+                    <li className="nav-item px-3 py-2 py-lg-0">
+                      <a className="nav-link p-0 fw-bold text-uppercase" href="/cadastro">CADASTRE-SE</a>
                     </li>
                     <li className="nav-item search-dropdown py-2 py-lg-0 ms-3 ms-lg-5 dropdown">
                       <a className="nav-link p-0 search dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button"
@@ -124,7 +113,7 @@ export default function RootLayout({ children }) {
             <div class="row ">
               <div class="col-md-4 my-4 ">
                 <div class="footer-menu">
-                  <a class="navbar-brand" href="index.html">
+                  <a class="navbar-brand" href="/">
                     <img src="images/main-logo.png" class="logo img-fluid"/>
                   </a>
                   <p class="mt-4">Hic, dolor soluta, dolores laudantium reprehenderit ullam, similique voluptate omnis modi
