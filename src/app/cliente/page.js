@@ -1,5 +1,6 @@
 'use client'
 import { useRef, useState } from "react"
+import httpClient from "../utils/httpClient";
 
 export default function Gravar() {
 
@@ -10,19 +11,37 @@ export default function Gravar() {
   let confirmaSenha = useRef("");
 
   function cadastrar(){
-    
+    let senhaCorreta;
     if(senha.current.value == confirmaSenha.current.value){
-      let senhaCorreta = senha.current.value;
+      senhaCorreta = senha.current.value;
     }
     let usuario = [{
       nome: nome.current.value,
       fone: fone.current.value,
       login: login.current.value,
       senha: senhaCorreta,
-    }]
-  }
+    }];
 
-  
+    httpClient.post("/cliente", usuario)
+    .then(r=> {
+        ok = r.status == 201;
+        return r.json();
+    })
+    .then(r=> {
+        if(ok) {
+            alert(r.msg);
+
+            nome.current.value = "";
+            fone.current.value = 0;
+            login.current.value = "";
+            senha.current.value = "";
+            confirmaSenha.current.value = "";
+        }
+        else {
+            alert(r.msg);
+        }
+    })
+  }
 
   return(
       <section id="appointment" className="jarallax" style={{backgroundImage: "url(images/background-1.jpg)"}} >
@@ -48,7 +67,7 @@ export default function Gravar() {
               </div>
             </form>
 
-            <button className="btn btn-primary mt-3" href="#" style={{backgroundColor: "DF808F", border: "none"}}>Cadastrar</button>
+            <button className="btn btn-primary mt-3" onClick={cadastrar()} style={{backgroundColor: "DF808F", border: "none"}}>Cadastrar</button>
           </div>
 
         </div>
