@@ -67,7 +67,7 @@ export default function Gravar() {
               </div>
             </form>
 
-            <button className="btn btn-primary mt-3" onClick={cadastrar()} style={{backgroundColor: "DF808F", border: "none"}}>Cadastrar</button>
+            <button className="btn btn-primary mt-3" onClick={cadastrar} style={{backgroundColor: "DF808F", border: "none"}}>Cadastrar</button>
           </div>
 
         </div>
