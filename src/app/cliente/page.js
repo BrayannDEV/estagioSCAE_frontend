@@ -10,7 +10,7 @@ export default function Gravar() {
   let senha = useRef("");
   let confirmaSenha = useRef("");
 
-  function cadastrar(){
+  async function cadastrar(){
     let senhaCorreta;
     if(senha.current.value == confirmaSenha.current.value){
       senhaCorreta = senha.current.value;
@@ -22,25 +22,32 @@ export default function Gravar() {
       senha: senhaCorreta,
     }];
 
-    httpClient.post("/cliente", usuario)
-    .then(r=> {
-        ok = r.status == 201;
-        return r.json();
-    })
-    .then(r=> {
-        if(ok) {
-            alert(r.msg);
+    try {
+      const result = await httpClient.post("/cliente", usuario)
+      console.log(result);
+    } catch (erro) {
+      console.log(erro);
+    }
 
-            nome.current.value = "";
-            fone.current.value = 0;
-            login.current.value = "";
-            senha.current.value = "";
-            confirmaSenha.current.value = "";
-        }
-        else {
-            alert(r.msg);
-        }
-    })
+    // httpClient.post("/cliente", usuario)
+    // .then(r=> {
+    //     ok = r.status == 201;
+    //     return r.json();
+    // })
+    // .then(r=> {
+    //     if(ok) {
+    //         alert(r.msg);
+
+    //         nome.current.value = "";
+    //         fone.current.value = 0;
+    //         login.current.value = "";
+    //         senha.current.value = "";
+    //         confirmaSenha.current.value = "";
+    //     }
+    //     else {
+    //         alert(r.msg);
+    //     }
+    // })
   }
 
   return(

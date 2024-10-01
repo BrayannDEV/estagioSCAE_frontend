@@ -79,7 +79,7 @@ export default function RootLayout({ children }) {
                       <a className="nav-link p-0 fw-bold text-uppercase" href="/login">LOGIN</a>
                     </li>
                     <li className="nav-item px-3 py-2 py-lg-0">
-                      <a className="nav-link p-0 fw-bold text-uppercase" href="/cadastro">CADASTRE-SE</a>
+                      <a className="nav-link p-0 fw-bold text-uppercase" href="/cliente">CADASTRE-SE</a>
                     </li>
                     <li className="nav-item search-dropdown py-2 py-lg-0 ms-3 ms-lg-5 dropdown">
                       <a className="nav-link p-0 search dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button"
@@ -109,43 +109,43 @@ export default function RootLayout({ children }) {
           {children}
         </div>
         <footer id="footer">
-          <div class="container-lg padding-medium">
-            <div class="row ">
-              <div class="col-md-4 my-4 ">
-                <div class="footer-menu">
-                  <a class="navbar-brand" href="/">
-                    <img src="images/main-logo.png" class="logo img-fluid"/>
+          <div className="container-lg padding-medium">
+            <div className="row ">
+              <div className="col-md-4 my-4 ">
+                <div className="footer-menu">
+                  <a className="navbar-brand" href="/">
+                    <img src="images/main-logo.png" className="logo img-fluid"/>
                   </a>
-                  <p class="mt-4">Hic, dolor soluta, dolores laudantium reprehenderit ullam, similique voluptate omnis modi
+                  <p className="mt-4">Hic, dolor soluta, dolores laudantium reprehenderit ullam, similique voluptate omnis modi
                     sit minima illo.</p>
-                  <ul class="info list-unstyled mt-4">
+                  <ul className="info list-unstyled mt-4">
 
                   </ul>
-                  <div class="social-links mt-4">
-                    <ul class="d-flex  list-unstyled gap-2 m-0">
-                      <li class="social">
+                  <div className="social-links mt-4">
+                    <ul className="d-flex  list-unstyled gap-2 m-0">
+                      <li className="social">
                         <a href="#">
-                          <iconify-icon class="social-icon" icon="ri:facebook-fill"></iconify-icon>
+                          <iconify-icon className="social-icon" icon="ri:facebook-fill"></iconify-icon>
                         </a>
                       </li>
-                      <li class="social">
+                      <li className="social">
                         <a href="#">
-                          <iconify-icon class="social-icon" icon="ri:twitter-fill"></iconify-icon>
+                          <iconify-icon className="social-icon" icon="ri:twitter-fill"></iconify-icon>
                         </a>
                       </li>
-                      <li class="social">
+                      <li className="social">
                         <a href="#">
-                          <iconify-icon class="social-icon" icon="ri:pinterest-fill"></iconify-icon>
+                          <iconify-icon className="social-icon" icon="ri:pinterest-fill"></iconify-icon>
                         </a>
                       </li>
-                      <li class="social">
+                      <li className="social">
                         <a href="#">
-                          <iconify-icon class="social-icon" icon="ri:instagram-fill"></iconify-icon>
+                          <iconify-icon className="social-icon" icon="ri:instagram-fill"></iconify-icon>
                         </a>
                       </li>
-                      <li class="social">
+                      <li className="social">
                         <a href="#">
-                          <iconify-icon class="social-icon" icon="ri:youtube-fill"></iconify-icon>
+                          <iconify-icon className="social-icon" icon="ri:youtube-fill"></iconify-icon>
                         </a>
                       </li>
 
