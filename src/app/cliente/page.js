@@ -15,12 +15,12 @@ export default function Gravar() {
     if(senha.current.value == confirmaSenha.current.value){
       senhaCorreta = senha.current.value;
     }
-    let usuario = [{
+    let usuario = {
       nome: nome.current.value,
       fone: fone.current.value,
       login: login.current.value,
       senha: senhaCorreta,
-    }];
+    };
 
     try {
       const result = await httpClient.post("/cliente", usuario)

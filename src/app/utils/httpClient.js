@@ -10,8 +10,8 @@ const httpClient = {
         return p;
     },
     
-    post: (endpoint, body) => {
-        let p = fetch(baseUrl + endpoint, {
+    post: async (endpoint, body) => {
+        let response = await fetch(baseUrl + endpoint, {
             method: "POST",
             credentials: "include",
             headers: {
@@ -20,7 +20,13 @@ const httpClient = {
             body: JSON.stringify(body)
         })
 
-        return p;
+
+        if (!response.ok) {
+            throw new Error(`Error ${response.statusText}`)
+        }
+
+        const data = await response.json()
+        return data;
     },
 
     put: (endpoint, body) => {
