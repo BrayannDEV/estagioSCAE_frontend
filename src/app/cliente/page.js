@@ -1,6 +1,6 @@
 'use client'
 import { useRef, useState } from "react"
-import httpClient from "../utils/httpClient";
+import httpClient from "../utils/httpClient.js";
 
 export default function Gravar() {
 
@@ -25,13 +25,23 @@ export default function Gravar() {
     try {
       const result = await httpClient.post("/cliente", usuario)
       console.log(result);
+      
+      nome.current.value = "";
+      fone.current.value = 0;
+      login.current.value = "";
+      senha.current.value = "";
+      confirmaSenha.current.value = "";
+      alert("Cadastrado com Sucesso!")
+
+      let ok = r.status == 201;
+
     } catch (erro) {
       console.log(erro);
     }
 
     // httpClient.post("/cliente", usuario)
     // .then(r=> {
-    //     ok = r.status == 201;
+    //     let ok = r.status == 201;
     //     return r.json();
     // })
     // .then(r=> {
