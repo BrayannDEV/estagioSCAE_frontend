@@ -70,10 +70,10 @@ export default function RootLayout({ children }) {
                       <a className="nav-link fw-semibold active p-0" aria-current="page" href="/">Home</a>
                     </li>
                     <li className="nav-item px-3 py-2 py-lg-0">
-                      <a className="nav-link fw-semibold p-0" href="/servico">Serviços & valores</a>
+                      <a className="nav-link fw-semibold p-0" href="/procedimento">Serviços & valores</a>
                     </li>
                     <li className="nav-item px-3 py-2 py-lg-0">
-                      <a className="nav-link fw-semibold p-0" href="/">Agendar</a>
+                      <a className="nav-link fw-semibold p-0" href="/agendamento">Agendar</a>
                     </li>
                     <li className="nav-item px-3 py-2 py-lg-0">
                       <a className="nav-link p-0 fw-bold text-uppercase" href="/login">LOGIN</a>

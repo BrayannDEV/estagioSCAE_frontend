@@ -25,11 +25,12 @@ export default function Login() {
             }
             catch (erro) {
                 console.log(erro);
+                alert("Login ou Senha incorretos")
             }
             
         }
         else{
-            alert("Preencha os campos corretamente!");
+            alert("Preencha todos os campos!");
         }
     }
 
