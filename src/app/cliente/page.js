@@ -2,6 +2,7 @@
 import { useRef, useState } from "react"
 import httpClient from "../utils/httpClient.js";
 
+
 export default function Gravar() {
 
   let nome = useRef("");
@@ -10,16 +11,59 @@ export default function Gravar() {
   let senha = useRef("");
   let confirmaSenha = useRef("");
 
+  
   async function cadastrar(){
-    let senhaCorreta;
-    if(senha.current.value == confirmaSenha.current.value){
-      senhaCorreta = senha.current.value;
+    
+    let errors = [];
+
+    // Validação do nome
+    if (!nome.current.value.trim()) {
+      errors.push("O nome é obrigatório.");
+    } else if (!nome.current.value.includes(' ')) {
+      errors.push("O nome deve conter pelo menos um espaço para nome e sobrenome.");
     }
+
+    // Validação do telefone
+    if (!fone.current.value) {
+      errors.push("O telefone é obrigatório.");
+    } else if (!/^\d{10,}$/.test(fone.current.value)) { // Exemplo: apenas números e pelo menos 10 dígitos
+      errors.push("O telefone deve conter apenas números e ter pelo menos 10 dígitos.");
+    }
+
+    // Validação do login
+    if (!login.current.value.trim()) {
+      errors.push("O login é obrigatório.");
+    } else if (login.current.value.length < 6) {
+      errors.push("O login deve ter pelo menos 6 caracteres.");
+    }
+
+    // Validação da senha
+    if (!senha.current.value.trim()) {
+      errors.push("A senha é obrigatória.");
+    } else if (senha.current.value.length < 6) {
+      errors.push("A senha deve ter pelo menos 6 caracteres.");
+    }
+
+    // Validação da confirmação da senha
+    if (senha.current.value !== confirmaSenha.current.value) {
+      errors.push("A confirmação da senha não coincide com a senha.");
+    }
+
+    // Se houver erros, exiba-os e não continue com o cadastro
+    if (errors.length > 0) {
+      alert(errors.join("\n")); // Exibe os erros para o usuário
+      return;
+    }
+
+    // let senhaCorreta;
+    // if(senha.current.value == confirmaSenha.current.value){
+    //   senhaCorreta = senha.current.value;
+    // }
     let usuario = {
       nome: nome.current.value,
       fone: fone.current.value,
       login: login.current.value,
-      senha: senhaCorreta,
+      senha: senha.current.value,
     };
 
     try {
@@ -31,7 +75,7 @@ export default function Gravar() {
       login.current.value = "";
       senha.current.value = "";
       confirmaSenha.current.value = "";
-      alert("Cadastrado com Sucesso!")
+      alert("Cadastrado com sucesso!")
 
       let ok = r.status == 201;
 
@@ -73,7 +117,7 @@ export default function Gravar() {
                 <input type="text" ref={nome} placeholder="Nome completo" className="form-control w-100 rounded-0 border-0 ps-4 py-3 mb-2 me-3"/>
               </div>
               <div className="form-input col-lg-12 d-md-flex mb-3">
-                <input type="number" ref={fone} placeholder="Numero de telefone" className="form-control w-100 rounded-0 border-0 ps-4 py-3 mb-2 me-3"/>
+                <input type="number" ref={fone} placeholder="00 00000-0000" className="form-control w-100 rounded-0 border-0 ps-4 py-3 mb-2 me-3"/>
               </div>
               <div className="form-input col-lg-12 d-md-flex mb-3">
                 <input type="text" ref={login} placeholder="Cadastre um login" className="form-control w-100 rounded-0 border-0 ps-4 py-3 mb-2 me-3"/>
