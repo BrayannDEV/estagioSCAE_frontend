@@ -1,0 +1,16 @@
+, true);
+user_pref("devtools.netmonitor.columnsData", "[{\"name\":\"status\",\"minWidth\":30,\"width\":6.66},{\"name\":\"method\",\"minWidth\":30,\"width\":6.66},{\"name\":\"domain\",\"minWidth\":30,\"width\":13.34},{\"name\":\"file\",\"minWidth\":30,\"width\":27.01},{\"name\":\"url\",\"minWidth\":30,\"width\":25},{\"name\":\"initiator\",\"minWidth\":30,\"width\":13.34},{\"name\":\"type\",\"minWidth\":30,\"width\":6.66},{\"name\":\"transferred\",\"minWidth\":30,\"width\":13.34},{\"name\":\"contentSize\",\"minWidth\":30,\"width\":12.99},{\"name\":\"waterfall\",\"minWidth\":150,\"width\":15}]");
+user_pref("devtools.netmonitor.msg.visibleColumns", "[\"data\",\"time\"]");
+user_pref("devtools.selfxss.count", 5);
+user_pref("devtools.toolbox.host", "right");
+user_pref("devtools.toolbox.previousHost", "bottom");
+user_pref("devtools.toolbox.selectedTool", "webconsole");
+user_pref("devtools.toolbox.sidebar.width", 661);
+user_pref("devtools.toolbox.zoomValue", "1.2");
+user_pref("devtools.toolsidebar-height.inspector", 350);
+user_pref("devtools.toolsidebar-width.inspector", 700);
+user_pref("devtools.toolsidebar-width.inspector.splitsidebar", 350);
+user_pref("distribution.iniFile.exists.appversion", "120.0.1");
+user_pref("distribution.iniFile.exists.value", false);
+user_pref("doh-rollout.balrog-migration-done", true);
+user_pref("doh-rollout.doneFirs

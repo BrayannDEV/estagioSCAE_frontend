@@ -67,7 +67,7 @@ export default function RootLayout({ children }) {
                 <div className="offcanvas-body align-items-center justify-content-end">
                   <ul className="navbar-nav mb-2 mb-lg-0">
                     <li className="nav-item px-3 py-2 py-lg-0">
-                      <a className="nav-link fw-semibold active p-0" aria-current="page" href="/">Home</a>
+                      <a className="nav-link fw-semibold active p-0" aria-current="page" href="/admin">Home</a>
                     </li>
                     <li className="nav-item px-3 py-2 py-lg-0">
                       <a className="nav-link fw-semibold p-0" href="/procedimento">Procedimentos</a>
@@ -76,7 +76,7 @@ export default function RootLayout({ children }) {
                       <a className="nav-link fw-semibold p-0" href="/agendamento">Agendamentos</a>
                     </li>
                     <li className="nav-item px-3 py-2 py-lg-0">
-                      <a className="nav-link fw-semibold p-0" href="/cliente">Clientes</a>
+                      <a className="nav-link fw-semibold p-0" href="/admin/cliente">Clientes</a>
                     </li>
                     <li className="nav-item search-dropdown py-2 py-lg-0 ms-3 ms-lg-5 dropdown">
                       <a className="nav-link p-0 search dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button"
@@ -111,7 +111,7 @@ export default function RootLayout({ children }) {
               <div className="col-md-4 my-4 ">
                 <div className="footer-menu">
                   <a className="navbar-brand" href="/">
-                    <img src="images/main-logo.png" className="logo img-fluid"/>
+                    <img src="../images/main-logo.png" className="logo img-fluid"/>
                   </a>
                   <p className="mt-4">Hic, dolor soluta, dolores laudantium reprehenderit ullam, similique voluptate omnis modi
                     sit minima illo.</p>

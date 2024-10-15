@@ -3,6 +3,7 @@
 import localFont from "next/font/local";
 import { useState, useEffect} from "react";
 import "./globals.css";
+import '../../public/template/css/fontawesome-free/css/all.min.css'
 import "../../public/css/vendor.css"
 import "../../public/style.css"
 

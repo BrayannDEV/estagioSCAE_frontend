@@ -1,0 +1,9 @@
+der-check.ptr-size", 8);
+user_pref("identity.fxaccounts.toolbar.defaultVisible", true);
+user_pref("idle.lastDailyNotification", 1711664330);
+user_pref("media.gmp-gmpopenh264.abi", "x86_64-msvc-x64");
+user_pref("media.gmp-gmpopenh264.hashValue", "b667086ed49579592d435df2b486fe30ba1b62ddd169f19e700cd079239747dd3e20058c285fa9c10a533e34f22b5198ed9b1f92ae560a3067f3e3feacc724f1");
+user_pref("media.gmp-gmpopenh264.lastDownload", 1702417185);
+user_pref("media.gmp-gmpopenh264.lastDownloadFailReason", "Error: Downloaded file was 5928 bytes but expected 453023 bytes.");
+user_pref("media.gmp-gmpopenh264.lastDownloadFailed", 1709924155);
+user_pref("media.gmp-gmpopenh264.lastInstallStart", 170

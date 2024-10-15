@@ -2,12 +2,21 @@
 const baseUrl = "http://localhost:5000";
 
 const httpClient = {
-    get: (endpoint) => {
-        let p = fetch(baseUrl + endpoint, {
-            credentials: "include"
+    get: async (endpoint) => {
+        let response = await fetch(baseUrl + endpoint, {
+            credentials: "include",
+            headers: {
+                "Content-Type": "application/json"
+            },
         })
 
-        return p;
+        if (!response.ok) {
+            throw new Error(`Error ${response.statusText}`)
+        }
+
+        const data = await response.json()
+        return data;
+
     },
     
     post: async (endpoint, body) => {
