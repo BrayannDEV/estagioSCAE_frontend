@@ -55,10 +55,6 @@ export default function Gravar() {
       return;
     }
 
-    // let senhaCorreta;
-    // if(senha.current.value == confirmaSenha.current.value){
-    //   senhaCorreta = senha.current.value;
-    // }
     let usuario = {
       nome: nome.current.value,
       fone: fone.current.value,
