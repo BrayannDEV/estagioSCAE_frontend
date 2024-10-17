@@ -55,33 +55,29 @@ export default function Servico() {
 
     return(
         <div>
-            <section id="appointment" className="jarallax" style={{backgroundImage: "url(images/background-1.jpg)"}} >
+            <section id="appointment" className="jarallax" style={{backgroundImage: "url(../images/background-1.jpg)"}} >
             {/* style="background-image: url(images/background-1.jpg); background-repeat: no-repeat; background-position: center;" */}
                 <div className="container-lg padding-medium">
-                <div className="offset-md-3 col-md-6 text-center ">
+                    <div className="offset-md-3 col-md-6 text-center ">
 
-                    <h2 className="display-4 fw-normal mb-3">Cadastro</h2>
+                        <h2 className="display-4 fw-normal mb-3">Cadastro</h2>
 
-                    <form className="contact-form row mt-5">
-                    <div className="form-input col-lg-12 d-md-flex mb-3">
-                        <input type="text" ref={nome} placeholder="Nome do procedimento" className="form-control w-100 rounded-0 border-0 ps-4 py-3 mb-2 me-3"/>
-                    </div>
-                    <div className="form-input col-lg-12 d-md-flex mb-3">
-                        <input type="text" ref={descricao} placeholder="Descrição" className="form-control w-100 rounded-0 border-0 ps-4 py-3 mb-2 me-3"/>
-                    </div>
-                    <div className="form-input col-lg-12 d-md-flex mb-3">
-                        <input type="number" ref={tempo} placeholder="Tempo em minutos" className="form-control w-100 rounded-0 border-0 ps-4 py-3 mb-2 me-3"/>
-                        <input type="float" ref={valor} placeholder="valor" className="form-control w-100 rounded-0 border-0 ps-4 py-3 mb-2 me-3"/>
-                    </div>
-                    </form>
+                        <form className="contact-form row mt-5">
+                        <div className="form-input col-lg-12 d-md-flex mb-3">
+                            <input type="text" ref={nome} placeholder="Nome do procedimento" className="form-control w-100 rounded-0 border-0 ps-4 py-3 mb-2 me-3"/>
+                        </div>
+                        <div className="form-input col-lg-12 d-md-flex mb-3">
+                            <input type="text" ref={descricao} placeholder="Descrição" className="form-control w-100 rounded-0 border-0 ps-4 py-3 mb-2 me-3"/>
+                        </div>
+                        <div className="form-input col-lg-12 d-md-flex mb-3">
+                            <input type="number" ref={tempo} placeholder="Tempo em minutos" className="form-control w-100 rounded-0 border-0 ps-4 py-3 mb-2 me-3"/>
+                            <input type="float" ref={valor} placeholder="valor" className="form-control w-100 rounded-0 border-0 ps-4 py-3 mb-2 me-3"/>
+                        </div>
+                        </form>
 
-                    <button className="btn btn-primary mt-3" onClick={cadastrar} style={{backgroundColor: "DF808F", border: "none"}}>Cadastrar</button>
+                        <button className="btn btn-primary mt-3" onClick={cadastrar} style={{backgroundColor: "DF808F", border: "none"}}>Cadastrar</button>
+                    </div>
                 </div>
-
-                </div>
-            </section>
-            <section id="price" className="jarallax" style={{backgroundImage: "url(../images/background-2.jpg)"}}>
-                {/* "background-image: url(../images/background-2.jpg); background-size: cover; background-repeat: no-repeat; background-position: center;" */}
                 <div className="container-lg padding-medium">
                     <div className="section-title text-center mb-5">
                         <h2 className="display-4 fw-normal">Procedimentos e valores</h2>

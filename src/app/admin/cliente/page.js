@@ -23,6 +23,23 @@ export default function Cliente() {
         }
     }
 
+    async function excluirCliente(id) {
+
+        if(confirm("Tem certeza que deseja excluir este usuário?")) {
+            try {
+                const result = await httpClient.delete(`/cliente/${id}`)
+                carregarClientes()
+          
+                let ok = r.status == 201;
+
+          
+            } catch (erro) {
+                console.log(erro);
+            }
+            
+        }
+    }
+
     return(
         <section id="appointment" className="jarallax" style={{backgroundImage: "url(../images/background-1.jpg)"}} >
         {/* style="background-image: url(images/background-1.jpg); background-repeat: no-repeat; background-position: center;" */}
@@ -41,13 +58,13 @@ export default function Cliente() {
             </thead>
             <tbody>
                 {listaClientes.map(cliente => (
-                    <tr>
+                    <tr key={cliente.id}>
                         <td>{cliente.nome}</td>
                         <td>{cliente.fone}</td>
                         <td>{cliente.login}</td>
                         <td>
                             <button className="btn btn-outline-secondary btn-sm mr-2 mb-2">Editar</button>
-                            <button className="btn btn-outline-danger btn-sm mr-2 mb-2">Excluir</button>
+                            <button className="btn btn-outline-danger btn-sm mr-2 mb-2" onClick={() => excluirCliente(cliente.id)}>Excluir</button>
                         </td>
                     </tr>
                 ))}
