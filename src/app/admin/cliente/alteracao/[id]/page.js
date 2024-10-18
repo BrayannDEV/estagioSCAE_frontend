@@ -3,74 +3,68 @@ import { useRef, useState, useEffect } from "react"
 import httpClient from "../../../../utils/httpClient.js";
 
 
-export default function AlteracaoCliente(id) {
+export default function AlteracaoCliente({params: {id}}) {
 
     let [usuario, setUsuario] = useState(null);
-
-    function carregarUsuario(id) {
-
-        fetch(`http://localhost:5000/usuarios/${id}`, {
-            credentials: "include"
-        })
-        .then(r=> {
-            return r.json();
-        })
-        .then(r=> {
-            console.log(r);
-            setUsuario(r);
-        })
-    }
-
-    useEffect(() => {
-        carregarUsuario(id);
-    }, [])
-
-
     let nome = useRef("");
     let fone = useRef(0);
     let login = useRef("");
     let senha = useRef("");
     let confirmaSenha = useRef("");
 
-    
+    async function carregarUsuario(id) {
+
+      try {
+          const result = await httpClient.get(`/cliente/${id}`)
+          setUsuario(result);
+          nome.current.value = result.nome;
+          fone.current.value = result.fone;
+          login.current.value = result.login;
+          senha.current.value = result.senha;
+          confirmaSenha.current.value = result.confirmaSenha;
+
+          let ok = r.status == 201;
+
+      } catch (erro) {
+      console.log(erro);
+      }
+    }
+
+    useEffect(() => {
+        carregarUsuario(id);
+    }, [])
+
     async function alterar(){
 
-        let [listaPerfis, setListaPerfis] = useState([]);
+      if(nome.current.value != "" && fone.current.value != 0 && login.current.value != "" && senha.current.value != "" && confirmaSenha.current.value != ""){
+          usuario = {
+              id: id,
+              nome: nome.current.value,
+              fone: fone.current.value,
+              login: login.current.value,
+              senha: senha.current.value,
+              confirmaSenha: confirmaSenha.current.value,
 
-        let nome = useRef("");
-        let fone = useRef("");
-        let login = useRef("");
-        let senha = useRef(0)
+          }
 
-        if(nome.current.value != "" && fone.current.value != "" && login.current.value != "" && senha.current.value != ""){
-            usuario = {
-                id: id,
-                nome: nome.current.value,
-                fone: fone.current.value,
-                login: login.current.value,
-                Senha: senha.current.value,
-            }
+          try {
+              const result = await httpClient.put("/cliente", usuario)
+              console.log(result);
+              
+              nome.current.value = "";
+              fone.current.value = 0;
+              login.current.value = "";
+              senha.current.value = "";
+              confirmaSenha.current.value = "";
+              alert("Cliente Alterado com sucesso!")
+      
+              let ok = r.status == 201;
+      
+          } catch (erro) {
+          console.log(erro);
+          }
 
-            try {
-                const result = await httpClient.post("/cliente", usuario)
-                console.log(result);
-                
-                nome.current.value = "";
-                fone.current.value = 0;
-                login.current.value = "";
-                senha.current.value = "";
-                confirmaSenha.current.value = "";
-                alert("Cliente Alterado com sucesso!")
-        
-                let ok = r.status == 201;
-        
-            } catch (erro) {
-            console.log(erro);
-            }
-
-        }
-
-        
+      }
 
     }
 
@@ -80,7 +74,7 @@ export default function AlteracaoCliente(id) {
         <div className="container-lg padding-medium">
           <div className="offset-md-3 col-md-6 text-center ">
 
-            <h2 className="display-4 fw-normal mb-3">Alteração de cliente({id})</h2>
+            <h2 className="display-4 fw-normal mb-3">Alteração do cliente {id}</h2>
 
             <form className="contact-form row mt-5">
               <div className="form-input col-lg-12 d-md-flex mb-3">
