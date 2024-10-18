@@ -63,7 +63,7 @@ export default function Cliente() {
                         <td>{cliente.fone}</td>
                         <td>{cliente.login}</td>
                         <td>
-                            <button className="btn btn-outline-secondary btn-sm mr-2 mb-2">Editar</button>
+                            <a className="btn btn-outline-secondary btn-sm mr-2 mb-2" href="/admin/cliente/alteracao">Editar</a>
                             <button className="btn btn-outline-danger btn-sm mr-2 mb-2" onClick={() => excluirCliente(cliente.id)}>Excluir</button>
                         </td>
                     </tr>
