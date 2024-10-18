@@ -22,6 +22,7 @@ export default function Servico() {
         }
     }
 
+
     let nome = useRef("");
     let descricao = useRef("");
     let tempo = useRef(0);
@@ -50,6 +51,23 @@ export default function Servico() {
       
         } catch (erro) {
             console.log(erro);
+        }
+    }
+
+    async function excluirProcedimento(id) {
+
+        if(confirm("Tem certeza que deseja excluir este procedimento?")) {
+            try {
+                const result = await httpClient.delete(`/procedimento/${id}`)
+                carregarProcedimentos()
+          
+                let ok = r.status == 201;
+
+          
+            } catch (erro) {
+                console.log(erro);
+            }
+            
         }
     }
 
@@ -97,7 +115,7 @@ export default function Servico() {
                                             <h4 className="fw-semibold">{procedimento.nome}</h4>
                                             <h4 className="fw-semibold">R${procedimento.valor}</h4>
                                             <button className="btn btn-outline-secondary btn-sm mr-2 mb-2">Editar</button>
-                                            <button className="btn btn-outline-danger btn-sm mr-2 mb-2">Excluir</button>
+                                            <button className="btn btn-outline-danger btn-sm mr-2 mb-2" onClick={() => excluirProcedimento(procedimento.id)}>Excluir</button>
                                         </div>
                                         <p className="mb-0 opacity-75">{procedimento.descricao}</p>
                                     </div>
