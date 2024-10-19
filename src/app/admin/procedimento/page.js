@@ -114,10 +114,11 @@ export default function Servico() {
                                         <div className="d-flex gap-4 w-100 justify-content-between">
                                             <h4 className="fw-semibold">{procedimento.nome}</h4>
                                             <h4 className="fw-semibold">R${procedimento.valor}</h4>
-                                            <button className="btn btn-outline-secondary btn-sm mr-2 mb-2">Editar</button>
+                                            <a className="btn btn-outline-secondary btn-sm mr-2 mb-2" href={`/admin/procedimento/alteracao/${procedimento.id}`}>Editar</a>
                                             <button className="btn btn-outline-danger btn-sm mr-2 mb-2" onClick={() => excluirProcedimento(procedimento.id)}>Excluir</button>
                                         </div>
                                         <p className="mb-0 opacity-75">{procedimento.descricao}</p>
+                                        <p className="mb-0 opacity-75">Tempo: {procedimento.tempo} minutos</p>
                                     </div>
                                     </a>
                                 ))}

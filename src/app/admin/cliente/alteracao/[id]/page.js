@@ -1,10 +1,12 @@
 'use client'
 import { useRef, useState, useEffect } from "react"
 import httpClient from "../../../../utils/httpClient.js";
+import { useRouter } from "next/navigation";
 
 
 export default function AlteracaoCliente({params: {id}}) {
 
+    let router = useRouter();
     let [usuario, setUsuario] = useState(null);
     let nome = useRef("");
     let fone = useRef(0);
@@ -48,18 +50,14 @@ export default function AlteracaoCliente({params: {id}}) {
           }
 
           try {
-              const result = await httpClient.put("/cliente", usuario)
-              console.log(result);
-              
-              nome.current.value = "";
-              fone.current.value = 0;
-              login.current.value = "";
-              senha.current.value = "";
-              confirmaSenha.current.value = "";
-              alert("Cliente Alterado com sucesso!")
-      
-              let ok = r.status == 201;
-      
+            const result = await httpClient.put("/cliente", usuario)
+            console.log(result);
+            
+            alert("Cliente Alterado com sucesso!")
+          
+            router.push("/admin/cliente");
+            let ok = r.status == 201;
+    
           } catch (erro) {
           console.log(erro);
           }
