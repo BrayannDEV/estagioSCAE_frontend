@@ -63,7 +63,7 @@ export default function AlteracaoProcedimento({params: {id}}) {
     }
 
   return(
-    <section id="appointment" className="jarallax" style={{backgroundImage: "url(../images/background-1.jpg)"}} >
+    <section id="appointment" className="jarallax" style={{backgroundImage: "url(../../../images/background-1.jpg)"}} >
     {/* style="background-image: url(images/background-1.jpg); background-repeat: no-repeat; background-position: center;" */}
         <div className="container-lg padding-medium">
             <div className="offset-md-3 col-md-6 text-center ">

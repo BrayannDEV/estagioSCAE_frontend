@@ -24,11 +24,11 @@ export default function Gravar() {
     }
 
     // Validação do telefone
-    if (!fone.current.value) {
-      errors.push("O telefone é obrigatório.");
-    } else if (!/^\d{10,}$/.test(fone.current.value)) { // Exemplo: apenas números e pelo menos 10 dígitos
-      errors.push("O telefone deve conter apenas números e ter pelo menos 10 dígitos.");
-    }
+    // if (!fone.current.value) {
+    //   errors.push("O telefone é obrigatório.");
+    // } else if (!/^\d{10,}$/.test(fone.current.value)) { // Exemplo: apenas números e pelo menos 10 dígitos
+    //   errors.push("O telefone deve conter apenas números e ter pelo menos 10 dígitos.");
+    // }
 
     // Validação do login
     if (!login.current.value.trim()) {
@@ -113,7 +113,7 @@ export default function Gravar() {
                 <input type="text" ref={nome} placeholder="Nome completo" className="form-control w-100 rounded-0 border-0 ps-4 py-3 mb-2 me-3"/>
               </div>
               <div className="form-input col-lg-12 d-md-flex mb-3">
-                <input type="number" ref={fone} placeholder="00 00000-0000" className="form-control w-100 rounded-0 border-0 ps-4 py-3 mb-2 me-3"/>
+                <input type="text" ref={fone} placeholder="00 00000-0000" className="form-control w-100 rounded-0 border-0 ps-4 py-3 mb-2 me-3"/>
               </div>
               <div className="form-input col-lg-12 d-md-flex mb-3">
                 <input type="text" ref={login} placeholder="Cadastre um login" className="form-control w-100 rounded-0 border-0 ps-4 py-3 mb-2 me-3"/>

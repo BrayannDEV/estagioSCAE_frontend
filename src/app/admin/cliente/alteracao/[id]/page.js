@@ -67,7 +67,7 @@ export default function AlteracaoCliente({params: {id}}) {
     }
 
   return(
-      <section id="appointment" className="jarallax" style={{backgroundImage: "url(images/background-1.jpg)"}} >
+      <section id="appointment" className="jarallax" style={{backgroundImage: "url(../../../images/background-1.jpg)"}} >
       {/* style="background-image: url(images/background-1.jpg); background-repeat: no-repeat; background-position: center;" */}
         <div className="container-lg padding-medium">
           <div className="offset-md-3 col-md-6 text-center ">
@@ -79,7 +79,7 @@ export default function AlteracaoCliente({params: {id}}) {
                 <input type="text" ref={nome} placeholder="Nome completo" className="form-control w-100 rounded-0 border-0 ps-4 py-3 mb-2 me-3"/>
               </div>
               <div className="form-input col-lg-12 d-md-flex mb-3">
-                <input type="number" ref={fone} placeholder="00 00000-0000" className="form-control w-100 rounded-0 border-0 ps-4 py-3 mb-2 me-3"/>
+                <input type="text" ref={fone} placeholder="00 00000-0000" className="form-control w-100 rounded-0 border-0 ps-4 py-3 mb-2 me-3"/>
               </div>
               <div className="form-input col-lg-12 d-md-flex mb-3">
                 <input type="text" ref={login} placeholder="Cadastre um login" className="form-control w-100 rounded-0 border-0 ps-4 py-3 mb-2 me-3"/>

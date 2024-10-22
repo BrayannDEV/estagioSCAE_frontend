@@ -41,7 +41,7 @@ export default function Cliente() {
     }
 
     return(
-        <section id="appointment" className="jarallax" style={{backgroundImage: "url(../images/background-1.jpg)"}} >
+        <section id="appointment" className="jarallax" style={{backgroundImage: "url(../../images/background-1.jpg)"}} >
         {/* style="background-image: url(images/background-1.jpg); background-repeat: no-repeat; background-position: center;" */}
         <div className="table-responsive offset-md-3 col-md-6 text-center">
             <h2 className="display-4 fw-normal mb-3">Listagem de cliente</h2>
