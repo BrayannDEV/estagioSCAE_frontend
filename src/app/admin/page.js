@@ -18,96 +18,96 @@ export default function Home() {
         <div className="row g-lg-5 my-0">
           <div className="col-md-6 col-lg-3 my-4">
             <div className="bg-white   p-3 text-center ">
-              <a href="/servico">
+              <a href="/admin/procedimento">
                 <div className="zoom-effect">
                   <img src="images/service-img4.jpg" className="img-fluid " alt="image"/>
                 </div>
               </a>
-              <a href="/servico" className="hover-color" style={{textDecoration: "none", color: "black"}}>
+              <a href="/admin/procedimento" className="hover-color" style={{textDecoration: "none", color: "black"}}>
                 <h4 className="mt-3 m-0">Pedicure tradicional & em Gel</h4>
               </a>
             </div>
           </div>
           <div className="col-md-6 col-lg-3 my-4">
             <div className="bg-white   p-3 text-center ">
-              <a href="/servico">
+              <a href="/admin/procedimento">
                 <div className="zoom-effect">
                   <img src="images/service-img3.jpg" className="img-fluid " alt="image"/>
                 </div>
               </a>
-              <a href="/servico" className="hover-color" style={{textDecoration: "none", color: "black"}}>
+              <a href="/admin/procedimento" className="hover-color" style={{textDecoration: "none", color: "black"}}>
                 <h4 className="mt-3 m-0">Manicure tradicional & em gel</h4>
               </a>
             </div>
           </div>
           <div className="col-md-6 col-lg-3 my-4">
             <div className="bg-white   p-3 text-center ">
-              <a href="/servico">
+              <a href="/admin/procedimento">
                 <div className="zoom-effect">
                   <img src="images/service-img7.jpg" className="img-fluid " alt="image"/>
                 </div>
               </a>
-              <a href="/servico" className="hover-color" style={{textDecoration: "none", color: "black"}}>
+              <a href="/admin/procedimento" className="hover-color" style={{textDecoration: "none", color: "black"}}>
                 <h4 className="mt-3 m-0">Blindagem</h4>
               </a>
             </div>
           </div>
           <div className="col-md-6 col-lg-3 my-4">
             <div className="bg-white   p-3 text-center ">
-              <a href="/servico">
+              <a href="/admin/procedimento">
                 <div className="zoom-effect">
                   <img src="images/service-img8.jpg" className="img-fluid " alt="image"/>
                 </div>
               </a>
-              <a href="/servico" className="hover-color" style={{textDecoration: "none", color: "black"}}>
+              <a href="/admin/procedimento" className="hover-color" style={{textDecoration: "none", color: "black"}}>
                 <h4 className="mt-3 m-0">Banho em gel</h4>
               </a>
             </div>
           </div>
           <div className="col-md-6 col-lg-3 my-4">
             <div className="bg-white   p-3 text-center ">
-              <a href="/servico">
+              <a href="/admin/procedimento">
                 <div className="zoom-effect">
                   <img src="images/service-img2.jpg" className="img-fluid " alt="image"/>
                 </div>
               </a>
-              <a href="/servico" className="hover-color" style={{textDecoration: "none", color: "black"}}>
+              <a href="/admin/procedimento" className="hover-color" style={{textDecoration: "none", color: "black"}}>
                 <h4 className="mt-3 m-0">Esmaltação & remoção tradicional</h4>
               </a>
             </div>
           </div>
           <div className="col-md-6 col-lg-3 my-4">
             <div className="bg-white   p-3 text-center ">
-              <a href="/servico">
+              <a href="/admin/procedimento">
                 <div className="zoom-effect">
                   <img src="images/service-img3.jpg" className="img-fluid " alt="image"/>
                 </div>
               </a>
-              <a href="/servico" className="hover-color" style={{textDecoration: "none", color: "black"}}>
+              <a href="/admin/procedimento" className="hover-color" style={{textDecoration: "none", color: "black"}}>
                 <h4 className="mt-3 m-0">Esmaltação e remoção em Gel</h4>
               </a>
             </div>
           </div>
           <div className="col-md-6 col-lg-3 my-4">
             <div className="bg-white   p-3 text-center ">
-              <a href="/servico">
+              <a href="/admin/procedimento">
                 <div className="zoom-effect">
                   <img src="images/service-img4.jpg" className="img-fluid " alt="image"/>
                 </div>
               </a>
-              <a href="/servico" className="hover-color" style={{textDecoration: "none", color: "black"}}>
+              <a href="/admin/procedimento" className="hover-color" style={{textDecoration: "none", color: "black"}}>
                 <h4 className="mt-3 m-0">Plástica nos pés</h4>
               </a>
             </div>
           </div>
           <div className="col-md-6 col-lg-3 my-4">
             <div className="bg-white   p-3 text-center ">
-              <a href="/servico">
+              <a href="/admin/procedimento">
                 <div className="zoom-effect">
                   <img src="images/service-img6.jpg" className="img-fluid " alt="image"/>
                 </div>
               </a>
-              <a href="/servico" className="hover-color" style={{textDecoration: "none", color: "black"}}>
+              <a href="/admin/procedimento" className="hover-color" style={{textDecoration: "none", color: "black"}}>
                 <h4 className="mt-3 m-0">Alongamento na fibra de vidro</h4>
               </a>
             </div>
