@@ -14,8 +14,10 @@ export default function AlteracaoCliente({params: {id}}) {
     let senha = useRef("");
     let confirmaSenha = useRef("");
 
-    async function carregarUsuario(id) {
+    const [senhasVisiveis, setSenhasVisiveis] = useState(false);
 
+    async function carregarUsuario(id) {
+      
       try {
           const result = await httpClient.get(`/cliente/${id}`)
           setUsuario(result);
@@ -23,13 +25,13 @@ export default function AlteracaoCliente({params: {id}}) {
           fone.current.value = result.fone;
           login.current.value = result.login;
           senha.current.value = result.senha;
-          confirmaSenha.current.value = result.confirmaSenha;
 
           let ok = r.status == 201;
 
       } catch (erro) {
       console.log(erro);
       }
+      
     }
 
     useEffect(() => {
@@ -38,14 +40,47 @@ export default function AlteracaoCliente({params: {id}}) {
 
     async function alterar(){
 
-      if(nome.current.value != "" && fone.current.value != 0 && login.current.value != "" && senha.current.value != "" && confirmaSenha.current.value != ""){
+      let errors = [];
+
+      // Validação do nome
+      if (!nome.current.value.trim()) {
+        errors.push("O nome é obrigatório.");
+      } else if (!nome.current.value.includes(' ')) {
+        errors.push("O nome deve conter pelo menos um espaço para nome e sobrenome.");
+      }
+
+      // Validação do login
+      if (!login.current.value.trim()) {
+        errors.push("O login é obrigatório.");
+      } else if (login.current.value.length < 6) {
+        errors.push("O login deve ter pelo menos 6 caracteres.");
+      }
+
+      // Validação da senha
+      if (!senha.current.value.trim()) {
+        errors.push("A senha é obrigatória.");
+      } else if (senha.current.value.length < 6) {
+        errors.push("A senha deve ter pelo menos 6 caracteres.");
+      }
+
+      // Validação da confirmação da senha
+      if (senha.current.value !== confirmaSenha.current.value) {
+        errors.push("A confirmação da senha não coincide com a senha.");
+      }
+
+      // Se houver erros, exiba-os e não continue com o cadastro
+      if (errors.length > 0) {
+        alert(errors.join("\n")); // Exibe os erros para o usuário
+        return;
+      }
+
+      if(nome.current.value != "" && fone.current.value != 0 && login.current.value != "" && senha.current.value != ""){
           usuario = {
               id: id,
               nome: nome.current.value,
               fone: fone.current.value,
               login: login.current.value,
               senha: senha.current.value,
-              confirmaSenha: confirmaSenha.current.value,
 
           }
 
@@ -85,8 +120,9 @@ export default function AlteracaoCliente({params: {id}}) {
                 <input type="text" ref={login} placeholder="Cadastre um login" className="form-control w-100 rounded-0 border-0 ps-4 py-3 mb-2 me-3"/>
               </div>
               <div className="form-input col-lg-12 d-md-flex mb-3">
-                <input type="password" ref={senha} placeholder="Cadastre sua senha" className="form-control w-100 rounded-0 border-0 ps-4 py-3 mb-2 me-3"/>
-                <input type="password" ref={confirmaSenha} placeholder="Confirme sua senha" className="form-control w-100 rounded-0 border-0 ps-4 py-3 mb-2 me-3"/>
+                <input type={senhasVisiveis ? "text" : "password"} ref={senha} placeholder="Cadastre sua senha" className="form-control w-100 rounded-0 border-0 ps-4 py-3 mb-2 me-3"/>
+                <input type={senhasVisiveis ? "text" : "password"} ref={confirmaSenha} placeholder="Confirme sua senha" className="form-control w-100 rounded-0 border-0 ps-4 py-3 mb-2 me-3"/>
+                <button type="button" onClick={() => setSenhasVisiveis(!senhasVisiveis)} className="btn btn-light btn-sm mr-2 mb-2">{senhasVisiveis ? "Ocultar" : "Mostrar"}</button>
               </div>
             </form>
 
