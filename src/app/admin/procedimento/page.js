@@ -28,8 +28,38 @@ export default function Servico() {
     let tempo = useRef(0);
     let valor = useRef(0);
 
+    // useEffect(() => {
+    //     // Define o valor padrão no campo de valor
+    //     valor.current.value = '0.00';
+    // }, []);
+
     async function cadastrar() {
         
+        let errors = [];
+
+        // Validação do valor
+        if (!nome.current.value.trim()) {
+        errors.push("O nome é obrigatório.");
+        }
+
+        // Validação do tempo
+        if (!tempo.current.value.trim()) {
+        errors.push("Insira o tempo do procedimento.");
+        }
+
+        if (!valor.current.value.trim()) {
+            errors.push("O valor é obrigatório.");
+        } else if (!/^\d+(\.\d{1,2})?$/.test(valor.current.value)) {
+            errors.push("O valor deve conter apenas números e um ponto (.) como separador decimal, se necessário.");
+        }
+
+        // Se houver erros, exiba-os e não continue com o cadastro
+        if (errors.length > 0) {
+            alert(errors.join("\n"));
+            return;
+        }
+
+
         let procedimento = {
             nome: nome.current.value,
             descricao: descricao.current.value,
@@ -44,7 +74,7 @@ export default function Servico() {
             nome.current.value = "";
             descricao.current.value = "";
             tempo.current.value = 0;
-            valor.current.value = 0;
+            valor.current.value = "0.00";
             alert("Procedimento cadastrado com sucesso!")
       
             let ok = r.status == 201;
@@ -89,7 +119,7 @@ export default function Servico() {
                         </div>
                         <div className="form-input col-lg-12 d-md-flex mb-3">
                             <input type="number" ref={tempo} placeholder="Tempo em minutos" className="form-control w-100 rounded-0 border-0 ps-4 py-3 mb-2 me-3"/>
-                            <input type="float" ref={valor} placeholder="valor" className="form-control w-100 rounded-0 border-0 ps-4 py-3 mb-2 me-3"/>
+                            <input type="text" ref={valor} placeholder="valor" className="form-control w-100 rounded-0 border-0 ps-4 py-3 mb-2 me-3"/>
                         </div>
                         </form>
 

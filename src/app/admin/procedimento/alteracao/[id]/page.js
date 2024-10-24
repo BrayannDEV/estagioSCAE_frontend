@@ -36,29 +36,53 @@ export default function AlteracaoProcedimento({params: {id}}) {
 
     async function alterar(){
 
-      if(nome.current.value != "" && descricao.current.value != "" && tempo.current.value != 0 && valor.current.value != 0){
-          procedimento = {
-              id: id,
-              nome: nome.current.value,
-              descricao: descricao.current.value,
-              tempo: tempo.current.value,
-              valor: valor.current.value,
-          }
+        let errors = [];
 
-          try {
-            const result = await httpClient.put("/procedimento", procedimento)
-            console.log(result);
+        // Validação do valor
+        if (!nome.current.value.trim()) {
+        errors.push("O nome é obrigatório.");
+        }
+
+        // Validação do tempo
+        if (!tempo.current.value.trim()) {
+        errors.push("Insira o tempo do procedimento.");
+        }
+
+        if (!valor.current.value.trim()) {
+            errors.push("O valor é obrigatório.");
+        } else if (!/^\d+(\.\d{1,2})?$/.test(valor.current.value)) {
+            errors.push("O valor deve conter apenas números e um ponto (.) como separador decimal, se necessário.");
+        }
+
+        // Se houver erros, exiba-os e não continue com o cadastro
+        if (errors.length > 0) {
+            alert(errors.join("\n"));
+            return;
+        }
+
+        if(nome.current.value != "" && descricao.current.value != "" && tempo.current.value != 0 && valor.current.value != 0){
+            procedimento = {
+                id: id,
+                nome: nome.current.value,
+                descricao: descricao.current.value,
+                tempo: tempo.current.value,
+                valor: valor.current.value,
+            }
+
+            try {
+                const result = await httpClient.put("/procedimento", procedimento)
+                console.log(result);
+                
+                alert("Procedimento Alterado com sucesso!")
             
-            alert("Procedimento Alterado com sucesso!")
-          
-            router.push("/admin/procedimento");
-            let ok = r.status == 201;
-    
-          } catch (erro) {
-          console.log(erro);
-          }
+                router.push("/admin/procedimento");
+                let ok = r.status == 201;
+        
+            } catch (erro) {
+            console.log(erro);
+            }
 
-      }
+        }
 
     }
 
@@ -79,7 +103,7 @@ export default function AlteracaoProcedimento({params: {id}}) {
                 </div>
                 <div className="form-input col-lg-12 d-md-flex mb-3">
                     <input type="number" ref={tempo} placeholder="Tempo em minutos" className="form-control w-100 rounded-0 border-0 ps-4 py-3 mb-2 me-3"/>
-                    <input type="float" ref={valor} placeholder="valor" className="form-control w-100 rounded-0 border-0 ps-4 py-3 mb-2 me-3"/>
+                    <input type="text" ref={valor} placeholder="valor" className="form-control w-100 rounded-0 border-0 ps-4 py-3 mb-2 me-3"/>
                 </div>
                 </form>
 
