@@ -1,7 +1,8 @@
 
 'use client'
 import localFont from "next/font/local";
-import { useState, useEffect} from "react";
+import { useState, useEffect, useContext} from "react";
+import UserContext from "../context/userContext.js";
 import "../globals.css";
 import "../../../public/css/vendor.css"
 import "../../../public/style.css"
@@ -29,17 +30,23 @@ const geistMono = localFont({
   weight: "100 900",
 });
 
-
 export default function RootLayout({ children }) {
+  
+  //const {user, setUser} = useContext(UserContext);
   const [isClient, setIsClient] = useState(false)
  
   useEffect(() => {
     setIsClient(true)
   }, [])
 
-  if (!isClient) {
-    return <>Prerendered</>
+  if (isClient == false) {
+    return <div>Prerendered</div>
   }
+  // if(isClient) {
+  //   if(user == null || user.login != "brayannlima") {
+  //     alert("Você  não possui permissão de acesso nesta página")
+  //   }
+  // }
 
   return (
     <html lang="pt-br">
