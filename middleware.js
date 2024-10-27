@@ -1,13 +1,21 @@
-import { NextResponse } from 'next/server'
- 
-// This function can be marked `async` if using `await` inside
+import { NextResponse } from 'next/server';
+import cookie from 'cookie';
+
+// Esta função pode ser marcada como async se usar await dentro
 export function middleware(request) {
 
-  if(request.cookies.has("jwt") == false)  
-    return NextResponse.redirect(new URL('/login', request.url))
+  const cookies = cookie.parse(request.headers.get('cookie') || '');
+  console.log("Chamou")
+
+  if (!cookies.jwt) {
+    return NextResponse.redirect(new URL('/login', request.url));
+  }
+
+  // Continua para a próxima middleware ou rota
+  return NextResponse.next();
 }
- 
-// See "Matching Paths" below to learn more
+
+// Veja "Matching Paths" abaixo para aprender mais
 export const config = {
-  matcher: '/admin/:path*',
-}
+  matcher: '/admin/:path'
+};
