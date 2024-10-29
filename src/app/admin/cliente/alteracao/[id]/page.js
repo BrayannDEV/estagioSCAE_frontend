@@ -2,6 +2,7 @@
 import { useRef, useState, useEffect } from "react"
 import httpClient from "../../../../utils/httpClient.js";
 import { useRouter } from "next/navigation";
+import InputMask from "react-input-mask";
 
 
 export default function AlteracaoCliente({params: {id}}) {
@@ -47,6 +48,11 @@ export default function AlteracaoCliente({params: {id}}) {
         errors.push("O nome é obrigatório.");
       } else if (!nome.current.value.includes(' ')) {
         errors.push("O nome deve conter pelo menos um espaço para nome e sobrenome.");
+      }
+
+      // Validação do telefone
+      if (!fone.current.value) {
+        errors.push("O telefone é obrigatório.");
       }
 
       // Validação do login
@@ -114,7 +120,7 @@ export default function AlteracaoCliente({params: {id}}) {
                 <input type="text" ref={nome} placeholder="Nome completo" className="form-control w-100 rounded-0 border-0 ps-4 py-3 mb-2 me-3"/>
               </div>
               <div className="form-input col-lg-12 d-md-flex mb-3">
-                <input type="text" ref={fone} placeholder="00 00000-0000" className="form-control w-100 rounded-0 border-0 ps-4 py-3 mb-2 me-3"/>
+                <InputMask type="text" ref={fone} mask="(**) *****-****" maskChar={null} className="form-control w-100 rounded-0 border-0 ps-4 py-3 mb-2 me-3"/>
               </div>
               <div className="form-input col-lg-12 d-md-flex mb-3">
                 <input type="text" ref={login} placeholder="Cadastre um login" className="form-control w-100 rounded-0 border-0 ps-4 py-3 mb-2 me-3"/>

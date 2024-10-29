@@ -25,12 +25,10 @@ export default function Gravar() {
     }
 
     // Validação do telefone
-    // if (!fone.current.value) {
-    //   errors.push("O telefone é obrigatório.");
-    // } else if (!/^\d{10,}$/.test(fone.current.value)) { // Exemplo: apenas números e pelo menos 10 dígitos
-    //   errors.push("O telefone deve conter apenas números e ter pelo menos 10 dígitos.");
-    // }
-
+    if (!fone.current.value) {
+      errors.push("O telefone é obrigatório.");
+    }
+    
     // Validação do login
     if (!login.current.value.trim()) {
       errors.push("O login é obrigatório.");
@@ -80,30 +78,10 @@ export default function Gravar() {
       console.log(erro);
     }
 
-    // httpClient.post("/cliente", usuario)
-    // .then(r=> {
-    //     let ok = r.status == 201;
-    //     return r.json();
-    // })
-    // .then(r=> {
-    //     if(ok) {
-    //         alert(r.msg);
-
-    //         nome.current.value = "";
-    //         fone.current.value = 0;
-    //         login.current.value = "";
-    //         senha.current.value = "";
-    //         confirmaSenha.current.value = "";
-    //     }
-    //     else {
-    //         alert(r.msg);
-    //     }
-    // })
   }
 
   return(
       <section id="appointment" className="jarallax" style={{backgroundImage: "url(images/background-1.jpg)"}} >
-      {/* style="background-image: url(images/background-1.jpg); background-repeat: no-repeat; background-position: center;" */}
         <div className="container-lg padding-medium">
           <div className="offset-md-3 col-md-6 text-center ">
 
