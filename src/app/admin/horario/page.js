@@ -77,13 +77,26 @@ export default function Horario() {
     
                 <form className="contact-form row mt-5">
                   <div className="form-input col-lg-12 d-md-flex mb-3">
-                    <input type="text" ref={diaSemana} placeholder="Coloque o dia da semana" className="form-control w-100 rounded-0 border-0 ps-4 py-3 mb-2 me-3"/>
+                    <label className="form-control rounded-0 border-0 py-3 mb-2 me-3" for="diaSemana">Dia da semana</label>
+                    <select type="text" ref={diaSemana} id="diaSemana" className="form-control w-100 rounded-0 border-0 ps-4 py-3 mb-2 me-3">
+                    {/* <datalist id="dias"> */}
+                      <option value="Domingo">Domingo</option>
+                      <option value="Segunda-feira">Segunda-feira</option>
+                      <option value="Terca-feira">Terça-feira</option>
+                      <option value="Quarta-feira">Quarta-feira</option>
+                      <option value="Quinta-feira">Quinta-feira</option>
+                      <option value="Sexta-feira">Sexta-feira</option>
+                      <option value="Sabado">Sábado</option>
+                    {/* </datalist> */}
+                    </select>
                   </div>
                   <div className="form-input col-lg-12 d-md-flex mb-3">
-                    <input type="time" ref={horaInicial} placeholder="hora inicial" className="form-control w-100 rounded-0 border-0 ps-4 py-3 mb-2 me-3"/>
+                    <label className="form-control rounded-0 border-0 py-3 mb-2 me-3" for="horaInicial">Horario Inicial:</label>
+                    <input type="time" ref={horaInicial} placeholder="hora inicial" id="horaInicial" className="form-control w-100 rounded-0 border-0 ps-4 py-3 mb-2 me-3"/>
                   </div>
                   <div className="form-input col-lg-12 d-md-flex mb-3">
-                    <input type="time" ref={horaFinal} placeholder="hora final" className="form-control w-100 rounded-0 border-0 ps-4 py-3 mb-2 me-3"/>
+                    <label className="form-control rounded-0 border-0 py-3 mb-2 me-3" for="horaFinal">Horario Final:</label>
+                    <input type="time" ref={horaFinal} placeholder="hora final" id="horaFinal" className="form-control w-100 rounded-0 border-0 ps-4 py-3 mb-2 me-3"/>
                   </div>
                 </form>
                 <button className="btn btn-primary mt-3" onClick={cadastrar} style={{backgroundColor: "DF808F", border: "none"}}>Cadastrar</button>
@@ -98,7 +111,9 @@ export default function Horario() {
               <table className="table table-striped table-bordered table-hover" >
               <thead className="table-active">
                   <tr>
-                      <th colSpan="2">Segunda-feira</th>
+                      <th scope="col">Dia da semana</th>
+                      <th scope="col">Horário Inicial</th>
+                      <th scope="col">Horário Final</th>
                       <th scope="col">Ação</th>
                   </tr>
               </thead>
@@ -106,6 +121,7 @@ export default function Horario() {
                   {listaHorarios.map(horario => (
 
                       <tr key={horario.id}>
+                          <td>{horario.diaSemana}</td>
                           <td>{horario.horaInicial}</td>
                           <td>{horario.horaFinal}</td>
                           <td>
