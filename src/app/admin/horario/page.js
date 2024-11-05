@@ -118,17 +118,20 @@ export default function Horario() {
                   </tr>
               </thead>
               <tbody>
-                  {listaHorarios.map(horario => (
-
-                      <tr key={horario.id}>
-                          <td>{horario.diaSemana}</td>
-                          <td>{horario.horaInicial}</td>
-                          <td>{horario.horaFinal}</td>
+                  {listaHorarios.map(function(value, index) {
+                    console.log(value)
+                    //if(value.diaSemana == "Segunda-feira"){
+                      return <tr key={value.id}>
+                          <td>{value.diaSemana}</td>
+                          <td>{value.horaInicial}</td>
+                          <td>{value.horaFinal}</td>
                           <td>
-                              <button className="btn btn-outline-danger btn-sm mr-2 mb-2" onClick={() => excluirHorario(horario.id)}>Excluir</button>
+                              <button className="btn btn-outline-danger btn-sm mr-2 mb-2" onClick={() => excluirHorario(value.id)}>Excluir</button>
                           </td>
                       </tr>
-                  ))}
+                    //}
+                      
+                  })}
               </tbody>
               </table>
 
