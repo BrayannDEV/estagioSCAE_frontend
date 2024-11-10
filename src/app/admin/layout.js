@@ -86,6 +86,9 @@ export default function RootLayout({ children }) {
                       <a className="nav-link fw-semibold p-0" href="/admin/agendamento">Agendamentos</a>
                     </li>
                     <li className="nav-item px-3 py-2 py-lg-0">
+                      <a className="nav-link fw-semibold p-0" href="/admin/calendario">Calendário</a>
+                    </li>
+                    <li className="nav-item px-3 py-2 py-lg-0">
                       <a className="nav-link fw-semibold p-0" href="/admin/cliente">Clientes</a>
                     </li>
                     <li className="nav-item search-dropdown py-2 py-lg-0 ms-3 ms-lg-5 dropdown">

@@ -1,54 +1,50 @@
 'use client'
 import { useRef, useState, useEffect } from "react"
 import httpClient from "../../utils/httpClient.js";
-import FullCalendar from '@fullcalendar/react'
-import dayGridPlugin from '@fullcalendar/daygrid'
-
 
 
 export default function Agendamento() {
 
-    async function Calendario() {
-        var calendarEl = document.getElementById('calendar');
-        var calendar = new FullCalendar.Calendario(calendarEl, {
-        locale: 'pt-br',
-        timeZone: 'America/Sao_Paulo',
-        buttonText: {
-            today: 'hoje',
-            month: 'Mes',
-            week: 'Semana',
-            day: 'dia',
-            list: 'lista'
-        },
-        initialView: 'dayGridMonth'
-        });
-        calendar.render();
-    }
     
-
     return(
-        <div>
-            <div>
-                <button className="btn btn-primary mt-3" onClick={Calendario} style={{backgroundColor: "DF808F", border: "none"}}>Ver Calendário</button>
+        <section id="appointment" className="jarallax" style={{backgroundImage: "url(../../images/background-1.jpg)"}} >
+            <div className="table-responsive offset-md-3 col-md-6 text-center">
+                <h2 className="display-4 fw-normal mb-3">Listagem de Agendamentos</h2>
+
+                <form className="contact-form row mt-5">
+                    <div className="form-input col-lg-12 d-md-flex mb-3">
+                        <label className="form-control" for="dataAgendamento">Data:</label>
+                        <input type="date" name="data" placeholder="Insira sua senha" className="form-control rounded-0 border-0 ps-4 py-3 mb-2 me-3"/>
+                        <button className="btn btn-outline-primary btn-sm mr-2 mb-2">Buscar</button>
+                    </div>
+                </form>
+                <table className="table table-striped table-bordered table-hover" >
+                    <thead className="table-active">
+                        <tr>
+                            <th scope="col">Nome</th>
+                            <th scope="col">Horário Inicial</th>
+                            <th scope="col">Horário Final</th>
+                            <th scope="col">Procedimento</th>
+                            <th scope="col">Ação</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        
+                            <tr>
+                                <td>Maria</td>
+                                <td>09:30</td>
+                                <td>10:30</td>
+                                <td>Mão completo</td>
+                                <td>
+                                    <button className="btn btn-outline-danger btn-sm mr-2 mb-2">Excluir</button>
+                                </td>
+                            </tr>
+                    </tbody>
+                </table>
             </div>
-            <FullCalendar plugins={[ dayGridPlugin ]} initialView="dayGridMonth" selectable="true"
-            events={[
-            { title: 'Maria', start: '2024-11-07T08:30:00', end: '2024-11-07T09:30:00', display:'backgroud' },
-            { title: 'Julia', date: '2024-11-20' }
-            ]}/>
-            
-        </div>
+        </section>
         
         
     );
 
 }
-
-// function renderEventContent(eventInfo) {
-//     return(
-//       <>
-//         <b>{eventInfo.timeText}</b>
-//         <i>{eventInfo.event.title}</i>
-//       </>
-//     )
-//   }
