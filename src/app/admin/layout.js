@@ -74,7 +74,7 @@ export default function RootLayout({ children }) {
                 <div className="offcanvas-body align-items-center justify-content-end">
                   <ul className="navbar-nav mb-2 mb-lg-0">
                     <li className="nav-item px-3 py-2 py-lg-0">
-                      <a className="nav-link fw-semibold active p-0" aria-current="page" href="/admin">Home</a>
+                      <a className="nav-link fw-semibold p-0" aria-current="page" href="/admin">Home</a>
                     </li>
                     <li className="nav-item px-3 py-2 py-lg-0">
                       <a className="nav-link fw-semibold p-0" href="/admin/procedimento">Procedimentos</a>

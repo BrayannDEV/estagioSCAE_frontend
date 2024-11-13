@@ -2,46 +2,86 @@
 import { useRef, useState, useEffect } from "react"
 import httpClient from "../../utils/httpClient.js";
 
-
 export default function Agendamento() {
-
     
+    let data = useRef("");
+    let horaInicial = useRef("");
+    let horaFinal = useRef("");
+    let cliente = useRef("")
+    let procedimento = useRef("")
+
+    async function cadastrar(){
+    
+        let agenda = {
+          data: data.current.value,
+          horaInicial: horaInicial.current.value,
+          horaFinal: horaFinal.current.value,
+          cliente: cliente.current.value,
+          procedimento: procedimento.current.value,
+        };
+    
+        try {
+          const result = await httpClient.post("/agenda", agenda)
+          console.log(result);
+          
+          data.current.value = "";
+          horaInicial.current.value = "";
+          horaFinal.current.value = "";
+          cliente.current.value = "";
+          procedimento.current.value = "";
+          alert("Cadastrado com sucesso!")
+    
+          let ok = r.status == 201;
+    
+        } catch (erro) {
+          console.log(erro);
+        }
+    
+    }
+
+    let [listaProcedimentos, setListaProcedimentos] = useState([]);
+    useEffect((e) => {
+        carregarProcedimentos();
+    }, [])
+
+    async function carregarProcedimentos() {
+        
+        try {
+            const result = await httpClient.get("/procedimento")
+            setListaProcedimentos(result)
+      
+            let ok = r.status == 201;
+      
+        } catch (erro) {
+            console.log(erro);
+        }
+    }
+
     return(
         <section id="appointment" className="jarallax" style={{backgroundImage: "url(../../images/background-1.jpg)"}} >
-            <div className="table-responsive offset-md-3 col-md-6 text-center">
-                <h2 className="display-4 fw-normal mb-3">Listagem de Agendamentos</h2>
+        {/* style="background-image: url(images/background-1.jpg); background-repeat: no-repeat; background-position: center;" */}
+        <div className="container-lg padding-medium">
+            <div className="offset-md-3 col-md-6 text-center ">
 
-                <form className="contact-form row mt-5">
-                    <div className="form-input col-lg-12 d-md-flex mb-3">
-                        <label className="form-control" for="dataAgendamento">Data:</label>
-                        <input type="date" name="data" placeholder="Insira sua senha" className="form-control rounded-0 border-0 ps-4 py-3 mb-2 me-3"/>
-                        <button className="btn btn-outline-primary btn-sm mr-2 mb-2">Buscar</button>
-                    </div>
-                </form>
-                <table className="table table-striped table-bordered table-hover" >
-                    <thead className="table-active">
-                        <tr>
-                            <th scope="col">Nome</th>
-                            <th scope="col">Horário Inicial</th>
-                            <th scope="col">Horário Final</th>
-                            <th scope="col">Procedimento</th>
-                            <th scope="col">Ação</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        
-                            <tr>
-                                <td>Maria</td>
-                                <td>09:30</td>
-                                <td>10:30</td>
-                                <td>Mão completo</td>
-                                <td>
-                                    <button className="btn btn-outline-danger btn-sm mr-2 mb-2">Excluir</button>
-                                </td>
-                            </tr>
-                    </tbody>
-                </table>
+            <h2 className="display-4 fw-normal mb-3">Agendar</h2>
+
+            <form className="contact-form row mt-5">
+                <div className="form-input col-lg-12 d-md-flex mb-3">
+                <label className=" rounded-0 border-0 py-3 mb-2 me-3" for="procedimento">Procedimentos: </label>
+                    <select type="text" id="procedimento" className="form-control w-100 rounded-0 border-0 ps-4 py-3 mb-2 me-3">
+                    {listaProcedimentos.map(procedimento => (<option value={procedimento.id}>{procedimento.nome}</option>))}
+                    </select>
+                </div>
+                <div className="form-input col-lg-12 d-md-flex mb-3">
+                <input type="date" name="data" placeholder="Insira sua senha" className="form-control w-100 rounded-0 border-0 ps-4 py-3 mb-2 me-3"/>
+                <input type="time" name="hora" placeholder="Insira sua senha" className="form-control w-100 rounded-0 border-0 ps-4 py-3 mb-2 me-3"/>
+                </div>
+            </form>
+
+            <button className="btn btn-primary mt-3" style={{backgroundColor: "DF808F", border: "none"}}>Confirmar</button>
             </div>
+
+        </div>
         </section>
         
         
