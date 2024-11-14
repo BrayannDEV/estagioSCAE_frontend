@@ -9,42 +9,94 @@ import interactionPlugin from "@fullcalendar/interaction" // needed for dayClick
 
 export default function Agendamento() {
 
-    async function Calendario() {
-        var calendarEl = document.getElementById('calendar');
+    // async function Calendario() {
+    //     var calendarEl = document.getElementById('calendar');
         
-        /*var calendar = new FullCalendar.Calendario(calendarEl, {
-        locale: 'pt-br',
-        timeZone: 'America/Sao_Paulo',
-        buttonText: {
-            today: 'hoje',
-            month: 'Mes',
-            week: 'Semana',
-            day: 'dia',
-            list: 'lista'
-        },
-        initialView: 'dayGridMonth',
+    //     /*var calendar = new FullCalendar.Calendario(calendarEl, {
+    //     locale: 'pt-br',
+    //     timeZone: 'America/Sao_Paulo',
+    //     buttonText: {
+    //         today: 'hoje',
+    //         month: 'Mes',
+    //         week: 'Semana',
+    //         day: 'dia',
+    //         list: 'lista'
+    //     },
+    //     initialView: 'dayGridMonth',
         
-        });
-        calendar.render();*/
-    }
+    //     });
+    //     calendar.render();*/
+    // }
     
+    let data = useRef("");
+    let horaInicial = useRef("");
+    let horaFinal = useRef("");
+    let cliente = useRef("")
+    let procedimento = useRef("")
 
     const handleDateClick = (arg) => {
-        alert(arg.dateStr)
-      }
+
+        alert(listaAgenda.map(agenda =>(agenda.cliente.nome)))
+    }
+
+    let [listaAgenda, setListaAgenda] = useState([]);
+    useEffect((e) => {
+      carregarAgenda();
+    }, [])
+
+    async function carregarAgenda() {
+        
+        try {
+          const result = await httpClient.get(`/agenda`)    
+          console.log(result);   
+          setListaAgenda(result)        
+      
+        }catch (erro) {
+          console.log(erro);
+        }
+    }
 
 
     return(
         <div>
-            <div>
-                <button className="btn btn-primary mt-3" onClick={Calendario} style={{backgroundColor: "DF808F", border: "none"}}>Ver Calendário</button>
-            </div>
-            <FullCalendar plugins={[ dayGridPlugin, interactionPlugin  ]} initialView="dayGridMonth" selectable="true"
-                      dateClick={(a) => handleDateClick(a)}
-            events={[
-            { title: 'Maria', start: '2024-11-07T08:30:00', end: '2024-11-08T09:30:00', display:'backgroud' },
-            { title: 'Julia', date: '2024-11-20' }
-            ]}/>
+            
+            <FullCalendar plugins={[ dayGridPlugin, interactionPlugin  ]} initialView="dayGridMonth" selectable="true" dateClick={(a) => handleDateClick(a)}
+            events=
+            {
+                listaAgenda.map(agenda =>{
+
+                    let horaInicial = new Date(agenda.data);
+                    let [horas, minutos, segundos] = agenda.horaInicial.split(':');
+                    horaInicial.setHours(horas);
+                    horaInicial.setMinutes(minutos);
+                    horaInicial.setSeconds(segundos);
+
+                    let horaFinal = new Date(agenda.data);
+                    let [horasfinal, minutosfinal, segundosfinal] = agenda.horaFinal.split(':');
+                    horaFinal.setHours(horasfinal);
+                    horaFinal.setMinutes(minutosfinal);
+                    horaFinal.setSeconds(segundosfinal);
+
+
+                    return {
+                        title: agenda.cliente.nome,
+                        date: agenda.data,
+                        start: horaInicial,
+                        end: horaFinal
+                }})
+            }
+            eventClick=
+            {
+                function (info) {
+                    alert(`
+                        Cliente: ${info.event.title} 
+                        Início: ${(info.event.start).getHours()}:${String((info.event.start).getMinutes()).padStart(2, '0')}
+                        Fim: ${(info.event.end).getHours()}:${String((info.event.end).getMinutes()).padStart(2, '0')}
+                    `)
+                }
+            }
+                
+            />
             
         </div>
         
@@ -52,12 +104,3 @@ export default function Agendamento() {
     );
 
 }
-
-// function renderEventContent(eventInfo) {
-//     return(
-//       <>
-//         <b>{eventInfo.timeText}</b>
-//         <i>{eventInfo.event.title}</i>
-//       </>
-//     )
-//   }
