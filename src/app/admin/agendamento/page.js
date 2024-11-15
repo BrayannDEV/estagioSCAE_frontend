@@ -7,8 +7,8 @@ export default function Agendamento() {
     let data = useRef("");
     let horaInicial = useRef("");
     let horaFinal = useRef("");
-    let cliente = useRef("")
-    let procedimento = useRef("")
+    let cliente = useRef("");
+    let procedimento = useRef("");
 
     async function cadastrar(){
     
@@ -78,7 +78,6 @@ export default function Agendamento() {
 
     return(
         <section id="appointment" className="jarallax" style={{backgroundImage: "url(../../images/background-1.jpg)"}} >
-        {/* style="background-image: url(images/background-1.jpg); background-repeat: no-repeat; background-position: center;" */}
         <div className="container-lg padding-medium">
             <div className="offset-md-3 col-md-6 text-center ">
 
