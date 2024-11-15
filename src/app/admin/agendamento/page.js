@@ -31,7 +31,7 @@ export default function Agendamento() {
           procedimento.current.value = "";
           alert("Cadastrado com sucesso!")
     
-          let ok = r.status == 201;
+          let ok = result.status == 201;
     
         } catch (erro) {
           console.log(erro);
@@ -57,6 +57,25 @@ export default function Agendamento() {
         }
     }
 
+
+    let [listaCliente, setListaCliente] = useState([]);
+    useEffect((e) => {
+        carregarCliente();
+    }, [])
+
+    async function carregarCliente() {
+        
+        try {
+            const result = await httpClient.get("/cliente")
+            setListaCliente(result)
+      
+            let ok = r.status == 201;
+      
+        } catch (erro) {
+            console.log(erro);
+        }
+    }
+
     return(
         <section id="appointment" className="jarallax" style={{backgroundImage: "url(../../images/background-1.jpg)"}} >
         {/* style="background-image: url(images/background-1.jpg); background-repeat: no-repeat; background-position: center;" */}
@@ -68,17 +87,24 @@ export default function Agendamento() {
             <form className="contact-form row mt-5">
                 <div className="form-input col-lg-12 d-md-flex mb-3">
                 <label className=" rounded-0 border-0 py-3 mb-2 me-3" for="procedimento">Procedimentos: </label>
-                    <select type="text" id="procedimento" className="form-control w-100 rounded-0 border-0 ps-4 py-3 mb-2 me-3">
+                    <select type="text" ref={procedimento} id="procedimento" className="form-control w-100 rounded-0 border-0 ps-4 py-3 mb-2 me-3">
                     {listaProcedimentos.map(procedimento => (<option value={procedimento.id}>{procedimento.nome}</option>))}
                     </select>
                 </div>
                 <div className="form-input col-lg-12 d-md-flex mb-3">
-                <input type="date" name="data" placeholder="Insira sua senha" className="form-control w-100 rounded-0 border-0 ps-4 py-3 mb-2 me-3"/>
-                <input type="time" name="hora" placeholder="Insira sua senha" className="form-control w-100 rounded-0 border-0 ps-4 py-3 mb-2 me-3"/>
+                <label className=" rounded-0 border-0 py-3 mb-2 me-3" for="cliente">Cliente: </label>
+                    <select type="text" ref={cliente} id="cliente" className="form-control w-100 rounded-0 border-0 ps-4 py-3 mb-2 me-3">
+                    {listaCliente.map(cliente => (<option value={cliente.id}>{cliente.nome}</option>))}
+                    </select>
+                </div>
+                <div className="form-input col-lg-12 d-md-flex mb-3">
+                <input type="date" ref={data} name="data" className="form-control w-100 rounded-0 border-0 ps-4 py-3 mb-2 me-3"/>
+                <input type="time" ref={horaInicial} name="hora" className="form-control w-100 rounded-0 border-0 ps-4 py-3 mb-2 me-3"/>
+                <input type="time" ref={horaFinal} name="hora" className="form-control w-100 rounded-0 border-0 ps-4 py-3 mb-2 me-3"/>
                 </div>
             </form>
 
-            <button className="btn btn-primary mt-3" style={{backgroundColor: "DF808F", border: "none"}}>Confirmar</button>
+            <button className="btn btn-primary mt-3" onClick={cadastrar} style={{backgroundColor: "DF808F", border: "none"}}>Confirmar</button>
             </div>
 
         </div>

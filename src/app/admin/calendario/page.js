@@ -9,35 +9,7 @@ import interactionPlugin from "@fullcalendar/interaction" // needed for dayClick
 
 export default function Agendamento() {
 
-    // async function Calendario() {
-    //     var calendarEl = document.getElementById('calendar');
-        
-    //     /*var calendar = new FullCalendar.Calendario(calendarEl, {
-    //     locale: 'pt-br',
-    //     timeZone: 'America/Sao_Paulo',
-    //     buttonText: {
-    //         today: 'hoje',
-    //         month: 'Mes',
-    //         week: 'Semana',
-    //         day: 'dia',
-    //         list: 'lista'
-    //     },
-    //     initialView: 'dayGridMonth',
-        
-    //     });
-    //     calendar.render();*/
-    // }
     
-    let data = useRef("");
-    let horaInicial = useRef("");
-    let horaFinal = useRef("");
-    let cliente = useRef("")
-    let procedimento = useRef("")
-
-    const handleDateClick = (arg) => {
-
-        alert(listaAgenda.map(agenda =>(agenda.cliente.nome)))
-    }
 
     let [listaAgenda, setListaAgenda] = useState([]);
     useEffect((e) => {
@@ -60,7 +32,7 @@ export default function Agendamento() {
     return(
         <div>
             
-            <FullCalendar plugins={[ dayGridPlugin, interactionPlugin  ]} initialView="dayGridMonth" selectable="true" dateClick={(a) => handleDateClick(a)}
+            <FullCalendar plugins={[ dayGridPlugin, interactionPlugin  ]} initialView="dayGridMonth" selectable="true" 
             events=
             {
                 listaAgenda.map(agenda =>{
@@ -80,6 +52,7 @@ export default function Agendamento() {
 
                     return {
                         title: agenda.cliente.nome,
+                        display: agenda.procedimento.nome,
                         date: agenda.data,
                         start: horaInicial,
                         end: horaFinal
@@ -90,6 +63,7 @@ export default function Agendamento() {
                 function (info) {
                     alert(`
                         Cliente: ${info.event.title} 
+                        Procedimento: ${info.event.display}
                         Início: ${(info.event.start).getHours()}:${String((info.event.start).getMinutes()).padStart(2, '0')}
                         Fim: ${(info.event.end).getHours()}:${String((info.event.end).getMinutes()).padStart(2, '0')}
                     `)

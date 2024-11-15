@@ -61,7 +61,7 @@ export default function RootLayout({ children }) {
                 <button className="navbar-toggler border-0 d-flex d-lg-none order-3 p-2 shadow-none" type="button"
                   data-bs-toggle="offcanvas" data-bs-target="#bdNavbar" aria-controls="bdNavbar" aria-expanded="false">
                   <svg className="navbar-icon" width="60" height="60">
-                    <use href="#navbar-icon"></use>
+                    <use src="#navbar-icon"></use>
                   </svg>
                 </button>
                 <div className="header-bottom offcanvas offcanvas-end" id="bdNavbar" aria-labelledby="bdNavbarOffcanvasLabel">
