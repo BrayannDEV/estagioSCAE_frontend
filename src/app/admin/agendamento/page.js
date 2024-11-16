@@ -6,37 +6,51 @@ export default function Agendamento() {
     
     let data = useRef("");
     let horaInicial = useRef("");
-    let horaFinal = useRef("");
     let cliente = useRef("");
     let procedimento = useRef("");
 
     async function cadastrar(){
     
-        let agenda = {
-          data: data.current.value,
-          horaInicial: horaInicial.current.value,
-          horaFinal: horaFinal.current.value,
-          cliente: cliente.current.value,
-          procedimento: procedimento.current.value,
-        };
-    
-        try {
-          const result = await httpClient.post("/agenda", agenda)
-          console.log(result);
-          
-          data.current.value = "";
-          horaInicial.current.value = "";
-          horaFinal.current.value = "";
-          cliente.current.value = "";
-          procedimento.current.value = "";
-          alert("Cadastrado com sucesso!")
-    
-          let ok = result.status == 201;
-    
-        } catch (erro) {
-          console.log(erro);
+        
+        let procedimentoSelecionado = listaProcedimentos.find(p => p.id == procedimento.current.value);
+        if (procedimentoSelecionado) {
+            
+            //Convertendo o tempo do procedimento para horas e somando com a hora inicial para virar a hora final
+            let minutosTotal = parseInt(procedimentoSelecionado.tempo, 10);
+            let horas = Math.floor(minutosTotal / 60);
+            let minutos = minutosTotal % 60;
+            let [horaInicialHoras, horaInicialMinutos] = horaInicial.current.value.split(":").map(Number);
+            let horaFinalDate = new Date();
+            horaFinalDate.setHours(horaInicialHoras + horas);
+            horaFinalDate.setMinutes(horaInicialMinutos + minutos);
+            let horaFinal = horaFinalDate.toTimeString().slice(0, 5);
+
+            let agenda = {
+            data: data.current.value,
+            horaInicial: horaInicial.current.value,
+            horaFinal: horaFinal,
+            cliente: cliente.current.value,
+            procedimento: procedimento.current.value,
+            };
+        
+            try {
+            const result = await httpClient.post("/agenda", agenda)
+            console.log("agenda", agenda);
+            
+            data.current.value = "";
+            horaInicial.current.value = "";
+            cliente.current.value = "";
+            procedimento.current.value = "";
+            alert("Cadastrado com sucesso!")
+        
+            let ok = result.status == 201;
+        
+            } catch (erro) {
+            console.log(erro);
+            }
+        } else {
+            console.log("Procedimento não encontrado"); alert("Procedimento não encontrado"); 
         }
-    
     }
 
     let [listaProcedimentos, setListaProcedimentos] = useState([]);
@@ -99,7 +113,6 @@ export default function Agendamento() {
                 <div className="form-input col-lg-12 d-md-flex mb-3">
                 <input type="date" ref={data} name="data" className="form-control w-100 rounded-0 border-0 ps-4 py-3 mb-2 me-3"/>
                 <input type="time" ref={horaInicial} name="hora" className="form-control w-100 rounded-0 border-0 ps-4 py-3 mb-2 me-3"/>
-                <input type="time" ref={horaFinal} name="hora" className="form-control w-100 rounded-0 border-0 ps-4 py-3 mb-2 me-3"/>
                 </div>
             </form>
 
