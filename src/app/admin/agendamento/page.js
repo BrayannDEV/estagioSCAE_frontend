@@ -14,7 +14,7 @@ export default function Agendamento() {
         
         let procedimentoSelecionado = listaProcedimentos.find(p => p.id == procedimento.current.value);
         if (procedimentoSelecionado) {
-            
+
             //Convertendo o tempo do procedimento para horas e somando com a hora inicial para virar a hora final
             let minutosTotal = parseInt(procedimentoSelecionado.tempo, 10);
             let horas = Math.floor(minutosTotal / 60);
@@ -34,6 +34,7 @@ export default function Agendamento() {
             };
         
             try {
+                
             const result = await httpClient.post("/agenda", agenda)
             console.log("agenda", agenda);
             
