@@ -41,17 +41,20 @@ export default function Agendamento() {
                 
             const result = await httpClient.post("/agenda", agenda)
             console.log("agenda", agenda);
+
+            let ok = result.status == 201;
+
             
             data.current.value = "";
             horaInicial.current.value = "";
             cliente.current.value = "";
             procedimento.current.value = "";
-            alert("Cadastrado com sucesso!")
-        
-            let ok = result.status == 201;
+            alert("Cadastrado com sucesso!")          
         
             } catch (erro) {
-            console.log(erro);
+                console.log("erro:",erro);
+                alert(erro);
+                
             }
         } else {
             console.log("Procedimento não encontrado"); alert("Procedimento não encontrado"); 
