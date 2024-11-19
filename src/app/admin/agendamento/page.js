@@ -1,6 +1,7 @@
 'use client'
 import { useRef, useState, useEffect } from "react"
 import httpClient from "../../utils/httpClient.js";
+import Select from 'react-select';
 
 export default function Agendamento() {
     
@@ -8,6 +9,7 @@ export default function Agendamento() {
     let horaInicial = useRef("");
     let cliente = useRef("");
     let procedimento = useRef("");
+    let [clienteSelecionado, setClienteSelecionado] = useState(null);
 
     async function cadastrar(){
     
@@ -29,7 +31,7 @@ export default function Agendamento() {
             data: data.current.value,
             horaInicial: horaInicial.current.value,
             horaFinal: horaFinal,
-            cliente: cliente.current.value,
+            cliente: clienteSelecionado ? clienteSelecionado.value : null,
             procedimento: procedimento.current.value,
             };
         
@@ -40,7 +42,7 @@ export default function Agendamento() {
             
             data.current.value = "";
             horaInicial.current.value = "";
-            cliente.current.value = "";
+            setClienteSelecionado(null);
             procedimento.current.value = "";
             alert("Cadastrado com sucesso!")
         
@@ -91,6 +93,7 @@ export default function Agendamento() {
         }
     }
 
+
     return(
         <section id="appointment" className="jarallax" style={{backgroundImage: "url(../../images/background-1.jpg)"}} >
         <div className="container-lg padding-medium">
@@ -107,9 +110,13 @@ export default function Agendamento() {
                 </div>
                 <div className="form-input col-lg-12 d-md-flex mb-3">
                 <label className=" rounded-0 border-0 py-3 mb-2 me-3" for="cliente">Cliente: </label>
-                    <select type="text" ref={cliente} id="cliente" className="form-control w-100 rounded-0 border-0 ps-4 py-3 mb-2 me-3">
-                    {listaCliente.map(cliente => (<option value={cliente.id}>{cliente.nome}</option>))}
-                    </select>
+                <Select 
+                    value={clienteSelecionado} 
+                    onChange={setClienteSelecionado} 
+                    options={listaCliente.map(cliente => 
+                        ({ value: cliente.id, label: cliente.nome }))
+                    } className="form-control w-100 rounded-0 border-0 ps-4 py-3 mb-2 me-3" 
+                    placeholder="Digite para buscar clientes..." />
                 </div>
                 <div className="form-input col-lg-12 d-md-flex mb-3">
                 <input type="date" ref={data} name="data" className="form-control w-100 rounded-0 border-0 ps-4 py-3 mb-2 me-3"/>
