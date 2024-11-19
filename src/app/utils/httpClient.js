@@ -29,12 +29,12 @@ const httpClient = {
             body: JSON.stringify(body)
         })
 
+        const data = await response.json()
 
         if (!response.ok) {
-            throw new Error(`Error ${response.statusText}`)
+            throw new Error(`${data.msg}`)
         }
 
-        const data = await response.json()
         return data;
     },
 

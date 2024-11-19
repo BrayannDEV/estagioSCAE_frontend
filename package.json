@@ -15,10 +15,12 @@
     "cookie": "^1.0.1",
     "fullcalendar": "^6.1.15",
     "next": "14.2.12",
+    "pdf-lib": "^1.17.1",
     "react": "^18",
     "react-dom": "^18",
     "react-input-mask": "^2.0.4",
-    "react-select": "^5.8.3"
+    "react-select": "^5.8.3",
+    "xlsx": "^0.18.5"
   },
   "devDependencies": {
     "eslint": "^8",

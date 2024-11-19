@@ -1,6 +1,8 @@
 'use client'
 import { useRef, useState, useEffect } from "react"
 import httpClient from "../../utils/httpClient.js";
+import * as XLSX from 'xlsx';
+import { PDFDocument, rgb } from 'pdf-lib';
 import InputMask from "react-input-mask";
 
 export default function Servico() {
@@ -28,11 +30,6 @@ export default function Servico() {
     let descricao = useRef("");
     let tempo = useRef(0);
     let valor = useRef(0);
-
-    // useEffect(() => {
-    //     // Define o valor padrão no campo de valor
-    //     valor.current.value = '0.00';
-    // }, []);
 
     async function cadastrar() {
         
@@ -102,6 +99,52 @@ export default function Servico() {
         }
     }
 
+    async function gerarExcel() {
+
+        const ws = XLSX.utils.json_to_sheet(listaProcedimentos);
+        const wb = XLSX.utils.book_new();
+    
+        XLSX.utils.book_append_sheet(wb, ws, 'Procedimentos');
+        XLSX.writeFile(wb, 'relatorio_procedimentos.xlsx');
+    }
+
+    async function gerarPDF() {
+
+        const pdfDoc = await PDFDocument.create();
+        const page = pdfDoc.addPage([600, 400]);
+        const { width, height } = page.getSize();
+    
+        // Adicionando título
+        page.drawText('Relatório de Procedimentos', {
+            x: 50,
+            y: height - 50,
+            size: 30,
+            color: rgb(0, 0, 0),
+        });
+    
+        // Adicionando os dados dos clientes
+        listaProcedimentos.forEach((procedimento, index) => {
+    
+            const text = `${procedimento.nome} - R$ ${procedimento.valor} - Tempo(em min.):${procedimento.tempo}`;
+            page.drawText(text, {
+                x: 50,
+                y: height - 100 - index * 20,
+                size: 12,
+                color: rgb(0, 0, 0),
+            });
+        });
+    
+        const pdfBytes = await pdfDoc.save();
+        const blob = new Blob([pdfBytes], { type: 'application/pdf' });
+        const url = URL.createObjectURL(blob);
+    
+        // Fazendo o download do PDF
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = 'relatorio_procedimentos.pdf';
+        a.click();
+    }
+
     return(
         <div>
             <section id="appointment" className="jarallax" style={{backgroundImage: "url(../images/background-1.jpg)"}} >
@@ -130,8 +173,10 @@ export default function Servico() {
                 <div className="container-lg padding-medium">
                     <div className="section-title text-center mb-5">
                         <h2 className="display-4 fw-normal">Procedimentos e valores</h2>
+                        <button onClick={gerarPDF} className="btn btn-outline-primary btn-sm mb-2">Gerar PDF</button>
+                        <button onClick={gerarExcel} className="btn btn-outline-success btn-sm mb-2">Gerar Excel</button>
                     </div>
-
+                    
                         <div className="col-md-8 mx-auto my-2">
                             <div className="bg-white p-2 p-lg-5">
                                 <div className="list-group rounded-0">
