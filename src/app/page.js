@@ -8,7 +8,7 @@ export default function Home() {
       <div className="container-lg padding-medium">
 
         <div className="text-center">
-          <a className="btn btn-primary mt-5" style={{backgroundColor: "DF808F", border: "none", marginBottom: 100}} href="services.html">Agende seu horário</a>
+          <a className="btn btn-primary mt-5" style={{backgroundColor: "DF808F", border: "none", marginBottom: 100}} href="/agendamento">Agende seu horário</a>
         </div>
 
         <div className="section-title text-center mb-5">

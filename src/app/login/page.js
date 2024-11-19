@@ -41,7 +41,7 @@ export default function Login() {
             <div className="offset-md-3 col-md-6 text-center ">
 
             <h2 className="display-4 fw-normal mb-3">Login</h2>
-
+            <p className="mt-4">Para fazer um agendamento faça seu login</p>
             <form className="contact-form row mt-5">
                 <div className="form-input col-lg-12 d-md-flex mb-3">
                 <input type="text" ref={login} placeholder="Insira seu login" className="form-control w-100 rounded-0 border-0 ps-4 py-3 mb-2 me-3"/>
@@ -52,6 +52,7 @@ export default function Login() {
             </form>
 
             <button className="btn btn-primary mt-3" onClick={autenticar} style={{backgroundColor: "DF808F", border: "none"}}>Confirmar</button>
+            <p className="mt-4">Se caso não tiver login faça seu cadastro</p><a href="/procedimento">CADASTRE-SE</a>
             </div>
 
         </div>
