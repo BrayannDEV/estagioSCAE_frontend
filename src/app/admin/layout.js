@@ -2,7 +2,8 @@
 'use client'
 import localFont from "next/font/local";
 import { useState, useEffect, useContext} from "react";
-import UserContext from "../context/userContext.js";
+import { useRouter } from "next/navigation";
+import { AuthProvider, useAuth } from "../context/userContext.js";
 import "../globals.css";
 import "../../../public/css/vendor.css"
 import "../../../public/style.css"
@@ -34,6 +35,9 @@ export default function RootLayout({ children }) {
   
   //const {user, setUser} = useContext(UserContext);
   const [isClient, setIsClient] = useState(false)
+  const {user} = useAuth();
+  let router = useRouter();
+
  
   useEffect(() => {
     setIsClient(true)
@@ -42,11 +46,12 @@ export default function RootLayout({ children }) {
   if (isClient == false) {
     return <div>Prerendered</div>
   }
-  // if(isClient) {
-  //   if(user == null || user.login != "brayannlima") {
-  //     alert("Você  não possui permissão de acesso nesta página")
-  //   }
-  // }
+  if(isClient) {
+    if(user == null || user.login != "brayannlima") {
+      alert("Você  não possui permissão de acesso nesta página")
+      router.push('/agendamento');
+    }
+  }
 
   return (
     <html lang="pt-br">
@@ -54,147 +59,150 @@ export default function RootLayout({ children }) {
         {css}
       </head>
       <body>
-        <header id="header"> 
-          <nav id="primary-header" className="navbar navbar-expand-lg py-3">
-            <div className="container-lg">
-              <a className="navbar-brand" href="/">
-                <img src="/images/main-logo.png" className="logo img-fluid"/>
-              </a>
-              <button className="navbar-toggler border-0 d-flex d-lg-none order-3 p-2 shadow-none" type="button"
-                data-bs-toggle="offcanvas" data-bs-target="#bdNavbar" aria-controls="bdNavbar" aria-expanded="false">
-                <svg className="navbar-icon" width="60" height="60">
-                  <use href="#navbar-icon"></use>
-                </svg>
-              </button>
-              <div className="header-bottom offcanvas offcanvas-end" id="bdNavbar" aria-labelledby="bdNavbarOffcanvasLabel">
-                <div className="offcanvas-header px-4 mt-3 ">
-                  <button type="button" className="btn-close btn-close-black" data-bs-dismiss="offcanvas" aria-label="Close"
-                    data-bs-target="#bdNavbar"></button>
-                </div>
-                <div className="offcanvas-body align-items-center justify-content-end">
-                  <ul className="navbar-nav mb-2 mb-lg-0">
-                    <li className="nav-item px-3 py-2 py-lg-0">
-                      <a className="nav-link fw-semibold p-0" aria-current="page" href="/admin">Home</a>
-                    </li>
-                    <li className="nav-item px-3 py-2 py-lg-0">
-                      <a className="nav-link fw-semibold p-0" href="/admin/procedimento">Procedimentos</a>
-                    </li>
-                    <li className="nav-item px-3 py-2 py-lg-0">
-                      <a className="nav-link fw-semibold p-0" href="/admin/horario">Horarios</a>
-                    </li>
-                    <li className="nav-item px-3 py-2 py-lg-0">
-                      <a className="nav-link fw-semibold p-0" href="/admin/agendamento">Agendamentos</a>
-                    </li>
-                    <li className="nav-item px-3 py-2 py-lg-0">
-                      <a className="nav-link fw-semibold p-0" href="/admin/calendario">Calendário</a>
-                    </li>
-                    <li className="nav-item px-3 py-2 py-lg-0">
-                      <a className="nav-link fw-semibold p-0" href="/admin/cliente">Clientes</a>
-                    </li>
-                    <li className="nav-item search-dropdown py-2 py-lg-0 ms-3 ms-lg-5 dropdown">
-                      <a className="nav-link p-0 search dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button"
-                        aria-expanded="false">
-                        <svg className="search text-primary " width="24" height="24">
-                          <use href="#search"></use>
-                        </svg>
-                      </a>
-                      <ul className="dropdown-menu dropdown-menu-end animate slide mt-3 border-0 p-3 shadow">
-                        <li className="position-relative d-flex align-items-center p-0">
-                          <input className="form-control me-2" type="search" placeholder="Search" aria-label="Search"/>
-                          <button className="btn btn-primary position-absolute end-0" type="submit">
-                            <svg className="search" width="24" height="24">
-                              <use href="#search"></use>
-                            </svg>
-                          </button>
-                        </li>
-                      </ul>
-                    </li>
-                  </ul>
-                </div>
-              </div>
-            </div>
-          </nav>
-        </header>
         <div>
-          {children}
-        </div>
-        <footer id="footer">
-          <div className="container-lg padding-medium">
-            <div className="row ">
-              <div className="col-md-4 my-4 ">
-                <div className="footer-menu">
-                  <a className="navbar-brand" href="/">
-                    <img src="../images/main-logo.png" className="logo img-fluid"/>
-                  </a>
-                  <p className="mt-4">Hic, dolor soluta, dolores laudantium reprehenderit ullam, similique voluptate omnis modi
-                    sit minima illo.</p>
-                  <ul className="info list-unstyled mt-4">
-
-                  </ul>
-                  <div className="social-links mt-4">
-                    <ul className="d-flex  list-unstyled gap-2 m-0">
-                      <li className="social">
-                        <a href="#">
-                          <iconify-icon className="social-icon" icon="ri:facebook-fill"></iconify-icon>
-                        </a>
+          <header id="header"> 
+            <nav id="primary-header" className="navbar navbar-expand-lg py-3">
+              <div className="container-lg">
+                <a className="navbar-brand" href="/">
+                  <img src="/images/main-logo.png" className="logo img-fluid"/>
+                </a>
+                <button className="navbar-toggler border-0 d-flex d-lg-none order-3 p-2 shadow-none" type="button"
+                  data-bs-toggle="offcanvas" data-bs-target="#bdNavbar" aria-controls="bdNavbar" aria-expanded="false">
+                  <svg className="navbar-icon" width="60" height="60">
+                    <use href="#navbar-icon"></use>
+                  </svg>
+                </button>
+                <div className="header-bottom offcanvas offcanvas-end" id="bdNavbar" aria-labelledby="bdNavbarOffcanvasLabel">
+                  <div className="offcanvas-header px-4 mt-3 ">
+                    <button type="button" className="btn-close btn-close-black" data-bs-dismiss="offcanvas" aria-label="Close"
+                      data-bs-target="#bdNavbar"></button>
+                  </div>
+                  <div className="offcanvas-body align-items-center justify-content-end">
+                    <ul className="navbar-nav mb-2 mb-lg-0">
+                      <li className="nav-item px-3 py-2 py-lg-0">
+                        <a className="nav-link fw-semibold p-0" aria-current="page" href="/admin">Home</a>
                       </li>
-                      <li className="social">
-                        <a href="#">
-                          <iconify-icon className="social-icon" icon="ri:twitter-fill"></iconify-icon>
-                        </a>
+                      <li className="nav-item px-3 py-2 py-lg-0">
+                        <a className="nav-link fw-semibold p-0" href="/admin/procedimento">Procedimentos</a>
                       </li>
-                      <li className="social">
-                        <a href="#">
-                          <iconify-icon className="social-icon" icon="ri:pinterest-fill"></iconify-icon>
-                        </a>
+                      <li className="nav-item px-3 py-2 py-lg-0">
+                        <a className="nav-link fw-semibold p-0" href="/admin/horario">Horarios</a>
                       </li>
-                      <li className="social">
-                        <a href="#">
-                          <iconify-icon className="social-icon" icon="ri:instagram-fill"></iconify-icon>
-                        </a>
+                      <li className="nav-item px-3 py-2 py-lg-0">
+                        <a className="nav-link fw-semibold p-0" href="/admin/agendamento">Agendamentos</a>
                       </li>
-                      <li className="social">
-                        <a href="#">
-                          <iconify-icon className="social-icon" icon="ri:youtube-fill"></iconify-icon>
-                        </a>
+                      <li className="nav-item px-3 py-2 py-lg-0">
+                        <a className="nav-link fw-semibold p-0" href="/admin/calendario">Calendário</a>
                       </li>
-
+                      <li className="nav-item px-3 py-2 py-lg-0">
+                        <a className="nav-link fw-semibold p-0" href="/admin/cliente">Clientes</a>
+                      </li>
+                      <li className="nav-item search-dropdown py-2 py-lg-0 ms-3 ms-lg-5 dropdown">
+                        <a className="nav-link p-0 search dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button"
+                          aria-expanded="false">
+                          <svg className="search text-primary " width="24" height="24">
+                            <use href="#search"></use>
+                          </svg>
+                        </a>
+                        <ul className="dropdown-menu dropdown-menu-end animate slide mt-3 border-0 p-3 shadow">
+                          <li className="position-relative d-flex align-items-center p-0">
+                            <input className="form-control me-2" type="search" placeholder="Search" aria-label="Search"/>
+                            <button className="btn btn-primary position-absolute end-0" type="submit">
+                              <svg className="search" width="24" height="24">
+                                <use href="#search"></use>
+                              </svg>
+                            </button>
+                          </li>
+                        </ul>
+                      </li>
                     </ul>
                   </div>
                 </div>
               </div>
-              
-              <div className="col-md-2 my-2 ">
-                <div className="footer-menu">
-                  <h5 className="text-uppercase fw-bold  mb-2">Sobre</h5>
-                  <ul className="info list-unstyled mt-2">
-                    <li className="clock text-capitalize mb-2 align-items-center">
-                      <p className="mt-4">Segunda a Sexta: 8:00-18:00</p>
-                      <p className="mt-4">Domingo: fechado</p>
-                    </li>
-                    <li className="location text-capitalize mb-2 align-items-center">
-                      <p className="mt-4">Presidente Prudente, SP</p>
-                    </li>
+            </nav>
+          </header>
+          <div>
+            {children}
+          </div>
+          <footer id="footer">
+            <div className="container-lg padding-medium">
+              <div className="row ">
+                <div className="col-md-4 my-4 ">
+                  <div className="footer-menu">
+                    <a className="navbar-brand" href="/">
+                      <img src="../images/main-logo.png" className="logo img-fluid"/>
+                    </a>
+                    <p className="mt-4">Hic, dolor soluta, dolores laudantium reprehenderit ullam, similique voluptate omnis modi
+                      sit minima illo.</p>
+                    <ul className="info list-unstyled mt-4">
 
-                    <li className="phone text-capitalize mb-2 align-items-center">
-                      <p className="mt-4">+55 (18)98184-0860</p>
-                    </li>
-                    <li className="email text-capitalize mb-2 align-items-center">
-                      <p className="mt-4">fernanda@gmail.com</p>
-                    </li>
-                  </ul>
+                    </ul>
+                    <div className="social-links mt-4">
+                      <ul className="d-flex  list-unstyled gap-2 m-0">
+                        <li className="social">
+                          <a href="#">
+                            <iconify-icon className="social-icon" icon="ri:facebook-fill"></iconify-icon>
+                          </a>
+                        </li>
+                        <li className="social">
+                          <a href="#">
+                            <iconify-icon className="social-icon" icon="ri:twitter-fill"></iconify-icon>
+                          </a>
+                        </li>
+                        <li className="social">
+                          <a href="#">
+                            <iconify-icon className="social-icon" icon="ri:pinterest-fill"></iconify-icon>
+                          </a>
+                        </li>
+                        <li className="social">
+                          <a href="#">
+                            <iconify-icon className="social-icon" icon="ri:instagram-fill"></iconify-icon>
+                          </a>
+                        </li>
+                        <li className="social">
+                          <a href="#">
+                            <iconify-icon className="social-icon" icon="ri:youtube-fill"></iconify-icon>
+                          </a>
+                        </li>
+
+                      </ul>
+                    </div>
+                  </div>
                 </div>
-              </div>
+                
+                <div className="col-md-2 my-2 ">
+                  <div className="footer-menu">
+                    <h5 className="text-uppercase fw-bold  mb-2">Sobre</h5>
+                    <ul className="info list-unstyled mt-2">
+                      <li className="clock text-capitalize mb-2 align-items-center">
+                        <p className="mt-4">Segunda a Sexta: 8:00-18:00</p>
+                        <p className="mt-4">Domingo: fechado</p>
+                      </li>
+                      <li className="location text-capitalize mb-2 align-items-center">
+                        <p className="mt-4">Presidente Prudente, SP</p>
+                      </li>
 
+                      <li className="phone text-capitalize mb-2 align-items-center">
+                        <p className="mt-4">+55 (18)98184-0860</p>
+                      </li>
+                      <li className="email text-capitalize mb-2 align-items-center">
+                        <p className="mt-4">fernanda@gmail.com</p>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+
+              </div>
             </div>
-          </div>
-          <div className="bg-gray border-top">
-            <div className="text-center py-4">
-              <p className="mb-0">©2024 Beauty. Free HTML Template by: <a href="https://templatesjungle.com/" target="_blank"
-                  className="text-decoration-underline text-black"> TemplatesJungle</a></p>
+            <div className="bg-gray border-top">
+              <div className="text-center py-4">
+                <p className="mb-0">©2024 Beauty. Free HTML Template by: <a href="https://templatesjungle.com/" target="_blank"
+                    className="text-decoration-underline text-black"> TemplatesJungle</a></p>
+              </div>
             </div>
-          </div>
-        </footer>
+          </footer>
+        </div>
+        
 
 
         <script src="/js/jquery-1.11.0.min.js"></script>
