@@ -26,8 +26,8 @@ export default function Login() {
         const data = await httpClient.post("/login", {...loginData});
         console.log(data)
         const userObj = {
-            nome: data.cliente.nome,
-            login: data.cliente.login
+            id: data.cliente.id,
+            nome: data.cliente.nome
         }
 
         loginContexto(userObj, data.token)

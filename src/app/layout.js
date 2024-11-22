@@ -51,9 +51,9 @@ export default function RootLayout({ children }) {
         {css}
       </head>
       <body>
-        
+          <AuthProvider>
           <div>
-            <AuthProvider>
+            
             <header id="header"> 
               <nav id="primary-header" className="navbar navbar-expand-lg py-3">
                 <div className="container-lg">
@@ -192,9 +192,9 @@ export default function RootLayout({ children }) {
                 </div>
               </div>
             </footer>
-          </AuthProvider>
+          
           </div>
-        
+          </AuthProvider>
 
         <script src="/js/jquery-1.11.0.min.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.js"></script>

@@ -1,10 +1,11 @@
 'use client'
 import { useRef, useState, useEffect } from "react"
 import httpClient from "../utils/httpClient.js";
+import { AuthProvider, useAuth } from "../context/userContext.js";
 import FullCalendar from '@fullcalendar/react'
 import dayGridPlugin from '@fullcalendar/daygrid'
 
-import interactionPlugin from "@fullcalendar/interaction"
+import interactionPlugin from "@fullcalendar/interaction";
 
 export default function Agendamento() {
     
@@ -12,6 +13,7 @@ export default function Agendamento() {
     let horaInicial = useRef("");
     let cliente = useRef("");
     let procedimento = useRef("");
+    const {user} = useAuth();
 
     async function cadastrar(){
     
@@ -117,6 +119,7 @@ export default function Agendamento() {
     }
 
     return(
+        
         <div>
             <section id="appointment" className="jarallax" style={{backgroundImage: "url(../../images/background-1.jpg)"}} >
                 <div className="container-lg padding-medium">
@@ -134,7 +137,7 @@ export default function Agendamento() {
                             <div className="form-input col-lg-12 d-md-flex mb-3">
                                 <label className=" rounded-0 border-0 py-3 mb-2 me-3" for="cliente">Cliente: </label>
                                 <select type="text" ref={cliente} id="cliente" className="form-control w-100 rounded-0 border-0 ps-4 py-3 mb-2 me-3">
-                                {listaCliente.map(cliente => (<option value={cliente.id}>{cliente.nome}</option>))}
+                                    <option value={user.id}>{user.nome}</option>
                                 </select>
                             </div>
                             <div className="form-input col-lg-12 d-md-flex mb-3">

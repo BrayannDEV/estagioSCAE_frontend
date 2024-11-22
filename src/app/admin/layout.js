@@ -47,9 +47,9 @@ export default function RootLayout({ children }) {
     return <div>Prerendered</div>
   }
   if(isClient) {
-    if(user == null || user.login != "brayannlima") {
-      alert("Você  não possui permissão de acesso nesta página")
-      router.push('/agendamento');
+    if(user == null || user.id != 1) {
+      alert("Você  não possui permissão de acesso nesta página");
+      router.push('/');
     }
   }
 
