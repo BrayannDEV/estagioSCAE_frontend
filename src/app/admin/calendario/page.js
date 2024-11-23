@@ -3,13 +3,16 @@ import { useRef, useState, useEffect } from "react"
 import httpClient from "../../utils/httpClient.js";
 import FullCalendar from '@fullcalendar/react'
 import dayGridPlugin from '@fullcalendar/daygrid'
+//import interactionPlugin from "@fullcalendar/interaction";
+import { Modal, Button } from 'react-bootstrap'; 
+import 'bootstrap/dist/css/bootstrap.min.css'
 
 import interactionPlugin from "@fullcalendar/interaction" // needed for dayClick
 
-
 export default function Agendamento() {
 
-    
+    let [showModal, setShowModal] = useState(false); 
+    let [modalInfo, setModalInfo] = useState({});
 
     let [listaAgenda, setListaAgenda] = useState([]);
     useEffect((e) => {
@@ -28,13 +31,37 @@ export default function Agendamento() {
         }
     }
 
+    async function excluirAgendamento(id) {
+
+        if(confirm("Tem certeza que deseja excluir este agendamento?")) {
+            try {
+                const result = await httpClient.delete(`/agenda/${id}`)
+                //let ok = r.status == 201;
+                alert("Exclusão feita com sucesso!");
+                carregarAgenda();
+                setShowModal(false);
+            } catch (erro) {
+                console.log(erro);
+            }
+            
+        }
+    }
+
+    function handleEventClick(info) { 
+        setModalInfo({ 
+            id: info.event.extendedProps.id,
+            title: info.event.title, 
+            procedimento: info.event.extendedProps.procedimento,
+            inicio: `${info.event.start.getHours()}:${String(info.event.start.getMinutes()).padStart(2, '0')}`, 
+            fim: `${info.event.end.getHours()}:${String(info.event.end.getMinutes()).padStart(2, '0')}` }); 
+            setShowModal(true); 
+        }
 
     return(
         <div>
             
             <FullCalendar plugins={[ dayGridPlugin, interactionPlugin  ]} initialView="dayGridMonth" selectable="true" 
-            events=
-            {
+            events={
                 listaAgenda.map(agenda =>{
 
                     let horaInicial = new Date(agenda.data);
@@ -48,33 +75,38 @@ export default function Agendamento() {
                     horaFinal.setHours(horasfinal);
                     horaFinal.setMinutes(minutosfinal);
                     horaFinal.setSeconds(segundosfinal);
-
+                    
 
                     return {
+                        id: agenda.id,
                         title: agenda.cliente.nome,
-                        display: agenda.procedimento.nome,
+                        procedimento: agenda.procedimento.nome,
                         date: agenda.data,
                         start: horaInicial,
-                        end: horaFinal
+                        end: horaFinal,
+                        extendedProps: { 
+                            id: agenda.id, 
+                            procedimento: agenda.procedimento.nome
+                        }
                 }})
             }
-            eventClick=
-            {
-                function (info) {
-                    alert(`
-                        Cliente: ${info.event.title} 
-                        Procedimento: ${info.event.display}
-                        Início: ${(info.event.start).getHours()}:${String((info.event.start).getMinutes()).padStart(2, '0')}
-                        Fim: ${(info.event.end).getHours()}:${String((info.event.end).getMinutes()).padStart(2, '0')}
-                    `)
-                }
-            }
-                
-            />
-            
+            eventClick={handleEventClick}
+        />
+        <Modal show={showModal} onHide={() => setShowModal(false)}> 
+            <Modal.Header closeButton> 
+                <Modal.Title>Detalhes do Agendamento</Modal.Title> 
+            </Modal.Header> 
+            <Modal.Body> 
+                <p><strong>Cliente:</strong> {modalInfo.title}</p> 
+                <p><strong>Procedimento:</strong> {modalInfo.procedimento}</p> 
+                <p><strong>Início:</strong> {modalInfo.inicio}</p> 
+                <p><strong>Fim:</strong> {modalInfo.fim}</p> 
+            </Modal.Body> 
+            <Modal.Footer> 
+                <Button variant="secondary" onClick={() => setShowModal(false)}> Fechar </Button> 
+                <Button variant="danger" onClick={() => excluirAgendamento(modalInfo.id)}> Excluir </Button> 
+            </Modal.Footer> 
+        </Modal>
         </div>
-        
-        
     );
-
 }
