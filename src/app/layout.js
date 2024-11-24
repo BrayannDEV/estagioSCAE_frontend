@@ -83,10 +83,7 @@ export default function RootLayout({ children }) {
                           <a className="nav-link fw-semibold p-0" href="/agendamento">Agendar</a>
                         </li>
                         <li className="nav-item px-3 py-2 py-lg-0">
-                          <a className="nav-link p-0 fw-bold text-uppercase" href="/login">LOGIN</a>
-                        </li>
-                        <li className="nav-item px-3 py-2 py-lg-0">
-                          <a className="nav-link p-0 fw-bold text-uppercase" href="/cliente">CADASTRE-SE</a>
+                          <a className="nav-link p-0 fw-bold text-uppercase" href="/login">LOGIN/CADASTRO</a>
                         </li>
                         <li className="nav-item search-dropdown py-2 py-lg-0 ms-3 ms-lg-5 dropdown">
                           <a className="nav-link p-0 search dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button"

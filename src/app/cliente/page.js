@@ -70,7 +70,7 @@ export default function Gravar() {
       login.current.value = "";
       senha.current.value = "";
       confirmaSenha.current.value = "";
-      alert("Cadastrado com sucesso!")
+      alert("Cadastrado realizado com sucesso!")
 
       let ok = r.status == 201;
 

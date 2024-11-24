@@ -4,6 +4,7 @@ import { useRouter } from "next/navigation";
 import httpClient from "../utils/httpClient.js";
 import InputMask from "react-input-mask";
 import { useAuth } from "../context/userContext.js";
+import { Alert } from "react-bootstrap";
 
 export default function Login() {
     
@@ -23,27 +24,39 @@ export default function Login() {
     };
 
     const handleLogin = async () => {
-        try {
-        const data = await httpClient.post("/login", {...loginData});
-        console.log(data)
-        const userObj = {
-            id: data.cliente.id,
-            nome: data.cliente.nome
+        if(loginData.login != "" && loginData.senha != ""){
+            try {
+                const data = await httpClient.post("/login", {...loginData});
+                console.log(data)
+                const userObj = {
+                    id: data.cliente.id,
+                    nome: data.cliente.nome
+                }
+        
+                loginContexto(userObj, data.token)
+                if(data.cliente.id == 1){
+                    router.push('/admin');
+                }
+                else{
+                    router.push('/');
+                }
+                
+            } catch (error) {
+                console.log(error)
+                alert(error)
+            }
+        }
+        else{
+            alert("Preencha todos os campos!");
         }
 
-        loginContexto(userObj, data.token)
-
-        router.push('/admin');
-        } catch (error) {
-        console.log(error)
-        }
     }
 
     //Parte de Cadastro
-    let nomeCad = useRef("");
-    let foneCad = useRef(0);
-    let loginCad = useRef("");
-    let senhaCad = useRef("");
+    let nome = useRef("");
+    let fone = useRef(0);
+    let login = useRef("");
+    let senha = useRef("");
     let confirmaSenha = useRef("");
 
     async function cadastrar(){
@@ -51,33 +64,33 @@ export default function Login() {
         let errors = [];
 
         // Validação do nome
-        if (!nomeCad.current.value.trim()) {
+        if (!nome.current.value.trim()) {
         errors.push("O nome é obrigatório.");
-        } else if (!nomeCad.current.value.includes(' ')) {
+        } else if (!nome.current.value.includes(' ')) {
         errors.push("O nome deve conter pelo menos um espaço para nome e sobrenome.");
         }
 
         // Validação do telefone
-        if (!foneCad.current.value) {
+        if (!fone.current.value) {
         errors.push("O telefone é obrigatório.");
         }
         
         // Validação do login
-        if (!loginCad.current.value.trim()) {
+        if (!login.current.value.trim()) {
         errors.push("O login é obrigatório.");
-        } else if (loginCad.current.value.length < 6) {
+        } else if (login.current.value.length < 6) {
         errors.push("O login deve ter pelo menos 6 caracteres.");
         }
 
         // Validação da senha
-        if (!senhaCad.current.value.trim()) {
+        if (!senha.current.value.trim()) {
         errors.push("A senha é obrigatória.");
-        } else if (senhaCad.current.value.length < 6) {
+        } else if (senha.current.value.length < 6) {
         errors.push("A senha deve ter pelo menos 6 caracteres.");
         }
 
         // Validação da confirmação da senha
-        if (senhaCad.current.value !== confirmaSenha.current.value) {
+        if (senha.current.value !== confirmaSenha.current.value) {
         errors.push("A confirmação da senha não coincide com a senha.");
         }
 
@@ -88,22 +101,22 @@ export default function Login() {
         }
 
         let usuario = {
-        nomeCad: nomeCad.current.value,
-        foneCad: foneCad.current.value,
-        loginCad: loginCad.current.value,
-        senhaCad: senhaCad.current.value,
+        nome: nome.current.value,
+        fone: fone.current.value,
+        login: login.current.value,
+        senha: senha.current.value,
         };
 
         try {
         const result = await httpClient.post("/cliente", usuario)
         console.log(result);
         
-        nomeCad.current.value = "";
-        foneCad.current.value = 0;
-        loginCad.current.value = "";
-        senhaCad.current.value = "";
+        nome.current.value = "";
+        fone.current.value = 0;
+        login.current.value = "";
+        senha.current.value = "";
         confirmaSenha.current.value = "";
-        alert("Cadastrado com sucesso!")
+        alert("Cadastrado com sucesso! Agora faça seu login para navegar")
 
         let ok = r.status == 201;
 
@@ -113,51 +126,49 @@ export default function Login() {
 
     }
 
-    async function autenticar(){
-        if(login.current.value != "" && senha.current.value != ""){
-            let usuario = {
-                login: login.current.value,
-                senha: senha.current.value
-            }
-            try{
-                const result = await httpClient.post("/login", usuario)
-                console.log(result);
-                router.push("/");
-            }
-            catch (erro) {
-                console.log(erro);
-                alert("Login ou Senha incorretos")
-            }
-        }
-        else{
-            alert("Preencha todos os campos!");
-        }
-    }
+    // async function autenticar(){
+    //     if(login.current.value != "" && senha.current.value != ""){
+    //         let usuario = {
+    //             login: login.current.value,
+    //             senha: senha.current.value
+    //         }
+    //         try{
+    //             const result = await httpClient.post("/login", usuario)
+    //             console.log(result);
+    //             router.push("/");
+    //         }
+    //         catch (erro) {
+    //             console.log(erro);
+    //             alert("Login ou Senha incorretos")
+    //         }
+    //     }
+    //     else{
+    //         alert("Preencha todos os campos!");
+    //     }
+    // }
 
     return(
         <div>
             <section id="appointment" className="jarallax" style={{backgroundImage: "url(images/background-1.jpg)"}} >
-            <div className="container-lg padding-medium">
-                <div className="offset-md-3 col-md-6 text-center ">
+                <div className="container-lg padding-medium">
+                    <div className="offset-md-3 col-md-6 text-center ">
 
-                <h2 className="display-4 fw-normal mb-3">Login</h2>
-                <p className="mt-4">Para navegar faça seu login</p>
-                <form className="contact-form row mt-5">
-                    <div className="form-input col-lg-12 d-md-flex mb-3">
-                    <input type="text" name="login" placeholder="Insira seu login" value={loginData.login} onChange={handleChange} className="form-control w-100 rounded-0 border-0 ps-4 py-3 mb-2 me-3"/>
-                    </div>
-                    <div className="form-input col-lg-12 d-md-flex mb-3">
-                    <input type="password" name="senha" placeholder="Insira sua senha" value={loginData.senha} onChange={handleChange} className="form-control w-100 rounded-0 border-0 ps-4 py-3 mb-2 me-3"/>
-                    </div>
-                </form>
+                    <h2 className="display-4 fw-normal mb-3">Login</h2>
+                    <p className="mt-4">Para navegar faça seu login</p>
+                    <form className="contact-form row mt-5">
+                        <div className="form-input col-lg-12 d-md-flex mb-3">
+                        <input type="text" name="login" placeholder="Insira seu login" value={loginData.login} onChange={handleChange} className="form-control w-100 rounded-0 border-0 ps-4 py-3 mb-2 me-3"/>
+                        </div>
+                        <div className="form-input col-lg-12 d-md-flex mb-3">
+                        <input type="password" name="senha" placeholder="Insira sua senha" value={loginData.senha} onChange={handleChange} className="form-control w-100 rounded-0 border-0 ps-4 py-3 mb-2 me-3"/>
+                        </div>
+                    </form>
 
-                <button className="btn btn-primary mt-3" onClick={handleLogin}  style={{backgroundColor: "DF808F", border: "none"}}>Confirmar</button>
-                <p className="mt-4">Se caso não tiver login faça seu cadastro abaixo</p>
+                    <button className="btn btn-primary mt-3" onClick={handleLogin}  style={{backgroundColor: "DF808F", border: "none"}}>Confirmar</button>
+                    <p className="mt-4">Se caso não tiver login faça seu cadastro abaixo</p>
+                    </div>
+
                 </div>
-
-            </div>
-            </section>
-            <section id="appointment" className="jarallax" style={{backgroundImage: "url(images/background-1.jpg)"}} >
                 <div className="container-lg padding-medium">
                 <div className="offset-md-3 col-md-6 text-center ">
 
@@ -165,16 +176,16 @@ export default function Login() {
 
                     <form className="contact-form row mt-5">
                     <div className="form-input col-lg-12 d-md-flex mb-3">
-                        <input type="text" ref={nomeCad} placeholder="Nome completo" className="form-control w-100 rounded-0 border-0 ps-4 py-3 mb-2 me-3"/>
+                        <input type="text" ref={nome} placeholder="Nome completo" className="form-control w-100 rounded-0 border-0 ps-4 py-3 mb-2 me-3"/>
                     </div>
                     <div className="form-input col-lg-12 d-md-flex mb-3">
-                        <InputMask type="text" ref={foneCad} mask="(**) *****-****" maskChar={null} placeholder="telefone" className="form-control w-100 rounded-0 border-0 ps-4 py-3 mb-2 me-3"/>
+                        <InputMask type="text" ref={fone} mask="(**) *****-****" maskChar={null} placeholder="telefone" className="form-control w-100 rounded-0 border-0 ps-4 py-3 mb-2 me-3"/>
                     </div>
                     <div className="form-input col-lg-12 d-md-flex mb-3">
-                        <input type="text" ref={loginCad} placeholder="Cadastre um login" className="form-control w-100 rounded-0 border-0 ps-4 py-3 mb-2 me-3"/>
+                        <input type="text" ref={login} placeholder="Cadastre um login" className="form-control w-100 rounded-0 border-0 ps-4 py-3 mb-2 me-3"/>
                     </div>
                     <div className="form-input col-lg-12 d-md-flex mb-3">
-                        <input type="password" ref={senhaCad} placeholder="Cadastre sua senha" className="form-control w-100 rounded-0 border-0 ps-4 py-3 mb-2 me-3"/>
+                        <input type="password" ref={senha} placeholder="Cadastre sua senha" className="form-control w-100 rounded-0 border-0 ps-4 py-3 mb-2 me-3"/>
                         <input type="password" ref={confirmaSenha} placeholder="Confirme sua senha" className="form-control w-100 rounded-0 border-0 ps-4 py-3 mb-2 me-3"/>
                     </div>
                     </form>

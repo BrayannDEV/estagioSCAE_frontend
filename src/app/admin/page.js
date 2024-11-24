@@ -7,10 +7,6 @@ export default function Home() {
       {/* "background-image: url(images/background-1.jpg); background-size: cover; background-repeat: no-repeat; background-position: center;" */}
         <div className="container-lg padding-medium">
 
-          <div className="text-center">
-            <a className="btn btn-primary mt-5" style={{backgroundColor: "DF808F", border: "none", marginBottom: 100}} href="services.html">Agende seu horário</a>
-          </div>
-
           <div className="section-title text-center mb-5">
             <h2 className="display-4 fw-normal">Serviços Oferecidos</h2>
           </div>

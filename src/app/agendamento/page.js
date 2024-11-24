@@ -59,7 +59,8 @@ export default function Agendamento() {
                 
             }
         } else {
-            console.log("Procedimento não encontrado"); alert("Procedimento não encontrado"); 
+            console.log("Procedimento não encontrado"); 
+            alert("Procedimento não encontrado"); 
         }
     }
 
@@ -117,6 +118,7 @@ export default function Agendamento() {
           console.log(erro);
         }
     }
+    
 
     return(
         
@@ -137,7 +139,7 @@ export default function Agendamento() {
                             <div className="form-input col-lg-12 d-md-flex mb-3">
                                 <label className=" rounded-0 border-0 py-3 mb-2 me-3" for="cliente">Cliente: </label>
                                 <select type="text" ref={cliente} id="cliente" className="form-control w-100 rounded-0 border-0 ps-4 py-3 mb-2 me-3">
-                                    <option value={user.id}>{user.nome}</option>
+                                {listaCliente.map(cliente => (<option value={cliente.id}>{cliente.nome}</option>))}
                                 </select>
                             </div>
                             <div className="form-input col-lg-12 d-md-flex mb-3">
