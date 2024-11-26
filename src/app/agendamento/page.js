@@ -14,6 +14,7 @@ export default function Agendamento() {
     let cliente = useRef("");
     let procedimento = useRef("");
     const {user} = useAuth();
+    console.log(user)
 
     async function cadastrar(){
     
@@ -35,7 +36,7 @@ export default function Agendamento() {
             data: data.current.value,
             horaInicial: horaInicial.current.value,
             horaFinal: horaFinal,
-            cliente: cliente.current.value,
+            cliente: user.id,
             procedimento: procedimento.current.value,
             };
         
@@ -49,7 +50,6 @@ export default function Agendamento() {
             
             data.current.value = "";
             horaInicial.current.value = "";
-            cliente.current.value = "";
             procedimento.current.value = "";
             alert("Cadastrado com sucesso!")          
         
@@ -136,12 +136,12 @@ export default function Agendamento() {
                                 {listaProcedimentos.map(procedimento => (<option value={procedimento.id}>{procedimento.nome}</option>))}
                                 </select>
                             </div>
-                            <div className="form-input col-lg-12 d-md-flex mb-3">
+                            {/* <div className="form-input col-lg-12 d-md-flex mb-3">
                                 <label className=" rounded-0 border-0 py-3 mb-2 me-3" for="cliente">Cliente: </label>
                                 <select type="text" ref={cliente} id="cliente" className="form-control w-100 rounded-0 border-0 ps-4 py-3 mb-2 me-3">
                                 {listaCliente.map(cliente => (<option value={cliente.id}>{cliente.nome}</option>))}
                                 </select>
-                            </div>
+                            </div> */}
                             <div className="form-input col-lg-12 d-md-flex mb-3">
                                 <input type="date" ref={data} name="data" className="form-control w-100 rounded-0 border-0 ps-4 py-3 mb-2 me-3"/>
                                 <input type="time" ref={horaInicial} name="hora" className="form-control w-100 rounded-0 border-0 ps-4 py-3 mb-2 me-3"/>
