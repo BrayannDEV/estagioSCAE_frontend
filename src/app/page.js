@@ -1,7 +1,29 @@
+'use client'
 import Image from "next/image";
 import styles from "./page.module.css";
+import { useRef, useState, useEffect } from "react"
+import httpClient from "./utils/httpClient.js";
 
 export default function Home() {
+
+  let [listaProcedimentos, setListaProcedimentos] = useState([]);
+  useEffect((e) => {
+      carregarProcedimentos();
+  }, [])
+
+  async function carregarProcedimentos() {
+      
+      try {
+          const result = await httpClient.get("/procedimento")
+          setListaProcedimentos(result)
+    
+          let ok = r.status == 201;
+    
+      } catch (erro) {
+          console.log(erro);
+      }
+  }
+
   return (
     <section id="services" className="jarallax" style={{backgroundImage: "url(images/background-1.jpg)"}}>
       {/* "background-image: url(images/background-1.jpg); background-size: cover; background-repeat: no-repeat; background-position: center;" */}
@@ -12,107 +34,32 @@ export default function Home() {
         </div>
 
         <div className="section-title text-center mb-5">
-          <h2 className="display-4 fw-normal">Serviços Oferecidos</h2>
+          <h2 className="display-4 fw-normal">Procedimentos e valores</h2>
         </div>
 
-        <div className="row g-lg-5 my-0">
-          <div className="col-md-6 col-lg-3 my-4">
-            <div className="bg-white   p-3 text-center ">
-              <a href="/procedimento">
-                <div className="zoom-effect">
-                  <img src="images/service-img4.jpg" className="img-fluid " alt="image"/>
+        <div className="col-md-8 mx-auto my-2">
+          <div className="bg-white p-2 p-lg-5">
+            <div className="list-group rounded-0">
+            {listaProcedimentos.map(procedimento => (
+                <a href="#"
+                className="border-0 list-group-item list-group-item-action d-lg-flex align-items-center gap-4 py-3"
+                aria-current="true">
+                <img src="../images/service-img4.jpg" alt="twbs" width="100" height="100"
+                    className="rounded-circle flex-shrink-0 mb-4"/>
+                <div className="w-100">
+                    <div className="d-flex gap-4 w-100 justify-content-between">
+                        <h4 className="fw-semibold">{procedimento.nome}</h4>
+                        <h2 className="fw-semibold text-right">
+                          R${(parseFloat(procedimento.valor)).toLocaleString('pt-BR', {minimumFractionDigits: 2, maximumFractionDigits: 2})}
+                        </h2>
+                    </div>
+                    <p className="mb-0 opacity-75">{procedimento.descricao}</p>
+                    <p className="mb-0 opacity-75">Tempo: {procedimento.tempo} minutos</p>
                 </div>
-              </a>
-              <a href="/procedimento" className="hover-color" style={{textDecoration: "none", color: "black"}}>
-                <h4 className="mt-3 m-0">Pedicure tradicional & em Gel</h4>
-              </a>
+                </a>
+            ))}
             </div>
           </div>
-          <div className="col-md-6 col-lg-3 my-4">
-            <div className="bg-white   p-3 text-center ">
-              <a href="/procedimento">
-                <div className="zoom-effect">
-                  <img src="images/service-img3.jpg" className="img-fluid " alt="image"/>
-                </div>
-              </a>
-              <a href="/procedimento" className="hover-color" style={{textDecoration: "none", color: "black"}}>
-                <h4 className="mt-3 m-0">Manicure tradicional & em gel</h4>
-              </a>
-            </div>
-          </div>
-          <div className="col-md-6 col-lg-3 my-4">
-            <div className="bg-white   p-3 text-center ">
-              <a href="/procedimento">
-                <div className="zoom-effect">
-                  <img src="images/service-img7.jpg" className="img-fluid " alt="image"/>
-                </div>
-              </a>
-              <a href="/procedimento" className="hover-color" style={{textDecoration: "none", color: "black"}}>
-                <h4 className="mt-3 m-0">Blindagem</h4>
-              </a>
-            </div>
-          </div>
-          <div className="col-md-6 col-lg-3 my-4">
-            <div className="bg-white   p-3 text-center ">
-              <a href="/procedimento">
-                <div className="zoom-effect">
-                  <img src="images/service-img8.jpg" className="img-fluid " alt="image"/>
-                </div>
-              </a>
-              <a href="/procedimento" className="hover-color" style={{textDecoration: "none", color: "black"}}>
-                <h4 className="mt-3 m-0">Banho em gel</h4>
-              </a>
-            </div>
-          </div>
-          <div className="col-md-6 col-lg-3 my-4">
-            <div className="bg-white   p-3 text-center ">
-              <a href="/procedimento">
-                <div className="zoom-effect">
-                  <img src="images/service-img2.jpg" className="img-fluid " alt="image"/>
-                </div>
-              </a>
-              <a href="/procedimento" className="hover-color" style={{textDecoration: "none", color: "black"}}>
-                <h4 className="mt-3 m-0">Esmaltação & remoção tradicional</h4>
-              </a>
-            </div>
-          </div>
-          <div className="col-md-6 col-lg-3 my-4">
-            <div className="bg-white   p-3 text-center ">
-              <a href="/procedimento">
-                <div className="zoom-effect">
-                  <img src="images/service-img3.jpg" className="img-fluid " alt="image"/>
-                </div>
-              </a>
-              <a href="/procedimento" className="hover-color" style={{textDecoration: "none", color: "black"}}>
-                <h4 className="mt-3 m-0">Esmaltação e remoção em Gel</h4>
-              </a>
-            </div>
-          </div>
-          <div className="col-md-6 col-lg-3 my-4">
-            <div className="bg-white   p-3 text-center ">
-              <a href="/procedimento">
-                <div className="zoom-effect">
-                  <img src="images/service-img4.jpg" className="img-fluid " alt="image"/>
-                </div>
-              </a>
-              <a href="/procedimento" className="hover-color" style={{textDecoration: "none", color: "black"}}>
-                <h4 className="mt-3 m-0">Plástica nos pés</h4>
-              </a>
-            </div>
-          </div>
-          <div className="col-md-6 col-lg-3 my-4">
-            <div className="bg-white   p-3 text-center ">
-              <a href="/procedimento">
-                <div className="zoom-effect">
-                  <img src="images/service-img6.jpg" className="img-fluid " alt="image"/>
-                </div>
-              </a>
-              <a href="/procedimento" className="hover-color" style={{textDecoration: "none", color: "black"}}>
-                <h4 className="mt-3 m-0">Alongamento na fibra de vidro</h4>
-              </a>
-            </div>
-          </div>
-
         </div>
 
       </div>

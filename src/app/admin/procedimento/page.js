@@ -75,7 +75,7 @@ export default function Servico() {
             valor.current.value = "0.00";
             alert("Procedimento cadastrado com sucesso!")
       
-            let ok = r.status == 201;
+            await carregarProcedimentos();
       
         } catch (erro) {
             console.log(erro);
@@ -186,15 +186,19 @@ export default function Servico() {
                                     aria-current="true">
                                     <img src="../images/service-img4.jpg" alt="twbs" width="100" height="100"
                                         className="rounded-circle flex-shrink-0 mb-4"/>
-                                    <div>
-                                        <div className="d-flex gap-4 w-100 justify-content-between">
+                                    <div className="w-100">
+                                        <div className="d-flex justify-content-between align-items-cente">
                                             <h4 className="fw-semibold">{procedimento.nome}</h4>
-                                            <h4 className="fw-semibold">R${procedimento.valor}</h4>
-                                            <a className="btn btn-outline-secondary btn-sm mr-2 mb-2" href={`/admin/procedimento/alteracao/${procedimento.id}`}>Editar</a>
-                                            <button className="btn btn-outline-danger btn-sm mr-2 mb-2" onClick={() => excluirProcedimento(procedimento.id)}>Excluir</button>
+                                            <h4 className="fw-semibold ms-auto"> {/* Adicionando ms-auto para empurrar para a direita */}
+                                                R${(parseFloat(procedimento.valor)).toLocaleString('pt-BR', {minimumFractionDigits: 2, maximumFractionDigits: 2})}
+                                            </h4>
                                         </div>
                                         <p className="mb-0 opacity-75">{procedimento.descricao}</p>
                                         <p className="mb-0 opacity-75">Tempo: {procedimento.tempo} minutos</p>
+                                        <div className="d-flex justify-content-end mt-2"> {/* Alinhando os botões à direita */}
+                                            <a className="btn btn-outline-secondary btn-sm me-2" href={`/admin/procedimento/alteracao/${procedimento.id}`}>Editar</a>
+                                            <button className="btn btn-outline-danger btn-sm" onClick={() => excluirProcedimento(procedimento.id)}>Excluir</button>
+                                        </div>
                                     </div>
                                     </a>
                                 ))}
