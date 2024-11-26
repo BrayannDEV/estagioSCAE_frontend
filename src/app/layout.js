@@ -113,82 +113,63 @@ export default function RootLayout({ children }) {
               {children}
             </div>
             <footer id="footer">
-              <div className="container-lg padding-medium">
-                <div className="row ">
-                  <div className="col-md-4 my-4 ">
-                    <div className="footer-menu">
-                      <a className="navbar-brand" href="/">
-                        <img src="images/main-logo.png" className="logo img-fluid"/>
-                      </a>
-                      <p className="mt-4">Hic, dolor soluta, dolores laudantium reprehenderit ullam, similique voluptate omnis modi
-                        sit minima illo.</p>
-                      <ul className="info list-unstyled mt-4">
-
-                      </ul>
-                      <div className="social-links mt-4">
-                        <ul className="d-flex  list-unstyled gap-2 m-0">
-                          <li className="social">
-                            <a href="#">
-                              <iconify-icon className="social-icon" icon="ri:facebook-fill"></iconify-icon>
-                            </a>
-                          </li>
-                          <li className="social">
-                            <a href="#">
-                              <iconify-icon className="social-icon" icon="ri:twitter-fill"></iconify-icon>
-                            </a>
-                          </li>
-                          <li className="social">
-                            <a href="#">
-                              <iconify-icon className="social-icon" icon="ri:pinterest-fill"></iconify-icon>
-                            </a>
-                          </li>
-                          <li className="social">
-                            <a href="#">
-                              <iconify-icon className="social-icon" icon="ri:instagram-fill"></iconify-icon>
-                            </a>
-                          </li>
-                          <li className="social">
-                            <a href="#">
-                              <iconify-icon className="social-icon" icon="ri:youtube-fill"></iconify-icon>
-                            </a>
-                          </li>
-
-                        </ul>
-                      </div>
-                    </div>
+            <div className="container-lg padding-medium">
+              <div className="row ">
+                <div className="col-md-4 my-4 ">
+                  <div className="footer-menu">
+                    <a className="navbar-brand" href="/">
+                      <img src="../images/main-logo.png" className="logo img-fluid"/>
+                    </a>
+                    <p className="mt-4"></p>
                   </div>
-                  
-                  <div className="col-md-2 my-2 ">
-                    <div className="footer-menu">
-                      <h5 className="text-uppercase fw-bold  mb-2">Sobre</h5>
-                      <ul className="info list-unstyled mt-2">
-                        <li className="clock text-capitalize mb-2 align-items-center">
-                          <p className="mt-4">Segunda a Sexta: 8:00-18:00</p>
-                          <p className="mt-4">Domingo: fechado</p>
-                        </li>
-                        <li className="location text-capitalize mb-2 align-items-center">
-                          <p className="mt-4">Presidente Prudente, SP</p>
-                        </li>
-
-                        <li className="phone text-capitalize mb-2 align-items-center">
-                          <p className="mt-4">+55 (18)98184-0860</p>
-                        </li>
-                        <li className="email text-capitalize mb-2 align-items-center">
-                          <p className="mt-4">fernanda@gmail.com</p>
-                        </li>
-                      </ul>
-                    </div>
+                </div>
+                <div className="col-md-2 my-2 ">
+                  <div className="footer-menu">
+                    <h5 className="text-uppercase fw-bold  mb-2">Horarios</h5>
+                    <ul className="info list-unstyled mt-2">
+                      <li className="clock mb-2 align-items-center">
+                        <p className="mt-4">Segunda a Sábado</p>
+                        <p className="mt-4">8:00 - 18:00</p>
+                        <p className="mt-4">Domingo: fechado</p>
+                      </li>
+                    </ul>
                   </div>
-
+                </div>
+                <div className="col-md-2 my-2 ">
+                  <div className="footer-menu">
+                    <h5 className="text-uppercase fw-bold  mb-2">Endereço:</h5>
+                    <ul className="info list-unstyled mt-2">
+                      <li className="clock text-capitalize mb-2 align-items-center">
+                        <p className="mt-4">Maria graça mele, 227</p>
+                        <p className="mt-4">Servante II</p>
+                      </li>
+                      <li className="location text-capitalize mb-2 align-items-center">
+                        <p className="mt-4">Presidente Prudente, SP</p>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+                <div className="col-md-2 my-2 ">
+                  <div className="footer-menu">
+                    <h5 className="text-uppercase fw-bold  mb-2">contato:</h5>
+                    <ul className="info list-unstyled mt-2">
+                      <li className="phone text-capitalize mb-2 align-items-center">
+                        <p className="mt-4">+55 (18)99689-5025</p>
+                      </li>
+                      <li className="email  mb-2 align-items-center">
+                        <p className="mt-4">@dellas_nails_art</p>
+                      </li>
+                    </ul>
+                  </div>
                 </div>
               </div>
-              <div className="bg-gray border-top">
-                <div className="text-center py-4">
-                  <p className="mb-0">©2024 Beauty. Free HTML Template by: <a href="https://templatesjungle.com/" target="_blank"
-                      className="text-decoration-underline text-black"> TemplatesJungle</a></p>
-                </div>
+            </div>
+            <div className="bg-gray border-top">
+              <div className="text-center py-4">
+                <p className="mb-0">Dellas Nails Art</p>
               </div>
-            </footer>
+            </div>
+          </footer>
           
           </div>
           </AuthProvider>

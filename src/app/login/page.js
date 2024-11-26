@@ -54,7 +54,7 @@ export default function Login() {
 
     //Parte de Cadastro
     let nome = useRef("");
-    let fone = useRef(0);
+    let fone = useRef("");
     let login = useRef("");
     let senha = useRef("");
     let confirmaSenha = useRef("");
@@ -112,13 +112,15 @@ export default function Login() {
         console.log(result);
         
         nome.current.value = "";
-        fone.current.value = 0;
+        fone.current.value = "";
         login.current.value = "";
         senha.current.value = "";
         confirmaSenha.current.value = "";
-        alert("Cadastrado com sucesso! Agora faça seu login para navegar")
+        alert("Cadastrado com sucesso! Agora faça seu login para navegar");
+        router.push('/login');
 
         let ok = r.status == 201;
+        
 
         } catch (erro) {
         console.log(erro);
