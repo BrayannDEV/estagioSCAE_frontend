@@ -14,6 +14,7 @@ export default function Agendamento() {
     let cliente = useRef("");
     let procedimento = useRef("");
     const {user} = useAuth();
+    const { logout } = useAuth();
     console.log(user)
 
     async function cadastrar(){
@@ -119,11 +120,24 @@ export default function Agendamento() {
         }
     }
     
+    const handleLogout = async () => {
+        if(user != null){
+          logout()
+          alert("Você não está mais logado")    
+        }
+        else{
+            alert("Você ainda não fez o login!");
+        }
+    
+    }
 
     return(
         
         <div>
             <section id="appointment" className="jarallax" style={{backgroundImage: "url(../../images/background-1.jpg)"}} >
+                <div className="d-flex justify-content-end p-3">
+                    <button className="btn btn-primary mt-3" onClick={handleLogout}  style={{backgroundColor: "maroon", border: "none"}}>Sair</button>
+                </div>
                 <div className="container-lg padding-medium">
                     <div className="offset-md-3 col-md-6 text-center ">
 

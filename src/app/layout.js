@@ -7,6 +7,7 @@ import '../../public/template/css/fontawesome-free/css/all.min.css'
 import "../../public/css/vendor.css"
 import "../../public/style.css"
 import { AuthProvider } from './context/userContext.js'
+import { useAuth } from "./context/userContext.js";
 
 const css = 
 <>
@@ -36,6 +37,7 @@ const geistMono = localFont({
 
 export default function RootLayout({ children }) {
   const [isClient, setIsClient] = useState(false)
+  //const { logout } = useAuth();
  
   useEffect(() => {
     setIsClient(true)
@@ -43,6 +45,18 @@ export default function RootLayout({ children }) {
 
   if (!isClient) {
     return <>Prerendered</>
+  }
+
+
+  const handleLogout = async () => {
+    if(isClient){
+      logout()
+      alert("Você não está mais logado")    
+    }
+    else{
+        alert("Você ainda não fez o login!");
+    }
+
   }
 
   return (
@@ -82,6 +96,9 @@ export default function RootLayout({ children }) {
                         <li className="nav-item px-3 py-2 py-lg-0">
                           <a className="nav-link p-0 fw-bold text-uppercase" href="/login">LOGIN/CADASTRO</a>
                         </li>
+                        {/* <li className="nav-item px-3 py-2 py-lg-0">
+                          <button className="btn btn-primary mt-3" onClick={handleLogout}  style={{backgroundColor: "DF808F", border: "none"}}>Sair</button>
+                        </li> */}
                         <li className="nav-item search-dropdown py-2 py-lg-0 ms-3 ms-lg-5 dropdown">
                           <a className="nav-link p-0 search dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button"
                             aria-expanded="false">

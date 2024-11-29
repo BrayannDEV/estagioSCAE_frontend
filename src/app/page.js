@@ -3,6 +3,7 @@ import Image from "next/image";
 import styles from "./page.module.css";
 import { useRef, useState, useEffect } from "react"
 import httpClient from "./utils/httpClient.js";
+import { useAuth } from "./context/userContext.js";
 
 export default function Home() {
 
@@ -24,19 +25,37 @@ export default function Home() {
       }
   }
 
+  const {user} = useAuth();
+  const { logout } = useAuth();
+
+  const handleLogout = async () => {
+    if(user != null){
+      logout()
+      alert("Você não está mais logado")    
+    }
+    else{
+        alert("Você ainda não fez o login!");
+    }
+
+  }
+
   return (
     <section id="services" className="jarallax" style={{backgroundImage: "url(images/background-1.jpg)"}}>
-      {/* "background-image: url(images/background-1.jpg); background-size: cover; background-repeat: no-repeat; background-position: center;" */}
+      <div className="d-flex justify-content-end p-3">
+        <button className="btn btn-primary mt-3" onClick={handleLogout}  style={{backgroundColor: "maroon", border: "none"}}>Sair</button>
+      </div>
+    
       <div className="container-lg padding-medium">
 
         <div className="text-center">
           <a className="btn btn-primary mt-5" style={{backgroundColor: "DF808F", border: "none", marginBottom: 100}} href="/agendamento">Agende seu horário</a>
         </div>
 
+        
         <div className="section-title text-center mb-5">
           <h2 className="display-4 fw-normal">Procedimentos e valores</h2>
         </div>
-
+        
         <div className="col-md-8 mx-auto my-2">
           <div className="bg-white p-2 p-lg-5">
             <div className="list-group rounded-0">
