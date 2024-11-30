@@ -90,6 +90,11 @@ export default function Agendamento() {
                         }
                 }})
             }
+            eventTimeFormat={{ 
+                hour: '2-digit', 
+                minute: '2-digit', 
+                hour12: false // Configura para usar a notação de 24 horas 
+            }}
             eventClick={handleEventClick}
         />
         <Modal show={showModal} onHide={() => setShowModal(false)}> 

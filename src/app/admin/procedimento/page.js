@@ -2,7 +2,7 @@
 import { useRef, useState, useEffect } from "react"
 import httpClient from "../../utils/httpClient.js";
 import * as XLSX from 'xlsx';
-import { PDFDocument, rgb } from 'pdf-lib';
+import { PDFDocument, rgb, StandardFonts } from 'pdf-lib';
 import InputMask from "react-input-mask";
 
 export default function Servico() {
@@ -111,27 +111,65 @@ export default function Servico() {
     async function gerarPDF() {
 
         const pdfDoc = await PDFDocument.create();
-        const page = pdfDoc.addPage([600, 400]);
+        const page = pdfDoc.addPage([600, 800]);
         const { width, height } = page.getSize();
+        const fontSize = 12; 
+        const margin = 50; 
+        const lineHeight = fontSize + 6; 
+        const columnWidths = [300, 100, 100];
+        const bgColor = rgb(1, 0.75, 0.8);
+        const fontBold = await pdfDoc.embedFont(StandardFonts.HelveticaBold);
+        const rowColor1 = rgb(1, 0.85, 0.9); // Cor rosa claro para as linhas ímpares 
+        const rowColor2 = rgb(1, 0.95, 1);
     
         // Adicionando título
         page.drawText('Relatório de Procedimentos', {
-            x: 50,
-            y: height - 50,
+            x: margin,
+            y: height - margin - fontSize,
             size: 30,
             color: rgb(0, 0, 0),
         });
+
+        page.drawRectangle({ 
+            x: margin, 
+            y: height - margin - 2 * lineHeight - 2, 
+            width: columnWidths.reduce((a, b) => a + b, 0), 
+            height: lineHeight + 4, 
+            color: bgColor, 
+        });
+
+        const headers = ['NOME', 'VALOR', 'TEMPO']; 
+        headers.forEach((header, i) => { 
+            page.drawText(header, { 
+                x: margin + (i > 0 ? columnWidths.slice(0, i).reduce((a, b) => a + b, 0) : 0), 
+                y: height - margin - 2 * lineHeight, 
+                size: fontSize, color: rgb(0, 0, 0), 
+                font: fontBold,
+            }); 
+        });
     
         // Adicionando os dados dos clientes
-        listaProcedimentos.forEach((procedimento, index) => {
-    
-            const text = `${procedimento.nome} - R$ ${procedimento.valor} - Tempo(em min.):${procedimento.tempo}`;
-            page.drawText(text, {
-                x: 50,
-                y: height - 100 - index * 20,
-                size: 12,
-                color: rgb(0, 0, 0),
+        listaProcedimentos.forEach((procedimento, index) => { 
+            const y = height - margin - (index + 3) * lineHeight; // Ajustando o espaçamento vertical 
+            const bgColor = index % 2 === 0 ? rowColor1 : rowColor2; // Alternar entre as cores de fundo 
+            // Adicionando fundo colorido para as linhas 
+            page.drawRectangle({ 
+                x: margin, y: y - 2, width: columnWidths.reduce((a, b) => a + b, 0), 
+                height: lineHeight + 4, color: bgColor, 
             });
+
+            const dados = [ procedimento.nome, `R$ ${parseFloat(procedimento.valor).toLocaleString('pt-BR', { 
+                minimumFractionDigits: 2, 
+                maximumFractionDigits: 2 
+            })}`, `${procedimento.tempo.toString()}min.`, ]; 
+            dados.forEach((dado, i) => { 
+                page.drawText(dado, { 
+                    x: margin + (i > 0 ? columnWidths.slice(0, i).reduce((a, b) => a + b, 0) : 0),
+                    y: y, 
+                    size: fontSize, 
+                    color: rgb(0, 0, 0), 
+                }); 
+            }); 
         });
     
         const pdfBytes = await pdfDoc.save();

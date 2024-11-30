@@ -137,7 +137,8 @@ export default function Login() {
         
 
         } catch (erro) {
-        console.log(erro);
+            console.log(erro);
+            alert(erro);
         }
 
     }

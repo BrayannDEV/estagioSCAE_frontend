@@ -30,6 +30,7 @@ export default function Horario() {
     
         } catch (erro) {
           console.log(erro);
+          alert(erro);
         }
     
     }
