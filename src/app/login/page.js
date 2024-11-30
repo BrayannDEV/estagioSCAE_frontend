@@ -58,6 +58,20 @@ export default function Login() {
     let login = useRef("");
     let senha = useRef("");
     let confirmaSenha = useRef("");
+    let [listaClientes, setListaClientes] = useState([]);
+
+    async function carregarClientes() {
+        
+        try {
+            const result = await httpClient.get("/cliente")
+            setListaClientes(result)
+      
+            let ok = r.status == 201;
+      
+        } catch (erro) {
+            console.log(erro);
+        }
+    }
 
     async function cadastrar(){
         
@@ -128,26 +142,6 @@ export default function Login() {
 
     }
 
-    // async function autenticar(){
-    //     if(login.current.value != "" && senha.current.value != ""){
-    //         let usuario = {
-    //             login: login.current.value,
-    //             senha: senha.current.value
-    //         }
-    //         try{
-    //             const result = await httpClient.post("/login", usuario)
-    //             console.log(result);
-    //             router.push("/");
-    //         }
-    //         catch (erro) {
-    //             console.log(erro);
-    //             alert("Login ou Senha incorretos")
-    //         }
-    //     }
-    //     else{
-    //         alert("Preencha todos os campos!");
-    //     }
-    // }
 
     return(
         <div>
