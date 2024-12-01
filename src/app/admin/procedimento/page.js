@@ -115,24 +115,30 @@ export default function Servico() {
         const { width, height } = page.getSize();
         const fontSize = 12; 
         const margin = 50; 
-        const lineHeight = fontSize + 6; 
+        const lineHeight = fontSize + 10; 
         const columnWidths = [300, 100, 100];
-        const bgColor = rgb(1, 0.75, 0.8);
+        const bgColor = rgb(0.87, 0.5, 0.56);
         const fontBold = await pdfDoc.embedFont(StandardFonts.HelveticaBold);
         const rowColor1 = rgb(1, 0.85, 0.9); // Cor rosa claro para as linhas ímpares 
-        const rowColor2 = rgb(1, 0.95, 1);
+        const rowColor2 = rgb(1, 0.75, 0.8);
     
         // Adicionando título
-        page.drawText('Relatório de Procedimentos', {
-            x: margin,
-            y: height - margin - fontSize,
-            size: 30,
+        const title = 'Relatório de Procedimentos'; 
+        const titleFontSize = 20; 
+        const titleWidth = fontBold.widthOfTextAtSize(title, titleFontSize); 
+        const titleX = (width - titleWidth) / 2;
+
+        page.drawText(title, {
+            x: titleX,
+            y: height - margin - titleFontSize,
+            size: titleFontSize,
             color: rgb(0, 0, 0),
+            font: fontBold,
         });
 
         page.drawRectangle({ 
             x: margin, 
-            y: height - margin - 2 * lineHeight - 2, 
+            y: height - margin - 2.2 * lineHeight - 2, 
             width: columnWidths.reduce((a, b) => a + b, 0), 
             height: lineHeight + 4, 
             color: bgColor, 
@@ -154,7 +160,9 @@ export default function Servico() {
             const bgColor = index % 2 === 0 ? rowColor1 : rowColor2; // Alternar entre as cores de fundo 
             // Adicionando fundo colorido para as linhas 
             page.drawRectangle({ 
-                x: margin, y: y - 2, width: columnWidths.reduce((a, b) => a + b, 0), 
+                x: margin, 
+                y: y - 12, 
+                width: columnWidths.reduce((a, b) => a + b, 0), 
                 height: lineHeight + 4, color: bgColor, 
             });
 

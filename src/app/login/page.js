@@ -85,8 +85,11 @@ export default function Login() {
         }
 
         // Validação do telefone
+        const telefoneRegex = /^[\d\s()-]+$/;
         if (!fone.current.value) {
         errors.push("O telefone é obrigatório.");
+        } else if (!telefoneRegex.test(fone.current.value)) { 
+            errors.push("O telefone deve conter apenas números."); 
         }
         
         // Validação do login
@@ -132,8 +135,6 @@ export default function Login() {
         confirmaSenha.current.value = "";
         alert("Cadastrado com sucesso! Agora faça seu login para navegar");
         router.push('/login');
-
-        let ok = r.status == 201;
         
 
         } catch (erro) {
