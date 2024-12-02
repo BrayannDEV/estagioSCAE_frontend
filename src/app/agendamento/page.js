@@ -172,6 +172,7 @@ export default function Agendamento() {
 
                         let horaInicial = new Date(agenda.data);
                         let [horas, minutos, segundos] = agenda.horaInicial.split(':');
+                        let nomeAgendado = '';
                         horaInicial.setHours(horas);
                         horaInicial.setMinutes(minutos);
                         horaInicial.setSeconds(segundos);
@@ -182,9 +183,15 @@ export default function Agendamento() {
                         horaFinal.setMinutes(minutosfinal);
                         horaFinal.setSeconds(segundosfinal);
 
+                        if(user.nome == agenda.cliente.nome){
+                            nomeAgendado = agenda.cliente.nome;
+                        }
+                        else{
+                            nomeAgendado = "Indisponível";
+                        }
 
                         return {
-                            title: "Indisponível",
+                            title: nomeAgendado,
                             display: agenda.procedimento.nome,
                             date: agenda.data,
                             start: horaInicial,
