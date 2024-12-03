@@ -66,7 +66,21 @@ export default function Horario() {
             console.log(erro);
           }
       }
-  }
+    }
+
+    function ordenarHorarios(horarios) { 
+      const ordemDias = ["Domingo", "Segunda-feira", "Terça-feira", "Quarta-feira", "Quinta-feira", "Sexta-feira", "Sábado"]; 
+      return horarios.sort((a, b) => { 
+        const diaA = ordemDias.indexOf(a.diaSemana); 
+        const diaB = ordemDias.indexOf(b.diaSemana); 
+        if (diaA !== diaB) { 
+          return diaA - diaB;
+        } 
+        const horaA = new Date(`1970-01-01T${a.horaInicial}:00`); 
+        const horaB = new Date(`1970-01-01T${b.horaInicial}:00`); 
+        return horaA - horaB; 
+      }); 
+    }
 
     return(
         <div>

@@ -52,7 +52,9 @@ export default function Agendamento() {
             data.current.value = "";
             horaInicial.current.value = "";
             procedimento.current.value = "";
-            alert("Cadastrado com sucesso!")          
+            alert("Cadastrado com sucesso!")   
+            
+            await carregarAgenda();
         
             } catch (erro) {
                 console.log("erro:",erro);

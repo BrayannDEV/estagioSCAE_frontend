@@ -75,7 +75,7 @@ export default function AlteracaoProcedimento({params: {id}}) {
                 
                 alert("Procedimento Alterado com sucesso!")
             
-                router.push("/admin/procedimento");
+                router.push("/admin");
                 let ok = r.status == 201;
         
             } catch (erro) {
