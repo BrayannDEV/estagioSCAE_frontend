@@ -213,9 +213,9 @@ export default function Home() {
   return (
     <div>
         <section id="appointment" className="jarallax" style={{backgroundImage: "url(../images/background-1.jpg)"}} >
-        {/* style="background-image: url(images/background-1.jpg); background-repeat: no-repeat; background-position: center;" */}
             <div className="d-flex justify-content-end p-3">
-              <button className="btn btn-primary mt-3" onClick={handleLogout}  style={{backgroundColor: "maroon", border: "none"}}>Sair</button>
+                <button className="btn btn-primary mt-3" style={{backgroundColor: "green", border: "none"}}>Ajuda</button>
+                <button className="btn btn-primary mt-3" onClick={handleLogout}  style={{backgroundColor: "maroon", border: "none"}}>Sair</button>
             </div>
             <div className="container-lg padding-medium">
                 <div className="offset-md-3 col-md-6 text-center ">
