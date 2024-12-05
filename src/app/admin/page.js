@@ -199,7 +199,6 @@ export default function Home() {
 
   const handleLogout = async () => {
     if(user != null){
-      router.push('/');
       logout()
       alert("Você não está mais logado")
       router.push('/');
@@ -207,14 +206,24 @@ export default function Home() {
     else{
         alert("Você ainda não fez o login!");
     }
-
   }
+
+    function handleDownloadPDF() { 
+        // URL do PDF que você quer baixar, servida pelo servidor Express 
+        const pdfUrl = '../../../public/manualUsuario.pdf'; // Cria um link temporário para baixar o PDF 
+        const link = document.createElement('a'); 
+        link.href = pdfUrl; 
+        link.download = 'manualUsuario.pdf'; 
+        document.body.appendChild(link); 
+        link.click(); 
+        document.body.removeChild(link); 
+    }
 
   return (
     <div>
         <section id="appointment" className="jarallax" style={{backgroundImage: "url(../images/background-1.jpg)"}} >
             <div className="d-flex justify-content-end p-3">
-                <button className="btn btn-primary mt-3" style={{backgroundColor: "green", border: "none"}}>Ajuda</button>
+                <button className="btn btn-primary mt-3" onClick={handleDownloadPDF} style={{backgroundColor: "green", border: "none"}}>Ajuda</button>
                 <button className="btn btn-primary mt-3" onClick={handleLogout}  style={{backgroundColor: "maroon", border: "none"}}>Sair</button>
             </div>
             <div className="container-lg padding-medium">
