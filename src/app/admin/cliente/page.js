@@ -139,37 +139,40 @@ export default function Cliente() {
 
     return(
         <section id="appointment" className="jarallax" style={{backgroundImage: "url(../../images/background-1.jpg)"}} >
-        
-        <div className="table-responsive offset-md-3 col-md-6 text-center">
-            <h2 className="display-4 fw-normal mb-3">Listagem de cliente</h2>
-            <input type="text" placeholder="Buscar por nome" className="form-control mb-3" value={termoBusca} onChange={(e) => setTermoBusca(e.target.value)} />
-            <button onClick={gerarPDF} className="btn btn-outline-primary btn-sm mb-2">Gerar PDF</button>
-            <button onClick={gerarExcel} className="btn btn-outline-success btn-sm mb-2">Gerar Excel</button>
-            <table className="table table-striped table-bordered table-hover" >
-            <thead className="table-active">
-                <tr>
-                    <th scope="col">Nome</th>
-                    <th scope="col">Telefone</th>
-                    <th scope="col">Login</th>
-                    <th scope="col">Ações</th>
-                </tr>
-            </thead>
-            <tbody>
-                {clientesFiltrados.map(cliente => (
-                    <tr key={cliente.id}>
-                        <td>{cliente.nome}</td>
-                        <td>{cliente.fone}</td>
-                        <td>{cliente.login}</td>
-                        <td>
-                            <a className="btn btn-outline-secondary btn-sm mr-2 mb-2" href={`/admin/cliente/alteracao/${cliente.id}`}>Editar</a>
-                            <button className="btn btn-outline-danger btn-sm mr-2 mb-2" onClick={() => excluirCliente(cliente.id)}>Excluir</button>
-                        </td>
+            <div className="d-flex justify-content-end p-3">
+                <button className="btn btn-primary mt-3" style={{backgroundColor: "green", border: "none"}}>Ajuda</button>
+                <button className="btn btn-primary mt-3" style={{backgroundColor: "maroon", border: "none"}}>Sair</button>
+            </div>
+            <div className="table-responsive offset-md-3 col-md-6 text-center">
+                <h2 className="display-4 fw-normal mb-3">Listagem de cliente</h2>
+                <input type="text" placeholder="Buscar por nome" className="form-control mb-3" value={termoBusca} onChange={(e) => setTermoBusca(e.target.value)} />
+                <button onClick={gerarPDF} className="btn btn-outline-primary btn-sm mb-2">Gerar PDF</button>
+                <button onClick={gerarExcel} className="btn btn-outline-success btn-sm mb-2">Gerar Excel</button>
+                <table className="table table-striped table-bordered table-hover" >
+                <thead className="table-active">
+                    <tr>
+                        <th scope="col">Nome</th>
+                        <th scope="col">Telefone</th>
+                        <th scope="col">Login</th>
+                        <th scope="col">Ações</th>
                     </tr>
-                ))}
-            </tbody>
-            </table>
+                </thead>
+                <tbody>
+                    {clientesFiltrados.map(cliente => (
+                        <tr key={cliente.id}>
+                            <td>{cliente.nome}</td>
+                            <td>{cliente.fone}</td>
+                            <td>{cliente.login}</td>
+                            <td>
+                                <a className="btn btn-outline-secondary btn-sm mr-2 mb-2" href={`/admin/cliente/alteracao/${cliente.id}`}>Editar</a>
+                                <button className="btn btn-outline-danger btn-sm mr-2 mb-2" onClick={() => excluirCliente(cliente.id)}>Excluir</button>
+                            </td>
+                        </tr>
+                    ))}
+                </tbody>
+                </table>
 
-        </div>
+            </div>
         </section>
 
 

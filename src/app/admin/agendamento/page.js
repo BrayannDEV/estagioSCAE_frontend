@@ -97,38 +97,42 @@ export default function Agendamento() {
 
     return(
         <section id="appointment" className="jarallax" style={{backgroundImage: "url(../../images/background-1.jpg)"}} >
-        <div className="container-lg padding-medium">
-            <div className="offset-md-3 col-md-6 text-center ">
-
-            <h2 className="display-4 fw-normal mb-3">Agendar</h2>
-
-            <form className="contact-form row mt-5">
-                <div className="form-input col-lg-12 d-md-flex mb-3">
-                <label className=" rounded-0 border-0 py-3 mb-2 me-3" for="procedimento">Procedimentos: </label>
-                    <select type="text" ref={procedimento} id="procedimento" className="form-control w-100 rounded-0 border-0 ps-4 py-3 mb-2 me-3">
-                    {listaProcedimentos.map(procedimento => (<option value={procedimento.id}>{procedimento.nome}</option>))}
-                    </select>
-                </div>
-                <div className="form-input col-lg-12 d-md-flex mb-3">
-                <label className=" rounded-0 border-0 py-3 mb-2 me-3" for="cliente">Cliente: </label>
-                <Select 
-                    value={clienteSelecionado} 
-                    onChange={setClienteSelecionado} 
-                    options={listaCliente.map(cliente => 
-                        ({ value: cliente.id, label: cliente.nome }))
-                    } className="form-control w-100 rounded-0 border-0 ps-4 py-3 mb-2 me-3" 
-                    placeholder="Digite para buscar clientes..." />
-                </div>
-                <div className="form-input col-lg-12 d-md-flex mb-3">
-                <input type="date" ref={data} name="data" className="form-control w-100 rounded-0 border-0 ps-4 py-3 mb-2 me-3"/>
-                <input type="time" ref={horaInicial} name="hora" className="form-control w-100 rounded-0 border-0 ps-4 py-3 mb-2 me-3"/>
-                </div>
-            </form>
-
-            <button className="btn btn-primary mt-3" onClick={cadastrar} style={{backgroundColor: "DF808F", border: "none"}}>Confirmar</button>
+            <div className="d-flex justify-content-end p-3">
+                <button className="btn btn-primary mt-3" style={{backgroundColor: "green", border: "none"}}>Ajuda</button>
+                <button className="btn btn-primary mt-3" style={{backgroundColor: "maroon", border: "none"}}>Sair</button>
             </div>
+            <div className="container-lg padding-medium">
+                <div className="offset-md-3 col-md-6 text-center ">
 
-        </div>
+                <h2 className="display-4 fw-normal mb-3">Agendar</h2>
+
+                <form className="contact-form row mt-5">
+                    <div className="form-input col-lg-12 d-md-flex mb-3">
+                    <label className=" rounded-0 border-0 py-3 mb-2 me-3" for="procedimento">Procedimentos: </label>
+                        <select type="text" ref={procedimento} id="procedimento" className="form-control w-100 rounded-0 border-0 ps-4 py-3 mb-2 me-3">
+                        {listaProcedimentos.map(procedimento => (<option value={procedimento.id}>{procedimento.nome}</option>))}
+                        </select>
+                    </div>
+                    <div className="form-input col-lg-12 d-md-flex mb-3">
+                    <label className=" rounded-0 border-0 py-3 mb-2 me-3" for="cliente">Cliente: </label>
+                    <Select 
+                        value={clienteSelecionado} 
+                        onChange={setClienteSelecionado} 
+                        options={listaCliente.map(cliente => 
+                            ({ value: cliente.id, label: cliente.nome }))
+                        } className="form-control w-100 rounded-0 border-0 ps-4 py-3 mb-2 me-3" 
+                        placeholder="Digite para buscar clientes..." />
+                    </div>
+                    <div className="form-input col-lg-12 d-md-flex mb-3">
+                    <input type="date" ref={data} name="data" className="form-control w-100 rounded-0 border-0 ps-4 py-3 mb-2 me-3"/>
+                    <input type="time" ref={horaInicial} name="hora" className="form-control w-100 rounded-0 border-0 ps-4 py-3 mb-2 me-3"/>
+                    </div>
+                </form>
+
+                <button className="btn btn-primary mt-3" onClick={cadastrar} style={{backgroundColor: "DF808F", border: "none"}}>Confirmar</button>
+                </div>
+
+            </div>
         </section>
         
         

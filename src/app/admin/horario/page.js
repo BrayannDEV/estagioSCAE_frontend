@@ -26,7 +26,7 @@ export default function Horario() {
           horaFinal.current.value = "";
           alert("Cadastrado com sucesso!")
     
-          let ok = r.status == 201;
+          await carregarHorarios();
     
         } catch (erro) {
           console.log(erro);
@@ -85,6 +85,10 @@ export default function Horario() {
     return(
         <div>
           <section id="appointment" className="jarallax" style={{backgroundImage: "url(../../images/background-1.jpg)"}} >
+            <div className="d-flex justify-content-end p-3">
+                <button className="btn btn-primary mt-3" style={{backgroundColor: "green", border: "none"}}>Ajuda</button>
+                <button className="btn btn-primary mt-3" style={{backgroundColor: "maroon", border: "none"}}>Sair</button>
+            </div>
             <div className="container-lg padding-medium">
               <div className="offset-md-3 col-md-6 text-center ">
     

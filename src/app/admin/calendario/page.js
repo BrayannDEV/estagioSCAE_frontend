@@ -59,7 +59,10 @@ export default function Agendamento() {
 
     return(
         <div>
-            
+            <div className="d-flex justify-content-end p-3">
+                <button className="btn btn-primary mt-3" style={{backgroundColor: "green", border: "none"}}>Ajuda</button>
+                <button className="btn btn-primary mt-3" style={{backgroundColor: "maroon", border: "none"}}>Sair</button>
+            </div>
             <FullCalendar plugins={[ dayGridPlugin, interactionPlugin  ]} initialView="dayGridMonth" selectable="true" 
             events={
                 listaAgenda.map(agenda =>{
