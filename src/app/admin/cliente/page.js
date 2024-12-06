@@ -136,12 +136,21 @@ export default function Cliente() {
         cliente.nome.toLowerCase().includes(termoBusca.toLowerCase()) 
     );
 
+    function handleDownloadPDF() { 
+        const pdfUrl = '/manualUsuario.pdf'; 
+        const link = document.createElement('a'); 
+        link.href = pdfUrl; 
+        link.download = 'manualUsuario.pdf'; 
+        document.body.appendChild(link); 
+        link.click(); 
+        document.body.removeChild(link); 
+    }
 
     return(
         <section id="appointment" className="jarallax" style={{backgroundImage: "url(../../images/background-1.jpg)"}} >
             <div className="d-flex justify-content-end p-3">
-                <button className="btn btn-primary mt-3" style={{backgroundColor: "green", border: "none"}}>Ajuda</button>
-                <button className="btn btn-primary mt-3" style={{backgroundColor: "maroon", border: "none"}}>Sair</button>
+                <button className="btn btn-primary mt-3" onClick={handleDownloadPDF} style={{backgroundColor: "green", border: "none"}}>Ajuda</button>
+                <a href="/login" className="btn btn-primary mt-3" style={{backgroundColor: "maroon", border: "none"}}>Sair</a>
             </div>
             <div className="table-responsive offset-md-3 col-md-6 text-center">
                 <h2 className="display-4 fw-normal mb-3">Listagem de cliente</h2>

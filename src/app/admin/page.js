@@ -210,7 +210,9 @@ export default function Home() {
 
     function handleDownloadPDF() { 
         // URL do PDF que você quer baixar, servida pelo servidor Express 
-        const pdfUrl = '../../../public/manualUsuario.pdf'; // Cria um link temporário para baixar o PDF 
+        const pdfUrl = '/manualUsuario.pdf'; 
+        
+        // Cria um link temporário para baixar o PDF 
         const link = document.createElement('a'); 
         link.href = pdfUrl; 
         link.download = 'manualUsuario.pdf'; 

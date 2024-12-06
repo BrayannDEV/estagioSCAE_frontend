@@ -15,7 +15,7 @@ export default function Agendamento() {
     let procedimento = useRef("");
     const {user} = useAuth();
     const { logout } = useAuth();
-    console.log(user)
+    console.log("usuario: ",user)
 
     async function cadastrar(){
     
@@ -138,7 +138,7 @@ export default function Agendamento() {
         <div>
             <section id="appointment" className="jarallax" style={{backgroundImage: "url(../../images/background-1.jpg)"}} >
                 <div className="d-flex justify-content-end p-3">
-                    <button className="btn btn-primary mt-3" onClick={handleLogout}  style={{backgroundColor: "maroon", border: "none"}}>Sair</button>
+                <a href="/login" className="btn btn-primary mt-3" style={{backgroundColor: "maroon", border: "none"}}>Sair</a>
                 </div>
                 <div className="container-lg padding-medium">
                     <div className="offset-md-3 col-md-6 text-center ">
@@ -152,12 +152,6 @@ export default function Agendamento() {
                                 {listaProcedimentos.map(procedimento => (<option value={procedimento.id}>{procedimento.nome}</option>))}
                                 </select>
                             </div>
-                            {/* <div className="form-input col-lg-12 d-md-flex mb-3">
-                                <label className=" rounded-0 border-0 py-3 mb-2 me-3" for="cliente">Cliente: </label>
-                                <select type="text" ref={cliente} id="cliente" className="form-control w-100 rounded-0 border-0 ps-4 py-3 mb-2 me-3">
-                                {listaCliente.map(cliente => (<option value={cliente.id}>{cliente.nome}</option>))}
-                                </select>
-                            </div> */}
                             <div className="form-input col-lg-12 d-md-flex mb-3">
                                 <input type="date" ref={data} name="data" className="form-control w-100 rounded-0 border-0 ps-4 py-3 mb-2 me-3"/>
                                 <input type="time" ref={horaInicial} name="hora" className="form-control w-100 rounded-0 border-0 ps-4 py-3 mb-2 me-3"/>
@@ -185,6 +179,7 @@ export default function Agendamento() {
                         horaFinal.setMinutes(minutosfinal);
                         horaFinal.setSeconds(segundosfinal);
 
+                        
                         if(user.nome == agenda.cliente.nome){
                             nomeAgendado = agenda.cliente.nome;
                         }

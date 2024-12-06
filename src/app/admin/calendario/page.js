@@ -53,15 +53,26 @@ export default function Agendamento() {
             title: info.event.title, 
             procedimento: info.event.extendedProps.procedimento,
             inicio: `${info.event.start.getHours()}:${String(info.event.start.getMinutes()).padStart(2, '0')}`, 
-            fim: `${info.event.end.getHours()}:${String(info.event.end.getMinutes()).padStart(2, '0')}` }); 
-            setShowModal(true); 
-        }
+            fim: `${info.event.end.getHours()}:${String(info.event.end.getMinutes()).padStart(2, '0')}` 
+        }); 
+        setShowModal(true); 
+    }
+
+    function handleDownloadPDF() { 
+        const pdfUrl = '/manualUsuario.pdf'; 
+        const link = document.createElement('a'); 
+        link.href = pdfUrl; 
+        link.download = 'manualUsuario.pdf'; 
+        document.body.appendChild(link); 
+        link.click(); 
+        document.body.removeChild(link); 
+    }
 
     return(
         <div>
             <div className="d-flex justify-content-end p-3">
-                <button className="btn btn-primary mt-3" style={{backgroundColor: "green", border: "none"}}>Ajuda</button>
-                <button className="btn btn-primary mt-3" style={{backgroundColor: "maroon", border: "none"}}>Sair</button>
+                <button className="btn btn-primary mt-3" onClick={handleDownloadPDF} style={{backgroundColor: "green", border: "none"}}>Ajuda</button>
+                <a href="/login" className="btn btn-primary mt-3" style={{backgroundColor: "maroon", border: "none"}}>Sair</a>
             </div>
             <FullCalendar plugins={[ dayGridPlugin, interactionPlugin  ]} initialView="dayGridMonth" selectable="true" 
             events={
