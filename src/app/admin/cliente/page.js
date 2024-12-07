@@ -3,6 +3,8 @@ import { useRef, useState, useEffect } from "react"
 import httpClient from "../../utils/httpClient.js";
 import * as XLSX from 'xlsx';
 import { PDFDocument, rgb, StandardFonts } from 'pdf-lib';
+import { useAuth } from "../../context/userContext.js";
+import { useRouter } from "next/navigation";
 
 export default function Cliente() {
 
@@ -43,7 +45,7 @@ export default function Cliente() {
 
     async function gerarExcel() {
 
-        const ws = XLSX.utils.json_to_sheet(listaClientes);
+        const ws = XLSX.utils.json_to_sheet(clientesFiltrados);
         const wb = XLSX.utils.book_new();
     
         XLSX.utils.book_append_sheet(wb, ws, 'Clientes');
@@ -61,7 +63,7 @@ export default function Cliente() {
         const columnWidths = [250, 125, 125];
         const bgColor = rgb(0.87, 0.5, 0.56);
         const fontBold = await pdfDoc.embedFont(StandardFonts.HelveticaBold);
-        const rowColor1 = rgb(1, 0.85, 0.9); // Cor rosa claro para as linhas ímpares 
+        const rowColor1 = rgb(1, 0.85, 0.9); 
         const rowColor2 = rgb(1, 0.75, 0.8);
     
         // Adicionando título
@@ -97,11 +99,11 @@ export default function Cliente() {
         });
     
         // Adicionando os dados dos clientes
-        listaClientes.forEach((cliente, index) => {
+        clientesFiltrados.forEach((cliente, index) => {
     
-            const y = height - margin - (index + 3) * lineHeight; // Ajustando o espaçamento vertical 
-            const bgColor = index % 2 === 0 ? rowColor1 : rowColor2; // Alternar entre as cores de fundo 
-            // Adicionando fundo colorido para as linhas 
+            const y = height - margin - (index + 3) * lineHeight; 
+            const bgColor = index % 2 === 0 ? rowColor1 : rowColor2; 
+            
             page.drawRectangle({ 
                 x: margin, 
                 y: y - 12, 
@@ -146,11 +148,27 @@ export default function Cliente() {
         document.body.removeChild(link); 
     }
 
+
+    const {user} = useAuth();
+    const { logout } = useAuth();
+    let router = useRouter();
+
+    const handleLogout = async () => {
+        if(user != null){
+        logout()
+        alert("Você não está mais logado")
+        router.push('/login');
+        }
+        else{
+            alert("Você ainda não fez o login!");
+        }
+    }
+
     return(
         <section id="appointment" className="jarallax" style={{backgroundImage: "url(../../images/background-1.jpg)"}} >
             <div className="d-flex justify-content-end p-3">
                 <button className="btn btn-primary mt-3" onClick={handleDownloadPDF} style={{backgroundColor: "green", border: "none"}}>Ajuda</button>
-                <a href="/login" className="btn btn-primary mt-3" style={{backgroundColor: "maroon", border: "none"}}>Sair</a>
+                <button className="btn btn-primary mt-3" onClick={handleLogout}  style={{backgroundColor: "maroon", border: "none"}}>Sair</button>
             </div>
             <div className="table-responsive offset-md-3 col-md-6 text-center">
                 <h2 className="display-4 fw-normal mb-3">Listagem de cliente</h2>

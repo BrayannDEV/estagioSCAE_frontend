@@ -1,11 +1,13 @@
 'use client'
-import { useRef, useState, useEffect } from "react"
+import { useRef, useState, useEffect } from "react";
 import httpClient from "../../utils/httpClient.js";
-import FullCalendar from '@fullcalendar/react'
-import dayGridPlugin from '@fullcalendar/daygrid'
-//import interactionPlugin from "@fullcalendar/interaction";
-import { Modal, Button } from 'react-bootstrap'; 
-import 'bootstrap/dist/css/bootstrap.min.css'
+import FullCalendar from '@fullcalendar/react';
+import dayGridPlugin from '@fullcalendar/daygrid';
+import ptBrLocale from '@fullcalendar/core/locales/pt-br';
+import { Modal, Button } from 'react-bootstrap';
+import { useAuth } from "../../context/userContext.js";
+import { useRouter } from "next/navigation";
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 import interactionPlugin from "@fullcalendar/interaction" // needed for dayClick
 
@@ -68,13 +70,32 @@ export default function Agendamento() {
         document.body.removeChild(link); 
     }
 
+    const {user} = useAuth();
+    const { logout } = useAuth();
+    let router = useRouter();
+
+    const handleLogout = async () => {
+        if(user != null){
+        logout()
+        alert("Você não está mais logado")
+        router.push('/login');
+        }
+        else{
+            alert("Você ainda não fez o login!");
+        }
+    }
+
     return(
         <div>
             <div className="d-flex justify-content-end p-3">
                 <button className="btn btn-primary mt-3" onClick={handleDownloadPDF} style={{backgroundColor: "green", border: "none"}}>Ajuda</button>
-                <a href="/login" className="btn btn-primary mt-3" style={{backgroundColor: "maroon", border: "none"}}>Sair</a>
+                <button className="btn btn-primary mt-3" onClick={handleLogout}  style={{backgroundColor: "maroon", border: "none"}}>Sair</button>
             </div>
-            <FullCalendar plugins={[ dayGridPlugin, interactionPlugin  ]} initialView="dayGridMonth" selectable="true" 
+            <FullCalendar 
+            plugins={[ dayGridPlugin, interactionPlugin  ]} 
+            initialView="dayGridMonth" 
+            selectable="true" 
+            locale={ptBrLocale}
             events={
                 listaAgenda.map(agenda =>{
 

@@ -2,6 +2,8 @@
 import { useRef, useState, useEffect } from "react"
 import httpClient from "../../utils/httpClient.js";
 import InputMask from "react-input-mask";
+import { useAuth } from "../../context/userContext.js";
+import { useRouter } from "next/navigation";
 
 export default function Horario() {
 
@@ -68,25 +70,8 @@ export default function Horario() {
       }
     }
 
-    function ordenarHorarios(horarios) { 
-      const ordemDias = ["Domingo", "Segunda-feira", "Terça-feira", "Quarta-feira", "Quinta-feira", "Sexta-feira", "Sábado"]; 
-      return horarios.sort((a, b) => { 
-        const diaA = ordemDias.indexOf(a.diaSemana); 
-        const diaB = ordemDias.indexOf(b.diaSemana); 
-        if (diaA !== diaB) { 
-          return diaA - diaB;
-        } 
-        const horaA = new Date(`1970-01-01T${a.horaInicial}:00`); 
-        const horaB = new Date(`1970-01-01T${b.horaInicial}:00`); 
-        return horaA - horaB; 
-      }); 
-    }
-
     function handleDownloadPDF() { 
-      // URL do PDF que você quer baixar, servida pelo servidor Express 
       const pdfUrl = '/manualUsuario.pdf'; 
-      
-      // Cria um link temporário para baixar o PDF 
       const link = document.createElement('a'); 
       link.href = pdfUrl; 
       link.download = 'manualUsuario.pdf'; 
@@ -95,12 +80,27 @@ export default function Horario() {
       document.body.removeChild(link); 
     }
 
+    const {user} = useAuth();
+    const { logout } = useAuth();
+    let router = useRouter();
+    
+    const handleLogout = async () => {
+        if(user != null){
+        logout()
+        alert("Você não está mais logado")
+        router.push('/login');
+        }
+        else{
+            alert("Você ainda não fez o login!");
+        }
+    }
+
     return(
         <div>
           <section id="appointment" className="jarallax" style={{backgroundImage: "url(../../images/background-1.jpg)"}} >
             <div className="d-flex justify-content-end p-3">
                 <button className="btn btn-primary mt-3" onClick={handleDownloadPDF} style={{backgroundColor: "green", border: "none"}}>Ajuda</button>
-                <a href="/login" className="btn btn-primary mt-3" style={{backgroundColor: "maroon", border: "none"}}>Sair</a>
+                <button className="btn btn-primary mt-3" onClick={handleLogout}  style={{backgroundColor: "maroon", border: "none"}}>Sair</button>
             </div>
             <div className="container-lg padding-medium">
               <div className="offset-md-3 col-md-6 text-center ">
@@ -111,7 +111,6 @@ export default function Horario() {
                   <div className="form-input col-lg-12 d-md-flex mb-3">
                     <label className="form-control rounded-0 border-0 py-3 mb-2 me-3" for="diaSemana">Dia da semana</label>
                     <select type="text" ref={diaSemana} id="diaSemana" className="form-control w-100 rounded-0 border-0 ps-4 py-3 mb-2 me-3">
-                    {/* <datalist id="dias"> */}
                       <option value="Domingo">Domingo</option>
                       <option value="Segunda-feira">Segunda-feira</option>
                       <option value="Terca-feira">Terça-feira</option>
@@ -119,7 +118,6 @@ export default function Horario() {
                       <option value="Quinta-feira">Quinta-feira</option>
                       <option value="Sexta-feira">Sexta-feira</option>
                       <option value="Sabado">Sábado</option>
-                    {/* </datalist> */}
                     </select>
                   </div>
                   <div className="form-input col-lg-12 d-md-flex mb-3">
@@ -152,17 +150,14 @@ export default function Horario() {
               <tbody>
                   {listaHorarios.map(function(value, index) {
                     console.log(value)
-                    //if(value.diaSemana == "Segunda-feira"){
-                      return <tr key={value.id}>
-                          <td>{value.diaSemana}</td>
-                          <td>{value.horaInicial}</td>
-                          <td>{value.horaFinal}</td>
-                          <td>
-                              <button className="btn btn-outline-danger btn-sm mr-2 mb-2" onClick={() => excluirHorario(value.id)}>Excluir</button>
-                          </td>
-                      </tr>
-                    //}
-                      
+                    return <tr key={value.id}>
+                        <td>{value.diaSemana}</td>
+                        <td>{value.horaInicial}</td>
+                        <td>{value.horaFinal}</td>
+                        <td>
+                            <button className="btn btn-outline-danger btn-sm mr-2 mb-2" onClick={() => excluirHorario(value.id)}>Excluir</button>
+                        </td>
+                    </tr> 
                   })}
               </tbody>
               </table>

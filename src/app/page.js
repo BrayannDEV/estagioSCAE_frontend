@@ -1,7 +1,5 @@
 'use client'
-import Image from "next/image";
-import styles from "./page.module.css";
-import { useRef, useState, useEffect } from "react"
+import { useState, useEffect } from "react"
 import httpClient from "./utils/httpClient.js";
 import { useAuth } from "./context/userContext.js";
 
@@ -9,7 +7,7 @@ export default function Home() {
 
   let [listaProcedimentos, setListaProcedimentos] = useState([]);
   useEffect((e) => {
-      carregarProcedimentos();
+    carregarProcedimentos();
   }, [])
 
   async function carregarProcedimentos() {

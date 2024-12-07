@@ -33,21 +33,19 @@ const geistMono = localFont({
 
 export default function RootLayout({ children }) {
   
-  //const {user, setUser} = useContext(UserContext);
   const [isClient, setIsClient] = useState(false)
   const {user} = useAuth();
   let router = useRouter();
 
- 
   useEffect(() => {
     setIsClient(true)
   }, [])
 
   if (isClient == false) {
-    return <div>Prerendered</div>
+    return <div>Carregando</div>
   }
   if(isClient) {
-    if( user.id != 1) {
+    if(!user || user.id != 1) {
       alert("Você  não possui permissão de acesso nesta página");
       router.push('/');
     }

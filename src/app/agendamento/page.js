@@ -1,9 +1,10 @@
 'use client'
 import { useRef, useState, useEffect } from "react"
 import httpClient from "../utils/httpClient.js";
-import { AuthProvider, useAuth } from "../context/userContext.js";
-import FullCalendar from '@fullcalendar/react'
-import dayGridPlugin from '@fullcalendar/daygrid'
+import { useAuth } from "../context/userContext.js";
+import FullCalendar from '@fullcalendar/react';
+import dayGridPlugin from '@fullcalendar/daygrid';
+import ptBrLocale from '@fullcalendar/core/locales/pt-br';
 
 import interactionPlugin from "@fullcalendar/interaction";
 
@@ -11,15 +12,12 @@ export default function Agendamento() {
     
     let data = useRef("");
     let horaInicial = useRef("");
-    let cliente = useRef("");
     let procedimento = useRef("");
     const {user} = useAuth();
     const { logout } = useAuth();
-    console.log("usuario: ",user)
 
     async function cadastrar(){
     
-        
         let procedimentoSelecionado = listaProcedimentos.find(p => p.id == procedimento.current.value);
         if (procedimentoSelecionado) {
 
@@ -125,7 +123,7 @@ export default function Agendamento() {
     const handleLogout = async () => {
         if(user != null){
           logout()
-          alert("Você não está mais logado")    
+          alert("Você não está mais logado")  
         }
         else{
             alert("Você ainda não fez o login!");
@@ -138,7 +136,7 @@ export default function Agendamento() {
         <div>
             <section id="appointment" className="jarallax" style={{backgroundImage: "url(../../images/background-1.jpg)"}} >
                 <div className="d-flex justify-content-end p-3">
-                <a href="/login" className="btn btn-primary mt-3" style={{backgroundColor: "maroon", border: "none"}}>Sair</a>
+                    <button className="btn btn-primary mt-3" onClick={handleLogout}  style={{backgroundColor: "maroon", border: "none"}}>Sair</button>
                 </div>
                 <div className="container-lg padding-medium">
                     <div className="offset-md-3 col-md-6 text-center ">
@@ -162,7 +160,11 @@ export default function Agendamento() {
                 </div>   
             </section>
             <div>
-                <FullCalendar plugins={[ dayGridPlugin, interactionPlugin  ]} initialView="dayGridMonth" selectable="true" 
+                <FullCalendar 
+                plugins={[ dayGridPlugin, interactionPlugin  ]} 
+                initialView="dayGridMonth" 
+                selectable="true" 
+                locale={ptBrLocale}
                 events={
                     listaAgenda.map(agenda =>{
 
@@ -180,7 +182,7 @@ export default function Agendamento() {
                         horaFinal.setSeconds(segundosfinal);
 
                         
-                        if(user.nome == agenda.cliente.nome){
+                        if(user && user.nome == agenda.cliente.nome){
                             nomeAgendado = agenda.cliente.nome;
                         }
                         else{

@@ -76,7 +76,7 @@ export default function AlteracaoCliente({params: {id}}) {
 
       // Se houver erros, exiba-os e não continue com o cadastro
       if (errors.length > 0) {
-        alert(errors.join("\n")); // Exibe os erros para o usuário
+        alert(errors.join("\n")); 
         return;
       }
 
@@ -109,7 +109,6 @@ export default function AlteracaoCliente({params: {id}}) {
 
   return(
       <section id="appointment" className="jarallax" style={{backgroundImage: "url(../../../images/background-1.jpg)"}} >
-      {/* style="background-image: url(images/background-1.jpg); background-repeat: no-repeat; background-position: center;" */}
         <div className="container-lg padding-medium">
           <div className="offset-md-3 col-md-6 text-center ">
 

@@ -2,12 +2,13 @@
 import { useRef, useState, useEffect } from "react"
 import httpClient from "../../utils/httpClient.js";
 import Select from 'react-select';
+import { useAuth } from "../../context/userContext.js";
+import { useRouter } from "next/navigation";
 
 export default function Agendamento() {
     
     let data = useRef("");
     let horaInicial = useRef("");
-    let cliente = useRef("");
     let procedimento = useRef("");
     let [clienteSelecionado, setClienteSelecionado] = useState(null);
 
@@ -102,13 +103,28 @@ export default function Agendamento() {
         document.body.appendChild(link); 
         link.click(); 
         document.body.removeChild(link); 
-      }
+    }
+
+    const {user} = useAuth();
+    const { logout } = useAuth();
+    let router = useRouter();
+
+    const handleLogout = async () => {
+        if(user != null){
+        logout()
+        alert("Você não está mais logado")
+        router.push('/login');
+        }
+        else{
+            alert("Você ainda não fez o login!");
+        }
+    }
 
     return(
         <section id="appointment" className="jarallax" style={{backgroundImage: "url(../../images/background-1.jpg)"}} >
             <div className="d-flex justify-content-end p-3">
                 <button className="btn btn-primary mt-3" onClick={handleDownloadPDF} style={{backgroundColor: "green", border: "none"}}>Ajuda</button>
-                <a href="/login" className="btn btn-primary mt-3" style={{backgroundColor: "maroon", border: "none"}}>Sair</a>
+                <button className="btn btn-primary mt-3" onClick={handleLogout}  style={{backgroundColor: "maroon", border: "none"}}>Sair</button>
             </div>
             <div className="container-lg padding-medium">
                 <div className="offset-md-3 col-md-6 text-center ">

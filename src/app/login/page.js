@@ -4,12 +4,9 @@ import { useRouter } from "next/navigation";
 import httpClient from "../utils/httpClient.js";
 import InputMask from "react-input-mask";
 import { useAuth } from "../context/userContext.js";
-import { Alert } from "react-bootstrap";
 
 export default function Login() {
     
-    //let login = useRef("");
-    //let senha = useRef("");
     let router = useRouter();
     const { loginContexto } = useAuth();
 
@@ -58,20 +55,6 @@ export default function Login() {
     let login = useRef("");
     let senha = useRef("");
     let confirmaSenha = useRef("");
-    let [listaClientes, setListaClientes] = useState([]);
-
-    async function carregarClientes() {
-        
-        try {
-            const result = await httpClient.get("/cliente")
-            setListaClientes(result)
-      
-            let ok = r.status == 201;
-      
-        } catch (erro) {
-            console.log(erro);
-        }
-    }
 
     async function cadastrar(){
         
