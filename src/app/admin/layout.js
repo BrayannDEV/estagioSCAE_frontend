@@ -54,6 +54,9 @@ export default function RootLayout({ children }) {
   return (
     <html lang="pt-br">
       <head>
+        <title>Salão de Agendamento</title> 
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" 
+        integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous"></link>
         {css}
       </head>
       <body>
@@ -64,21 +67,18 @@ export default function RootLayout({ children }) {
                 <a className="navbar-brand" href="/">
                   <img src="/images/main-logo.png" className="logo img-fluid"/>
                 </a>
-                <button className="navbar-toggler border-0 d-flex d-lg-none order-3 p-2 shadow-none" type="button"
-                  data-bs-toggle="offcanvas" data-bs-target="#bdNavbar" aria-controls="bdNavbar" aria-expanded="false">
-                  <svg className="navbar-icon" width="60" height="60">
-                    <use href="#navbar-icon"></use>
-                  </svg>
+                <button className="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#bdNavbar" aria-controls="bdNavbar" aria-expanded="false"> 
+                  <span className="navbar-toggler-icon"></span> 
                 </button>
-                <div className="header-bottom offcanvas offcanvas-end" id="bdNavbar" aria-labelledby="bdNavbarOffcanvasLabel">
-                  <div className="offcanvas-header px-4 mt-3 ">
-                    <button type="button" className="btn-close btn-close-black" data-bs-dismiss="offcanvas" aria-label="Close"
-                      data-bs-target="#bdNavbar"></button>
+                <div className="header-bottom offcanvas offcanvas-end" id="bdNavbar" tabindex="-1" aria-labelledby="bdNavbarOffcanvasLabel">
+                  <div className="offcanvas-header"> 
+                    <h5 className="offcanvas-title" id="bdNavbarOffcanvasLabel">Menu</h5> 
+                    <button type="button" className="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button> 
                   </div>
                   <div className="offcanvas-body align-items-center justify-content-end">
                     <ul className="navbar-nav mb-2 mb-lg-0">
                       <li className="nav-item px-3 py-2 py-lg-0">
-                        <a className="nav-link fw-semibold p-0" aria-current="page" href="/admin">Procedimentos</a>
+                        <a className="nav-link fw-semibold p-0" href="/admin">Procedimentos</a>
                       </li>
                       <li className="nav-item px-3 py-2 py-lg-0">
                         <a className="nav-link fw-semibold p-0" href="/admin/horario">Horários</a>
@@ -186,6 +186,8 @@ export default function RootLayout({ children }) {
         <script type="text/javascript" src="/js/plugins.js"></script>
         <script type="text/javascript" src="/js/script.js"></script>
         <script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXlAO/pgbS+X7+KMghz4c3pNcTApb8dx77frfYBsmjuzsMBGpeH0i4lKwG8Q" crossorigin="anonymous"></script> 
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhG+c3FZ5TOpqt2RQePPSKnvQKYD8fYNGqY5tpsqDUBOKZR5Eiu0hfi7p+0t" crossorigin="anonymous"></script>
       </body>
       
     </html>
