@@ -15,7 +15,7 @@
     "bootstrap": "^5.3.3",
     "cookie": "^1.0.1",
     "fullcalendar": "^6.1.15",
-    "next": "14.2.12",
+    "next": "^15.1.6",
     "pdf-lib": "^1.17.1",
     "react": "^18",
     "react-bootstrap": "^2.10.5",
